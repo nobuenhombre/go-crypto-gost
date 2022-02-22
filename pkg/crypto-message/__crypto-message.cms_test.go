@@ -1,0 +1,362 @@
+package cryptoMessage
+
+//
+//import (
+//	"encoding/pem"
+//	"testing"
+//	"time"
+//)
+//
+//var testSignedData = []byte{116, 101, 115, 116, 32, 115, 116, 114, 105, 110, 103, 10}
+//
+//const testAlienCA = `-----BEGIN CERTIFICATE-----
+//MIIBmzCCAUigAwIBAgIJAM7hOrq5ksiJMAoGBiqFAwICAwUAMCcxEjAQBgNVBAMM
+//CWxvY2FsaG9zdDERMA8GA1UECwwIZ29zdDIwMDEwHhcNMTkwODIzMTEzMjA3WhcN
+//MjkwODIwMTEzMjA3WjAnMRIwEAYDVQQDDAlsb2NhbGhvc3QxETAPBgNVBAsMCGdv
+//c3QyMDAxMGMwHAYGKoUDAgITMBIGByqFAwICIwEGByqFAwICHgEDQwAEQLIVXDhT
+//Q1ruBfsFgZa3494vsLyRP80yZupl8/gaKh5n3WLBMxCAuCNY+Y9NW5w9KH3A9sYk
+//Upt4sT2ce+rvCG2jUzBRMB0GA1UdDgQWBBRhtnT2MGTJwoVMKNjuzPUm+9q7XzAf
+//BgNVHSMEGDAWgBRhtnT2MGTJwoVMKNjuzPUm+9q7XzAPBgNVHRMBAf8EBTADAQH/
+//MAoGBiqFAwICAwUAA0EA3DNrRU2ZVb0YRs6yHPbg/ZCcRL17jDXT85tMHiS1VlzQ
+//Ztnn0Sz/f9hwXMHgT3q+93IpDN4HifEKAhJzS2XITA==
+//-----END CERTIFICATE-----`
+//
+//var testSet = []struct {
+//	Name      string
+//	Cms       string
+//	Ca        string
+//	Content   []byte
+//	NotBefore time.Time
+//	NotAfter  time.Time
+//}{
+//	{
+//		"GOST-34.10-2001",
+//		`-----BEGIN CMS-----
+//MIIC7QYJKoZIhvcNAQcCoIIC3jCCAtoCAQExDDAKBgYqhQMCAgkFADAbBgkqhkiG
+//9w0BBwGgDgQMdGVzdCBzdHJpbmcKoIIBozCCAZ8wggFMAgkAjONak/cOJM0wCgYG
+//KoUDAgIDBQAwJzESMBAGA1UEAwwJbG9jYWxob3N0MREwDwYDVQQLDAhnb3N0MjAw
+//MTAeFw0xOTA4MjMxNjA5NDFaFw0yMDA4MjIxNjA5NDFaMIGEMQswCQYDVQQGEwJS
+//VTEPMA0GA1UECAwGTW9zY293MQ8wDQYDVQQHDAZNb3Njb3cxGDAWBgNVBAoMD0ds
+//b2JhbCBTZWN1cml0eTEWMBQGA1UECwwNSVQgRGVwYXJ0bWVudDEhMB8GA1UEAwwY
+//ZG1pdHJ5LmR1bGVzb3ZAZ21haWwuY29tMGMwHAYGKoUDAgITMBIGByqFAwICIwEG
+//ByqFAwICHgEDQwAEQIDZWQ3quOWQ0GkbeqIEke7qRaMw+gqi8CA6ijX643O34nGS
+//dZvGRbLbGerDt798CpZvvCm32DgBAup7rWzxQugwCgYGKoUDAgIDBQADQQBBtoyw
+//L+K71/y2wZJFDxg81AAztF4JOq3cY/2oNf4+gg1pcd/sHGb+rY2EjubjDAKb6ALg
+//M22DXDWASreWvLTGMYIBATCB/gIBATA0MCcxEjAQBgNVBAMMCWxvY2FsaG9zdDER
+//MA8GA1UECwwIZ29zdDIwMDECCQCM41qT9w4kzTAKBgYqhQMCAgkFAKBpMBgGCSqG
+//SIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE5MDgyMzE2MDk0
+//MVowLwYJKoZIhvcNAQkEMSIEIJdHnKSe253PwW+GY8EG27IGxx86D4V1gtLTj/bO
+//pHkNMAoGBiqFAwICEwUABEB2OqtIOAV93npIUot6cIJ2tGp0VaFW8A5tQufDPc0T
+//5/mzGM30NjmsE7QA6uZUBLmJCZ4OizNa1qXt5iS8OFl/
+//-----END CMS-----`,
+//		`-----BEGIN CERTIFICATE-----
+//MIIBmzCCAUigAwIBAgIJAIt4JtpjyXkrMAoGBiqFAwICAwUAMCcxEjAQBgNVBAMM
+//CWxvY2FsaG9zdDERMA8GA1UECwwIZ29zdDIwMDEwHhcNMTkwODIzMTYwOTQxWhcN
+//MjkwODIwMTYwOTQxWjAnMRIwEAYDVQQDDAlsb2NhbGhvc3QxETAPBgNVBAsMCGdv
+//c3QyMDAxMGMwHAYGKoUDAgITMBIGByqFAwICIwEGByqFAwICHgEDQwAEQNzgnqt5
+//26xhSUhuEJTTAkhhPmMqAyN9ogS3iEJayabhe9JXqAYeB++WmchF8B+lG2HH7I4d
+//KSDQJtINjuTYhKqjUzBRMB0GA1UdDgQWBBRUaqGccw/6zgcb59xioxx5nhlSZzAf
+//BgNVHSMEGDAWgBRUaqGccw/6zgcb59xioxx5nhlSZzAPBgNVHRMBAf8EBTADAQH/
+//MAoGBiqFAwICAwUAA0EAjmA+jcx7wmmFo1m44i6u5EZcoIVbq+1nGQYmacxldDBv
+//5URcmedqPG3nGm3pmVGrGxGfjQyveIj1swVrU+DgKg==
+//-----END CERTIFICATE-----`,
+//		testSignedData,
+//		time.Date(2019, time.August, 23, 0, 0, 0, 0, time.UTC),
+//		time.Date(2019, time.August, 25, 0, 0, 0, 0, time.UTC),
+//	},
+//
+//	{
+//		"GOST-34.10.2012_256",
+//		`-----BEGIN CMS-----
+//MIIDAwYJKoZIhvcNAQcCoIIC9DCCAvACAQExDjAMBggqhQMHAQECAgUAMBsGCSqG
+//SIb3DQEHAaAOBAx0ZXN0IHN0cmluZwqgggGuMIIBqjCCAVUCCQCPVPoTAC1IMTAM
+//BggqhQMHAQEDAgUAMCsxEjAQBgNVBAMMCWxvY2FsaG9zdDEVMBMGA1UECwwMZ29z
+//dDIwMTJfMjU2MB4XDTE5MDgyMzE2MDk0MVoXDTIwMDgyMjE2MDk0MVowgYQxCzAJ
+//BgNVBAYTAlJVMQ8wDQYDVQQIDAZNb3Njb3cxDzANBgNVBAcMBk1vc2NvdzEYMBYG
+//A1UECgwPR2xvYmFsIFNlY3VyaXR5MRYwFAYDVQQLDA1JVCBEZXBhcnRtZW50MSEw
+//HwYDVQQDDBhkbWl0cnkuZHVsZXNvdkBnbWFpbC5jb20wZjAfBggqhQMHAQEBATAT
+//BgcqhQMCAiMBBggqhQMHAQECAgNDAARADVqw5zN6+PKhGDJR2r4PM9G9QAr3wwH9
+//dWhqT58dMI1HuG2LB0TnCrtpogPXZrNfxXNJ86i4RlXlFUZkiXTDfzAMBggqhQMH
+//AQEDAgUAA0EAbJwXF9ujVWDCs3qw8OhNG0c9wdsg32BiNfvcQjzczGYPqaQC6/NQ
+//jiEBmBNGLm9gR7opv2KmPzCS8I5IxxyteTGCAQowggEGAgEBMDgwKzESMBAGA1UE
+//AwwJbG9jYWxob3N0MRUwEwYDVQQLDAxnb3N0MjAxMl8yNTYCCQCPVPoTAC1IMTAM
+//BggqhQMHAQECAgUAoGkwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG
+//9w0BCQUxDxcNMTkwODIzMTYwOTQxWjAvBgkqhkiG9w0BCQQxIgQgzFZibgJ3QZcx
+//1IGWV2vdbzGaEA/l7WMTS7DX9DjBQ9kwDAYIKoUDBwEBAQEFAARA4vUnMZRmswBZ
+//qxBpslgRCq3aqDU48yYoJqfREqTYVnwuKjUQYqkG9ppjX+waZwe3wYmNY6Aha5UC
+//PRtQCk0PCw==
+//-----END CMS-----`,
+//		`-----BEGIN CERTIFICATE-----
+//MIIBqjCCAVWgAwIBAgIJALhaVkBotxkpMAwGCCqFAwcBAQMCBQAwKzESMBAGA1UE
+//AwwJbG9jYWxob3N0MRUwEwYDVQQLDAxnb3N0MjAxMl8yNTYwHhcNMTkwODIzMTYw
+//OTQxWhcNMjkwODIwMTYwOTQxWjArMRIwEAYDVQQDDAlsb2NhbGhvc3QxFTATBgNV
+//BAsMDGdvc3QyMDEyXzI1NjBmMB8GCCqFAwcBAQEBMBMGByqFAwICIwEGCCqFAwcB
+//AQICA0MABEDloAV7YmyN1ieVTzdrgO0/vZo7qZ/Yi7BgSX8ie5iql9UiqBdNuVdy
+//NfKskmlVf2W2m5ql43P6edVCidp9MzqEo1MwUTAdBgNVHQ4EFgQUmNW0C21fXYF7
+//Rj7lVBqgGXOZXWowHwYDVR0jBBgwFoAUmNW0C21fXYF7Rj7lVBqgGXOZXWowDwYD
+//VR0TAQH/BAUwAwEB/zAMBggqhQMHAQEDAgUAA0EAFMYn4pIAS3I27xiBYd/iKTzJ
+//RHwBB8sDLv+8s0YHw02fvI1Z6Plk3CKbYq5MUu6mDtyHcwsOaPwCRupZ6RYDxg==
+//-----END CERTIFICATE-----`,
+//		testSignedData,
+//		time.Date(2019, time.August, 23, 0, 0, 0, 0, time.UTC),
+//		time.Date(2019, time.August, 25, 0, 0, 0, 0, time.UTC),
+//	},
+//	{
+//		"GOST-34.10-2012_512",
+//		`-----BEGIN CMS-----
+//MIID6wYJKoZIhvcNAQcCoIID3DCCA9gCAQExDjAMBggqhQMHAQECAwUAMBsGCSqG
+//SIb3DQEHAaAOBAx0ZXN0IHN0cmluZwqgggI0MIICMDCCAZoCCQCoX2T1W0KqdjAM
+//BggqhQMHAQEDAwUAMCsxEjAQBgNVBAMMCWxvY2FsaG9zdDEVMBMGA1UECwwMZ29z
+//dDIwMTJfNTEyMB4XDTE5MDgyMzE2MDk0MVoXDTIwMDgyMjE2MDk0MVowgYQxCzAJ
+//BgNVBAYTAlJVMQ8wDQYDVQQIDAZNb3Njb3cxDzANBgNVBAcMBk1vc2NvdzEYMBYG
+//A1UECgwPR2xvYmFsIFNlY3VyaXR5MRYwFAYDVQQLDA1JVCBEZXBhcnRtZW50MSEw
+//HwYDVQQDDBhkbWl0cnkuZHVsZXNvdkBnbWFpbC5jb20wgaowIQYIKoUDBwEBAQIw
+//FQYJKoUDBwECAQIBBggqhQMHAQECAwOBhAAEgYDNRmUGKmjnbvlOp5BI1qcOkfYg
+//XRFZEhEeoLYiWmsfeSn7gNkLv6qCZEV3YcfULfSLuufUfppmnBtOm2D7T4Qu38sg
+//XPA0OuMt+z0DsMir8c7oFHH0UHUuF24uodv/mk/+8bgWJofz+LsvxqpmPuRgGE45
+//5pbk08d54fMJwGnE2jAMBggqhQMHAQEDAwUAA4GBAJIlL+FvEqS4PBYUX3XdOLqx
+//OCId5UnpqLSJVBiZzYclZDI/10ko06/aFKaGDv4v5MhBblQklw6r9EXk1O1r6BOF
+//C6E7J1YRLnOxGGJUh+LcY999Ccl6vG/pzfrTtXilbUTejsQjMHBk+cuW0WBd8A4X
+//FdAgOxBRd6YmCjmdOFkYMYIBbDCCAWgCAQEwODArMRIwEAYDVQQDDAlsb2NhbGhv
+//c3QxFTATBgNVBAsMDGdvc3QyMDEyXzUxMgIJAKhfZPVbQqp2MAwGCCqFAwcBAQID
+//BQCggYkwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcN
+//MTkwODIzMTYwOTQxWjBPBgkqhkiG9w0BCQQxQgRAD5Fd4tj0ME+VSdDbH43I+vn/
+//y6+XSRYxdV3/mcsEHef68v87FhTJBB9HeaEiGw9aK2hIvw0b+Eqd/5XIp2RmtDAM
+//BggqhQMHAQEBAgUABIGA37/yycOvPOqCEgjnFJoqta0aHDIo6sU5Jf8xU7R6YqbG
+//LBzycpRDU0ADywlRyMhZTfxX49mxMGX0nrNIWwCrHfgDeyoFThWeQYu4lfaQ1VXV
+//FBEdCajOW5v6iDIVoB8DnoPGXBVvgAiz5g9cgxAgxifKNdXn3QDM4rCshezZYvI=
+//-----END CMS-----`,
+//		`-----BEGIN CERTIFICATE-----
+//MIICMDCCAZqgAwIBAgIJAJodEe1eXuYCMAwGCCqFAwcBAQMDBQAwKzESMBAGA1UE
+//AwwJbG9jYWxob3N0MRUwEwYDVQQLDAxnb3N0MjAxMl81MTIwHhcNMTkwODIzMTYw
+//OTQxWhcNMjkwODIwMTYwOTQxWjArMRIwEAYDVQQDDAlsb2NhbGhvc3QxFTATBgNV
+//BAsMDGdvc3QyMDEyXzUxMjCBqjAhBggqhQMHAQEBAjAVBgkqhQMHAQIBAgEGCCqF
+//AwcBAQIDA4GEAASBgN/+MLwqs48KGsDHgwEqKAIgNL5iCUpDdO4/1834+2t2MSt/
+//ijZ9Zel62+jJDrf7jQvqoCFMdqLU1FKH4J6hZuZmbRUedGuHCnpahQyFiEf1NINU
+//QvfVyoAyoV8mOhi2pNAqurcCo56SORJFHVTj5CrVHAdbisVOpp6vOjpk90sTo1Mw
+//UTAdBgNVHQ4EFgQUJ5/g4/Np4NxZekN/uyOIDCDkAcowHwYDVR0jBBgwFoAUJ5/g
+//4/Np4NxZekN/uyOIDCDkAcowDwYDVR0TAQH/BAUwAwEB/zAMBggqhQMHAQEDAwUA
+//A4GBACOtQAoi2L9DXu0+VZA/QD/lC4kxFXT3ZwKODWozkRkdz2AOb+BHjMLBn9fI
+//2nGx8ZVEw51RnR9Li4kskCILlfl9yXmPW/GTG5ydrL5dTi8AjJ/xQSd9AWG7VB7g
+//24TKgtSBGjr3+tDJyp9jyhotj4x8vNkY54zFfPvYM+WfLf9g
+//-----END CERTIFICATE-----`,
+//		testSignedData,
+//		time.Date(2019, time.August, 23, 0, 0, 0, 0, time.UTC),
+//		time.Date(2019, time.August, 25, 0, 0, 0, 0, time.UTC),
+//	},
+//
+//	{
+//		"RSA256",
+//		`-----BEGIN CMS-----
+//MIIFNAYJKoZIhvcNAQcCoIIFJTCCBSECAQExDTALBglghkgBZQMEAgEwGwYJKoZI
+//hvcNAQcBoA4EDHRlc3Qgc3RyaW5nCqCCAycwggMjMIICCwIJAMxHPXRCGuO9MA0G
+//CSqGSIb3DQEBCwUAMCIxEjAQBgNVBAMMCWxvY2FsaG9zdDEMMAoGA1UECwwDMjU2
+//MB4XDTE5MDgyMzE2MDk0MFoXDTIwMDgyMjE2MDk0MFowgYQxCzAJBgNVBAYTAlJV
+//MQ8wDQYDVQQIDAZNb3Njb3cxDzANBgNVBAcMBk1vc2NvdzEYMBYGA1UECgwPR2xv
+//YmFsIFNlY3VyaXR5MRYwFAYDVQQLDA1JVCBEZXBhcnRtZW50MSEwHwYDVQQDDBhk
+//bWl0cnkuZHVsZXNvdkBnbWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw
+//ggEKAoIBAQDqXjCANLDJBlEnPe33kvVg2ASZ06j2n06vUmv4hJpA7zMterK8zXrD
+//6cVWZK4dYP1kFhKDTbqFJRmw21ngS7i+3BzSlPAGhSFeKPBC3Pe9H/ayqQ4x7YDs
+//ZtTAhgf7Y2gYMC905IBR5h7dW3VFtevZjqfZufbTnuf3ZmfKiyQVPv8RT62Ddf5C
+//1xf/3qlg3Ejmv3nBT6sPEXvdSpr08b4EHbSY0fawcr1ED/eSxVbRlpvwRRb1VrqD
+//zz5BBCGcwGUINARRiwczTAMD4mn4vQS0P65y2QbH7twQWorRWR5YLh2tZ/mf2fwh
+//kPmcM0XSQb7i4ObBsS2pEsvSvmQMeAw3AgMBAAEwDQYJKoZIhvcNAQELBQADggEB
+//AE6TOd9nKwdUSLd+QoD0ch5H6VgN04XrZlfZSdQcqHKeevE0Rng1Hh5i+N+VDkKF
+//thRCy/XOgJPBqd1OHVnXFHxQBXcGbqscwAYJFRm9gLYSvZmC9CVW3Q3QrJx4DTzD
+//5r3afYQxsSHPTluwYdYY18QKUrg0Ba3aPcT4ziNXh3w8rwihBhKn+HgawkjJ/d8q
+//bdZSwOofk0SC/pRZnONregjz1Vdkn42Fo3k6/QIDzdykq8JOUaYjBDM5kok4ijW5
+//tc2MWtsPR/JxXPsbBQ9OJ791JU2AJ7eJ/TUraAs4gmkiAH5kYpfVvBcwJ1kbkzyR
+//IYHhjABupbdc4+usGz+TbcIxggHDMIIBvwIBATAvMCIxEjAQBgNVBAMMCWxvY2Fs
+//aG9zdDEMMAoGA1UECwwDMjU2AgkAzEc9dEIa470wCwYJYIZIAWUDBAIBoGkwGAYJ
+//KoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTkwODIzMTYw
+//OTQwWjAvBgkqhkiG9w0BCQQxIgQgN9IEajlcv8snEv9clqcnsZZodggAR8VnFwCd
+//u8I19WYwDQYJKoZIhvcNAQEBBQAEggEAqgNTL8fLfb631oDS1IFPTz5i+GO+jmhz
+//jl4LyGwrXzv7BdzSwJ/LgLHJJza38UD0xae65F62dUaXt+EiK0UsOfJKjobCyzcM
+//zZ3J3ueG4KV0zybpBywGwzwlU6LZrIZDsFg+oJPhymhQqcnCu++Bypi0Z2fBp78n
+//fgmZdt70BjFNhyQKGFjV09TrG26SFrZ4sfiMILjKUXPL++9cbyFFuD1/VUVc3Jhz
+//aV99jHL2m250xe0XjLNewCukFouQRYirVUxUm3UKh2lb0sWGZzFHS/JkC2FWeyj7
+//Mxx7lx0xX3hWecVCr5XwEUZ39tj99Hyc0E3zsWyQnSmQvnTaGwy6Qw==
+//-----END CMS-----`,
+//		`-----BEGIN CERTIFICATE-----
+//MIIDGjCCAgKgAwIBAgIJAL6rFNkXK3fTMA0GCSqGSIb3DQEBCwUAMCIxEjAQBgNV
+//BAMMCWxvY2FsaG9zdDEMMAoGA1UECwwDMjU2MB4XDTE5MDgyMzE2MDk0MFoXDTI5
+//MDgyMDE2MDk0MFowIjESMBAGA1UEAwwJbG9jYWxob3N0MQwwCgYDVQQLDAMyNTYw
+//ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCi2MstFIE37qfFwLqHAzR7
+//bLgFwJt5uMqOfkIe+Boolebwkis0b4U2mU//ZnzHO3RcRBd2zqJYqyXCuoUGS4l3
+//1Lk4VmEThJtwRSLUZyc6IXqLgn/TihR87WLZnbxGPVWfN+dsZTIVzrxABmCRxV8z
+//wcOn8oZW5a+iQKHU+U0wQeoV15Bg2UBMRJZyoyLbfZenglSgv9Nn60I9unmkEeoL
+//24zaGB0EST/5ulHlM0lwQLhph2gAm00DPyS6A3MnSz8ipMbfrJNWEVL/HUde9jXy
+//a6AstMFuKkpehbtyQz/FN1Th0S9Dq8N6sa6JzTNVb8abJHN0pFfi1aBhyh4HEYDj
+//AgMBAAGjUzBRMB0GA1UdDgQWBBSv7I0DjH2bE+64rQ2VDPRnJEM7uTAfBgNVHSME
+//GDAWgBSv7I0DjH2bE+64rQ2VDPRnJEM7uTAPBgNVHRMBAf8EBTADAQH/MA0GCSqG
+//SIb3DQEBCwUAA4IBAQA/lS8bvY3AF/h5Z2yfuLS09vpl0pR50JQPu8FK1JVcDo9W
+//sVpLjC3n6LKfspfUOAKh1b6lqm+NkqRNF0bPGE8/lEZXwff8yCZTX7HpKkI+0Y1e
+//6sp8rCnOfYLlrkecOro9QAgckDxV7JOiQFupD0eap7BXkFCHEf4BjxcEHTGswwSa
+//UZC7jN+AEHVRmx/yLu5o3KT5fuwKRNwSz0+AGU2YAZN3+JZACK+8WomOkwPNtdIj
+//pN1uuzjBh7PO/mUAKvrBmU66fi+CkyJfDQClpN++QS353TDbQEaeNbDYcS1/wqXD
+//GyCULCtJlKqqS3vie07YnuCg2yhhSyUV18beveSX
+//-----END CERTIFICATE-----`,
+//		testSignedData,
+//		time.Date(2019, time.August, 23, 0, 0, 0, 0, time.UTC),
+//		time.Date(2019, time.August, 25, 0, 0, 0, 0, time.UTC),
+//	},
+//	{
+//		"RSA512",
+//		`-----BEGIN CMS-----
+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
+//-----END CMS-----`,
+//		`-----BEGIN CERTIFICATE-----
+//MIIFGjCCAwKgAwIBAgIJAIw3v8RutENOMA0GCSqGSIb3DQEBDQUAMCIxEjAQBgNV
+//BAMMCWxvY2FsaG9zdDEMMAoGA1UECwwDNTEyMB4XDTE5MDgyMzE2MDk0MVoXDTI5
+//MDgyMDE2MDk0MVowIjESMBAGA1UEAwwJbG9jYWxob3N0MQwwCgYDVQQLDAM1MTIw
+//ggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQC1IbNUSItlCDo3l295D1ei
+//FE/s5WN5WcI4gOK8FeKGGZWMA795pPMd64oL5O1NByMOBCS0xa/amZFVhzuKGygC
+//ujc2MhVCaC7Knkkv0/xAMaSg3WZKdqEax3OtI/+m8Xy8aQlb81BkMH4ID2SBUr9o
+//5LHUxstKNQZctzFNYkd7NVg6asM9vv9/MAQVDWR9UXoyllykhqjE8PHcfM5w8d7x
+//EcIv23Kq1gyfWu2N24lEixWClnNUkRUv5XtndoIZ/L1zNWE9L1K0NIyy1qOEPpqL
+//MmgIIQ8jSsIr5uDweKw34HAOsMJvyfAiShjOoPXOjqmZiLpLWLYcdja6DYnW7E9B
+//swGgDcECtmBLkM85h865DPmJmMplQ2Z4Vo+6nc+rd2LlLuLfq2NZxfflDVpzplqu
+//ZjnADvuSB/603+JkrWfdp87DJJkKpBq101IKWRsa+l0nyHHm3ZljT4T0Ur01WTrq
+//PcFgcIVxa9NJYXiqSL7iDGar19lzDaIh8TOiq9e8Z1MA9BrdlW3GLpe4cWQR9iwN
+//f/4fWa4QOZp3c2FbdUWuGckmNE1eF+SyFDQNdL/N86RBm4sBKzxH8nIruMn8PHdQ
+//dfrUQ3Bn6wQ0RrrFpYwLD7shlUX4MgDwolDmzr4tKxrjsascEFit/h4rapZQJzd3
+//SkJ62wE1DeLLcqLFMdEPYQIDAQABo1MwUTAdBgNVHQ4EFgQUBVwYU8f5JjLukSwQ
+//qrbZ9XYM/sIwHwYDVR0jBBgwFoAUBVwYU8f5JjLukSwQqrbZ9XYM/sIwDwYDVR0T
+//AQH/BAUwAwEB/zANBgkqhkiG9w0BAQ0FAAOCAgEAOGJ+FVd2rcOM/SHEwjAhUWDJ
+//rzwFdlIX8RccTUp+BChfH2cFrYUUrTQlL4JkB+Ort8tI4lNAZYTo4LaUiZcoEiMe
+//QDEdqcagCF2XtKJpSyWNtGUC2l08Ccl62dKKTOJ2Urt5uMAkhBiQZdTJzUSDOz8X
+//uz3jFlB9OfedgtNbN1XCIwG/KOevIddxw+ME6iREn8Ozdhmi9Fk2BoQqJTVfy/Zv
+//Wt6JmxUtI3qB789D58Ea6yfsK9cagrJjjKT3sH/6nQBojFSlwTMUGBPgvF0CPg8k
+//ovCtxlko/qItwoc+zTMlT4jABYIrCzXFVMSIGTXXTYeFVsqdQsWoisSGk1ygZvsG
+//LKg4lHAmWyJRVUy3Hek8g2AEacBCrKdFKZb1FI9iKkbXgBBzKv2i0gvJQfS8UqpC
+//x3/hQO2nZ0XStoX9PePKh9LD2TS0DAWUXulAk+ej1tyjoYQMFcfQILK0Z1J7MbC3
+//XhHPesHpJI9plCM5qABEsR2mRgFlE9JN5Vs1gIJdSor/9dybkBtTAvhZ1ASC5xkv
+//vqx8LfNL8ilSfUi7ZF1T9RnfdrXt+QxgECk3Q2vCW44dkhzdq4BVp6B4yD7HS7F7
+//cJhI5btdMjkivQVT8bpyB9wRahFmwFakOc5ViNP4W24xbommAV5D3zhP2FAn9qyB
+//V4kqNcM94/N7hlXsKvw=
+//-----END CERTIFICATE-----`,
+//		testSignedData,
+//		time.Date(2019, time.August, 23, 0, 0, 0, 0, time.UTC),
+//		time.Date(2019, time.August, 25, 0, 0, 0, 0, time.UTC),
+//	},
+//}
+//
+//func Pem2Der(t *testing.T, pemData string, pemType string) []byte {
+//
+//	ber, _ := pem.Decode([]byte(pemData))
+//	if ber == nil || ber.Type != pemType {
+//		t.Fatal("not PEM encoded", pemData, pemType)
+//	}
+//	return ber.Bytes
+//
+//}
+//
+//func TestCMS(t *testing.T) {
+//
+//	//caAlien, err := ParseCertificate(Pem2Der(t, testAlienCA, "CERTIFICATE"))
+//	//if err != nil {
+//	//	t.FailNow()
+//	//}
+//
+//	caList := make([]*Certificate, 0)
+//
+//	for _, item := range testSet {
+//		ca, err := ParseCertificate(Pem2Der(t, item.Ca, "CERTIFICATE"))
+//		if err != nil {
+//			t.FailNow()
+//		}
+//
+//		caList = append(caList, ca)
+//
+//		//cms, err := NewCryptoMessageFromAsn1DER(Pem2Der(t, item.Cms, "CMS"))
+//		//if err != nil {
+//		//	t.FailNow()
+//		//}
+//
+//		//t.Run(item.Name, func(t *testing.T) {
+//		//
+//		//	err = cms.FindCertificateSigner([]*Certificate{ca})
+//		//	if err != nil {
+//		//		t.FailNow()
+//		//	}
+//		//
+//		//	err = cms.Verify(item.Content, item.NotBefore, item.NotAfter)
+//		//
+//		//	if err != nil {
+//		//		t.FailNow()
+//		//	}
+//		//
+//		//})
+//
+//		////errors
+//		//t.Run(item.Name+"_CertificateError", func(t *testing.T) {
+//		//	err = cms.FindCertificateSigner([]*Certificate{caAlien})
+//		//	var e *SignatureVerifyError
+//		//	if !errors.As(err, &e) {
+//		//		t.FailNow()
+//		//	}
+//		//})
+//		//
+//		//t.Run(item.Name+"_SigningTimeError", func(t *testing.T) {
+//		//	err = cms.Verify(item.Content, item.NotAfter, item.NotAfter)
+//		//	var e *SigningTimeError
+//		//	if !errors.As(err, &e) {
+//		//		t.FailNow()
+//		//	}
+//		//})
+//		//
+//		//t.Run(item.Name+"_ContentError", func(t *testing.T) {
+//		//	err = cms.Verify([]byte{10}, item.NotBefore, item.NotAfter)
+//		//	var e *SignatureVerifyError
+//		//	if !errors.As(err, &e) {
+//		//		t.FailNow()
+//		//	}
+//		//})
+//	}
+//
+//	//for _, item := range testSet {
+//	//	t.Run(item.Name+"_ValidateCAList", func(t *testing.T) {
+//	//		cms, err := NewCryptoMessageFromAsn1DER(Pem2Der(t, item.Cms, "CMS"))
+//	//		if err != nil {
+//	//			t.FailNow()
+//	//		}
+//	//		err = cms.FindCertificateSigner(caList)
+//	//		if err != nil {
+//	//			t.FailNow()
+//	//		}
+//	//	})
+//	//}
+//}

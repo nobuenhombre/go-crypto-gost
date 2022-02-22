@@ -1,0 +1,66 @@
+# all available settings of specific linters
+linters:
+  disable:
+    - godot
+    - testpackage
+    - nakedret
+    - funlen
+    - noctx
+    - gofumpt
+    - gocritic
+    - paralleltest
+    - wrapcheck
+    - exhaustivestruct
+    - maligned
+    - interfacer
+    - forbidigo
+    - ifshort
+    - wastedassign
+    - scopelint
+    - golint
+    - gci
+    - nolintlint
+    # todo - remove in future
+    - gosimple
+    - ineffassign
+    - staticcheck
+    - errcheck
+    - deadcode
+    - unused
+    - varcheck
+    - gosec
+    - exhaustive
+    - gomnd
+    - thelper
+    - stylecheck
+    - nlreturn
+    - goerr113
+    - gochecknoglobals
+    - wsl
+    - whitespace
+    - revive
+    - lll
+    - gochecknoinits
+    - dupl
+    - unparam
+    - structcheck
+    - exportloopref
+    - godox
+
+issues:
+  # Excluding configuration per-path, per-linter, per-text and per-source
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gomnd
+        - dupl
+        - gochecknoglobals
+
+# all available settings of specific linters
+linters-settings:
+  gocognit:
+    # todo - make lower - 10 in future
+    min-complexity: 65
+  cyclop:
+    # todo - make lower - 10 in future
+    max-complexity: 35

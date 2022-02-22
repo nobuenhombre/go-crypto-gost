@@ -1,0 +1,4339 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>gost34112012: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/nobuenhombre/go-crypto-gost/internal/pkg/gost34112012/hash.go (96.5%)</option>
+				
+				<option value="file1">github.com/nobuenhombre/go-crypto-gost/pkg/gogostder/digest.go (64.3%)</option>
+				
+				<option value="file2">github.com/nobuenhombre/go-crypto-gost/pkg/gogostder/util.go (0.0%)</option>
+				
+				<option value="file3">github.com/nobuenhombre/go-crypto-gost/pkg/gogostder/x509.go (55.8%)</option>
+				
+				<option value="file4">github.com/nobuenhombre/go-crypto-gost/pkg/gost28147/cfb.go (93.8%)</option>
+				
+				<option value="file5">github.com/nobuenhombre/go-crypto-gost/pkg/gost28147/cipher.go (96.4%)</option>
+				
+				<option value="file6">github.com/nobuenhombre/go-crypto-gost/pkg/gost28147/ctr.go (91.3%)</option>
+				
+				<option value="file7">github.com/nobuenhombre/go-crypto-gost/pkg/gost28147/ecb.go (80.0%)</option>
+				
+				<option value="file8">github.com/nobuenhombre/go-crypto-gost/pkg/gost28147/mac.go (88.9%)</option>
+				
+				<option value="file9">github.com/nobuenhombre/go-crypto-gost/pkg/gost28147/sbox.go (100.0%)</option>
+				
+				<option value="file10">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/curve.go (95.5%)</option>
+				
+				<option value="file11">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/edwards.go (96.6%)</option>
+				
+				<option value="file12">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/params.go (52.8%)</option>
+				
+				<option value="file13">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/private.go (50.7%)</option>
+				
+				<option value="file14">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/public.go (81.0%)</option>
+				
+				<option value="file15">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/ukm.go (100.0%)</option>
+				
+				<option value="file16">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/utils.go (100.0%)</option>
+				
+				<option value="file17">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/vko.go (80.0%)</option>
+				
+				<option value="file18">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/vko2001.go (66.7%)</option>
+				
+				<option value="file19">github.com/nobuenhombre/go-crypto-gost/pkg/gost3410/vko2012.go (71.4%)</option>
+				
+				<option value="file20">github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012256/esptree.go (95.0%)</option>
+				
+				<option value="file21">github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012256/hash.go (100.0%)</option>
+				
+				<option value="file22">github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012256/kdf.go (62.5%)</option>
+				
+				<option value="file23">github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012256/tlstree.go (100.0%)</option>
+				
+				<option value="file24">github.com/nobuenhombre/go-crypto-gost/pkg/gost341194/hash.go (100.0%)</option>
+				
+				<option value="file25">github.com/nobuenhombre/go-crypto-gost/pkg/gost3412128/cipher.go (97.9%)</option>
+				
+				<option value="file26">github.com/nobuenhombre/go-crypto-gost/pkg/gost3412128/xor_words.go (100.0%)</option>
+				
+				<option value="file27">github.com/nobuenhombre/go-crypto-gost/pkg/gost341264/cipher.go (95.5%)</option>
+				
+				<option value="file28">github.com/nobuenhombre/go-crypto-gost/pkg/mgm/mode.go (87.1%)</option>
+				
+				<option value="file29">github.com/nobuenhombre/go-crypto-gost/pkg/mgm/mul128.go (100.0%)</option>
+				
+				<option value="file30">github.com/nobuenhombre/go-crypto-gost/pkg/mgm/mul64.go (100.0%)</option>
+				
+				<option value="file31">github.com/nobuenhombre/go-crypto-gost/pkg/mgm/slice.go (100.0%)</option>
+				
+				<option value="file32">github.com/nobuenhombre/go-crypto-gost/pkg/prfplus/gost.go (87.5%)</option>
+				
+				<option value="file33">github.com/nobuenhombre/go-crypto-gost/pkg/prfplus/plus.go (83.3%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+// GOST R 34.11-2012 hash function.
+// RFC 6986.
+package gost34112012
+
+import (
+        "bytes"
+        "encoding/binary"
+        "errors"
+        "fmt"
+)
+
+const (
+        BlockSize = 64
+
+        MarshaledName = "STREEBOG"
+)
+
+var (
+        pi [256]byte = [256]byte{
+                0xfc, 0xee, 0xdd, 0x11, 0xcf, 0x6e, 0x31, 0x16,
+                0xfb, 0xc4, 0xfa, 0xda, 0x23, 0xc5, 0x04, 0x4d,
+                0xe9, 0x77, 0xf0, 0xdb, 0x93, 0x2e, 0x99, 0xba,
+                0x17, 0x36, 0xf1, 0xbb, 0x14, 0xcd, 0x5f, 0xc1,
+                0xf9, 0x18, 0x65, 0x5a, 0xe2, 0x5c, 0xef, 0x21,
+                0x81, 0x1c, 0x3c, 0x42, 0x8b, 0x01, 0x8e, 0x4f,
+                0x05, 0x84, 0x02, 0xae, 0xe3, 0x6a, 0x8f, 0xa0,
+                0x06, 0x0b, 0xed, 0x98, 0x7f, 0xd4, 0xd3, 0x1f,
+                0xeb, 0x34, 0x2c, 0x51, 0xea, 0xc8, 0x48, 0xab,
+                0xf2, 0x2a, 0x68, 0xa2, 0xfd, 0x3a, 0xce, 0xcc,
+                0xb5, 0x70, 0x0e, 0x56, 0x08, 0x0c, 0x76, 0x12,
+                0xbf, 0x72, 0x13, 0x47, 0x9c, 0xb7, 0x5d, 0x87,
+                0x15, 0xa1, 0x96, 0x29, 0x10, 0x7b, 0x9a, 0xc7,
+                0xf3, 0x91, 0x78, 0x6f, 0x9d, 0x9e, 0xb2, 0xb1,
+                0x32, 0x75, 0x19, 0x3d, 0xff, 0x35, 0x8a, 0x7e,
+                0x6d, 0x54, 0xc6, 0x80, 0xc3, 0xbd, 0x0d, 0x57,
+                0xdf, 0xf5, 0x24, 0xa9, 0x3e, 0xa8, 0x43, 0xc9,
+                0xd7, 0x79, 0xd6, 0xf6, 0x7c, 0x22, 0xb9, 0x03,
+                0xe0, 0x0f, 0xec, 0xde, 0x7a, 0x94, 0xb0, 0xbc,
+                0xdc, 0xe8, 0x28, 0x50, 0x4e, 0x33, 0x0a, 0x4a,
+                0xa7, 0x97, 0x60, 0x73, 0x1e, 0x00, 0x62, 0x44,
+                0x1a, 0xb8, 0x38, 0x82, 0x64, 0x9f, 0x26, 0x41,
+                0xad, 0x45, 0x46, 0x92, 0x27, 0x5e, 0x55, 0x2f,
+                0x8c, 0xa3, 0xa5, 0x7d, 0x69, 0xd5, 0x95, 0x3b,
+                0x07, 0x58, 0xb3, 0x40, 0x86, 0xac, 0x1d, 0xf7,
+                0x30, 0x37, 0x6b, 0xe4, 0x88, 0xd9, 0xe7, 0x89,
+                0xe1, 0x1b, 0x83, 0x49, 0x4c, 0x3f, 0xf8, 0xfe,
+                0x8d, 0x53, 0xaa, 0x90, 0xca, 0xd8, 0x85, 0x61,
+                0x20, 0x71, 0x67, 0xa4, 0x2d, 0x2b, 0x09, 0x5b,
+                0xcb, 0x9b, 0x25, 0xd0, 0xbe, 0xe5, 0x6c, 0x52,
+                0x59, 0xa6, 0x74, 0xd2, 0xe6, 0xf4, 0xb4, 0xc0,
+                0xd1, 0x66, 0xaf, 0xc2, 0x39, 0x4b, 0x63, 0xb6,
+        }
+        tau [64]int = [64]int{
+                0x00, 0x08, 0x10, 0x18, 0x20, 0x28, 0x30, 0x38,
+                0x01, 0x09, 0x11, 0x19, 0x21, 0x29, 0x31, 0x39,
+                0x02, 0x0a, 0x12, 0x1a, 0x22, 0x2a, 0x32, 0x3a,
+                0x03, 0x0b, 0x13, 0x1b, 0x23, 0x2b, 0x33, 0x3b,
+                0x04, 0x0c, 0x14, 0x1c, 0x24, 0x2c, 0x34, 0x3c,
+                0x05, 0x0d, 0x15, 0x1d, 0x25, 0x2d, 0x35, 0x3d,
+                0x06, 0x0e, 0x16, 0x1e, 0x26, 0x2e, 0x36, 0x3e,
+                0x07, 0x0f, 0x17, 0x1f, 0x27, 0x2f, 0x37, 0x3f,
+        }
+        c [12][BlockSize]byte = [12][BlockSize]byte{
+                {
+                        0x07, 0x45, 0xa6, 0xf2, 0x59, 0x65, 0x80, 0xdd,
+                        0x23, 0x4d, 0x74, 0xcc, 0x36, 0x74, 0x76, 0x05,
+                        0x15, 0xd3, 0x60, 0xa4, 0x08, 0x2a, 0x42, 0xa2,
+                        0x01, 0x69, 0x67, 0x92, 0x91, 0xe0, 0x7c, 0x4b,
+                        0xfc, 0xc4, 0x85, 0x75, 0x8d, 0xb8, 0x4e, 0x71,
+                        0x16, 0xd0, 0x45, 0x2e, 0x43, 0x76, 0x6a, 0x2f,
+                        0x1f, 0x7c, 0x65, 0xc0, 0x81, 0x2f, 0xcb, 0xeb,
+                        0xe9, 0xda, 0xca, 0x1e, 0xda, 0x5b, 0x08, 0xb1,
+                },
+                {
+                        0xb7, 0x9b, 0xb1, 0x21, 0x70, 0x04, 0x79, 0xe6,
+                        0x56, 0xcd, 0xcb, 0xd7, 0x1b, 0xa2, 0xdd, 0x55,
+                        0xca, 0xa7, 0x0a, 0xdb, 0xc2, 0x61, 0xb5, 0x5c,
+                        0x58, 0x99, 0xd6, 0x12, 0x6b, 0x17, 0xb5, 0x9a,
+                        0x31, 0x01, 0xb5, 0x16, 0x0f, 0x5e, 0xd5, 0x61,
+                        0x98, 0x2b, 0x23, 0x0a, 0x72, 0xea, 0xfe, 0xf3,
+                        0xd7, 0xb5, 0x70, 0x0f, 0x46, 0x9d, 0xe3, 0x4f,
+                        0x1a, 0x2f, 0x9d, 0xa9, 0x8a, 0xb5, 0xa3, 0x6f,
+                },
+                {
+                        0xb2, 0x0a, 0xba, 0x0a, 0xf5, 0x96, 0x1e, 0x99,
+                        0x31, 0xdb, 0x7a, 0x86, 0x43, 0xf4, 0xb6, 0xc2,
+                        0x09, 0xdb, 0x62, 0x60, 0x37, 0x3a, 0xc9, 0xc1,
+                        0xb1, 0x9e, 0x35, 0x90, 0xe4, 0x0f, 0xe2, 0xd3,
+                        0x7b, 0x7b, 0x29, 0xb1, 0x14, 0x75, 0xea, 0xf2,
+                        0x8b, 0x1f, 0x9c, 0x52, 0x5f, 0x5e, 0xf1, 0x06,
+                        0x35, 0x84, 0x3d, 0x6a, 0x28, 0xfc, 0x39, 0x0a,
+                        0xc7, 0x2f, 0xce, 0x2b, 0xac, 0xdc, 0x74, 0xf5,
+                },
+                {
+                        0x2e, 0xd1, 0xe3, 0x84, 0xbc, 0xbe, 0x0c, 0x22,
+                        0xf1, 0x37, 0xe8, 0x93, 0xa1, 0xea, 0x53, 0x34,
+                        0xbe, 0x03, 0x52, 0x93, 0x33, 0x13, 0xb7, 0xd8,
+                        0x75, 0xd6, 0x03, 0xed, 0x82, 0x2c, 0xd7, 0xa9,
+                        0x3f, 0x35, 0x5e, 0x68, 0xad, 0x1c, 0x72, 0x9d,
+                        0x7d, 0x3c, 0x5c, 0x33, 0x7e, 0x85, 0x8e, 0x48,
+                        0xdd, 0xe4, 0x71, 0x5d, 0xa0, 0xe1, 0x48, 0xf9,
+                        0xd2, 0x66, 0x15, 0xe8, 0xb3, 0xdf, 0x1f, 0xef,
+                },
+                {
+                        0x57, 0xfe, 0x6c, 0x7c, 0xfd, 0x58, 0x17, 0x60,
+                        0xf5, 0x63, 0xea, 0xa9, 0x7e, 0xa2, 0x56, 0x7a,
+                        0x16, 0x1a, 0x27, 0x23, 0xb7, 0x00, 0xff, 0xdf,
+                        0xa3, 0xf5, 0x3a, 0x25, 0x47, 0x17, 0xcd, 0xbf,
+                        0xbd, 0xff, 0x0f, 0x80, 0xd7, 0x35, 0x9e, 0x35,
+                        0x4a, 0x10, 0x86, 0x16, 0x1f, 0x1c, 0x15, 0x7f,
+                        0x63, 0x23, 0xa9, 0x6c, 0x0c, 0x41, 0x3f, 0x9a,
+                        0x99, 0x47, 0x47, 0xad, 0xac, 0x6b, 0xea, 0x4b,
+                },
+                {
+                        0x6e, 0x7d, 0x64, 0x46, 0x7a, 0x40, 0x68, 0xfa,
+                        0x35, 0x4f, 0x90, 0x36, 0x72, 0xc5, 0x71, 0xbf,
+                        0xb6, 0xc6, 0xbe, 0xc2, 0x66, 0x1f, 0xf2, 0x0a,
+                        0xb4, 0xb7, 0x9a, 0x1c, 0xb7, 0xa6, 0xfa, 0xcf,
+                        0xc6, 0x8e, 0xf0, 0x9a, 0xb4, 0x9a, 0x7f, 0x18,
+                        0x6c, 0xa4, 0x42, 0x51, 0xf9, 0xc4, 0x66, 0x2d,
+                        0xc0, 0x39, 0x30, 0x7a, 0x3b, 0xc3, 0xa4, 0x6f,
+                        0xd9, 0xd3, 0x3a, 0x1d, 0xae, 0xae, 0x4f, 0xae,
+                },
+                {
+                        0x93, 0xd4, 0x14, 0x3a, 0x4d, 0x56, 0x86, 0x88,
+                        0xf3, 0x4a, 0x3c, 0xa2, 0x4c, 0x45, 0x17, 0x35,
+                        0x04, 0x05, 0x4a, 0x28, 0x83, 0x69, 0x47, 0x06,
+                        0x37, 0x2c, 0x82, 0x2d, 0xc5, 0xab, 0x92, 0x09,
+                        0xc9, 0x93, 0x7a, 0x19, 0x33, 0x3e, 0x47, 0xd3,
+                        0xc9, 0x87, 0xbf, 0xe6, 0xc7, 0xc6, 0x9e, 0x39,
+                        0x54, 0x09, 0x24, 0xbf, 0xfe, 0x86, 0xac, 0x51,
+                        0xec, 0xc5, 0xaa, 0xee, 0x16, 0x0e, 0xc7, 0xf4,
+                },
+                {
+                        0x1e, 0xe7, 0x02, 0xbf, 0xd4, 0x0d, 0x7f, 0xa4,
+                        0xd9, 0xa8, 0x51, 0x59, 0x35, 0xc2, 0xac, 0x36,
+                        0x2f, 0xc4, 0xa5, 0xd1, 0x2b, 0x8d, 0xd1, 0x69,
+                        0x90, 0x06, 0x9b, 0x92, 0xcb, 0x2b, 0x89, 0xf4,
+                        0x9a, 0xc4, 0xdb, 0x4d, 0x3b, 0x44, 0xb4, 0x89,
+                        0x1e, 0xde, 0x36, 0x9c, 0x71, 0xf8, 0xb7, 0x4e,
+                        0x41, 0x41, 0x6e, 0x0c, 0x02, 0xaa, 0xe7, 0x03,
+                        0xa7, 0xc9, 0x93, 0x4d, 0x42, 0x5b, 0x1f, 0x9b,
+                },
+                {
+                        0xdb, 0x5a, 0x23, 0x83, 0x51, 0x44, 0x61, 0x72,
+                        0x60, 0x2a, 0x1f, 0xcb, 0x92, 0xdc, 0x38, 0x0e,
+                        0x54, 0x9c, 0x07, 0xa6, 0x9a, 0x8a, 0x2b, 0x7b,
+                        0xb1, 0xce, 0xb2, 0xdb, 0x0b, 0x44, 0x0a, 0x80,
+                        0x84, 0x09, 0x0d, 0xe0, 0xb7, 0x55, 0xd9, 0x3c,
+                        0x24, 0x42, 0x89, 0x25, 0x1b, 0x3a, 0x7d, 0x3a,
+                        0xde, 0x5f, 0x16, 0xec, 0xd8, 0x9a, 0x4c, 0x94,
+                        0x9b, 0x22, 0x31, 0x16, 0x54, 0x5a, 0x8f, 0x37,
+                },
+                {
+                        0xed, 0x9c, 0x45, 0x98, 0xfb, 0xc7, 0xb4, 0x74,
+                        0xc3, 0xb6, 0x3b, 0x15, 0xd1, 0xfa, 0x98, 0x36,
+                        0xf4, 0x52, 0x76, 0x3b, 0x30, 0x6c, 0x1e, 0x7a,
+                        0x4b, 0x33, 0x69, 0xaf, 0x02, 0x67, 0xe7, 0x9f,
+                        0x03, 0x61, 0x33, 0x1b, 0x8a, 0xe1, 0xff, 0x1f,
+                        0xdb, 0x78, 0x8a, 0xff, 0x1c, 0xe7, 0x41, 0x89,
+                        0xf3, 0xf3, 0xe4, 0xb2, 0x48, 0xe5, 0x2a, 0x38,
+                        0x52, 0x6f, 0x05, 0x80, 0xa6, 0xde, 0xbe, 0xab,
+                },
+                {
+                        0x1b, 0x2d, 0xf3, 0x81, 0xcd, 0xa4, 0xca, 0x6b,
+                        0x5d, 0xd8, 0x6f, 0xc0, 0x4a, 0x59, 0xa2, 0xde,
+                        0x98, 0x6e, 0x47, 0x7d, 0x1d, 0xcd, 0xba, 0xef,
+                        0xca, 0xb9, 0x48, 0xea, 0xef, 0x71, 0x1d, 0x8a,
+                        0x79, 0x66, 0x84, 0x14, 0x21, 0x80, 0x01, 0x20,
+                        0x61, 0x07, 0xab, 0xeb, 0xbb, 0x6b, 0xfa, 0xd8,
+                        0x94, 0xfe, 0x5a, 0x63, 0xcd, 0xc6, 0x02, 0x30,
+                        0xfb, 0x89, 0xc8, 0xef, 0xd0, 0x9e, 0xcd, 0x7b,
+                },
+                {
+                        0x20, 0xd7, 0x1b, 0xf1, 0x4a, 0x92, 0xbc, 0x48,
+                        0x99, 0x1b, 0xb2, 0xd9, 0xd5, 0x17, 0xf4, 0xfa,
+                        0x52, 0x28, 0xe1, 0x88, 0xaa, 0xa4, 0x1d, 0xe7,
+                        0x86, 0xcc, 0x91, 0x18, 0x9d, 0xef, 0x80, 0x5d,
+                        0x9b, 0x9f, 0x21, 0x30, 0xd4, 0x12, 0x20, 0xf8,
+                        0x77, 0x1d, 0xdf, 0xbc, 0x32, 0x3c, 0xa4, 0xcd,
+                        0x7a, 0xb1, 0x49, 0x04, 0xb0, 0x80, 0x13, 0xd2,
+                        0xba, 0x31, 0x16, 0xf1, 0x67, 0xe7, 0x8e, 0x37,
+                },
+        }
+        a [64]uint64 // It is filled in init()
+
+        cache [8][256]uint64
+)
+
+func init() <span class="cov8" title="1">{
+        as := [64][]byte{
+                {0x8e, 0x20, 0xfa, 0xa7, 0x2b, 0xa0, 0xb4, 0x70},
+                {0x47, 0x10, 0x7d, 0xdd, 0x9b, 0x50, 0x5a, 0x38},
+                {0xad, 0x08, 0xb0, 0xe0, 0xc3, 0x28, 0x2d, 0x1c},
+                {0xd8, 0x04, 0x58, 0x70, 0xef, 0x14, 0x98, 0x0e},
+                {0x6c, 0x02, 0x2c, 0x38, 0xf9, 0x0a, 0x4c, 0x07},
+                {0x36, 0x01, 0x16, 0x1c, 0xf2, 0x05, 0x26, 0x8d},
+                {0x1b, 0x8e, 0x0b, 0x0e, 0x79, 0x8c, 0x13, 0xc8},
+                {0x83, 0x47, 0x8b, 0x07, 0xb2, 0x46, 0x87, 0x64},
+                {0xa0, 0x11, 0xd3, 0x80, 0x81, 0x8e, 0x8f, 0x40},
+                {0x50, 0x86, 0xe7, 0x40, 0xce, 0x47, 0xc9, 0x20},
+                {0x28, 0x43, 0xfd, 0x20, 0x67, 0xad, 0xea, 0x10},
+                {0x14, 0xaf, 0xf0, 0x10, 0xbd, 0xd8, 0x75, 0x08},
+                {0x0a, 0xd9, 0x78, 0x08, 0xd0, 0x6c, 0xb4, 0x04},
+                {0x05, 0xe2, 0x3c, 0x04, 0x68, 0x36, 0x5a, 0x02},
+                {0x8c, 0x71, 0x1e, 0x02, 0x34, 0x1b, 0x2d, 0x01},
+                {0x46, 0xb6, 0x0f, 0x01, 0x1a, 0x83, 0x98, 0x8e},
+                {0x90, 0xda, 0xb5, 0x2a, 0x38, 0x7a, 0xe7, 0x6f},
+                {0x48, 0x6d, 0xd4, 0x15, 0x1c, 0x3d, 0xfd, 0xb9},
+                {0x24, 0xb8, 0x6a, 0x84, 0x0e, 0x90, 0xf0, 0xd2},
+                {0x12, 0x5c, 0x35, 0x42, 0x07, 0x48, 0x78, 0x69},
+                {0x09, 0x2e, 0x94, 0x21, 0x8d, 0x24, 0x3c, 0xba},
+                {0x8a, 0x17, 0x4a, 0x9e, 0xc8, 0x12, 0x1e, 0x5d},
+                {0x45, 0x85, 0x25, 0x4f, 0x64, 0x09, 0x0f, 0xa0},
+                {0xac, 0xcc, 0x9c, 0xa9, 0x32, 0x8a, 0x89, 0x50},
+                {0x9d, 0x4d, 0xf0, 0x5d, 0x5f, 0x66, 0x14, 0x51},
+                {0xc0, 0xa8, 0x78, 0xa0, 0xa1, 0x33, 0x0a, 0xa6},
+                {0x60, 0x54, 0x3c, 0x50, 0xde, 0x97, 0x05, 0x53},
+                {0x30, 0x2a, 0x1e, 0x28, 0x6f, 0xc5, 0x8c, 0xa7},
+                {0x18, 0x15, 0x0f, 0x14, 0xb9, 0xec, 0x46, 0xdd},
+                {0x0c, 0x84, 0x89, 0x0a, 0xd2, 0x76, 0x23, 0xe0},
+                {0x06, 0x42, 0xca, 0x05, 0x69, 0x3b, 0x9f, 0x70},
+                {0x03, 0x21, 0x65, 0x8c, 0xba, 0x93, 0xc1, 0x38},
+                {0x86, 0x27, 0x5d, 0xf0, 0x9c, 0xe8, 0xaa, 0xa8},
+                {0x43, 0x9d, 0xa0, 0x78, 0x4e, 0x74, 0x55, 0x54},
+                {0xaf, 0xc0, 0x50, 0x3c, 0x27, 0x3a, 0xa4, 0x2a},
+                {0xd9, 0x60, 0x28, 0x1e, 0x9d, 0x1d, 0x52, 0x15},
+                {0xe2, 0x30, 0x14, 0x0f, 0xc0, 0x80, 0x29, 0x84},
+                {0x71, 0x18, 0x0a, 0x89, 0x60, 0x40, 0x9a, 0x42},
+                {0xb6, 0x0c, 0x05, 0xca, 0x30, 0x20, 0x4d, 0x21},
+                {0x5b, 0x06, 0x8c, 0x65, 0x18, 0x10, 0xa8, 0x9e},
+                {0x45, 0x6c, 0x34, 0x88, 0x7a, 0x38, 0x05, 0xb9},
+                {0xac, 0x36, 0x1a, 0x44, 0x3d, 0x1c, 0x8c, 0xd2},
+                {0x56, 0x1b, 0x0d, 0x22, 0x90, 0x0e, 0x46, 0x69},
+                {0x2b, 0x83, 0x88, 0x11, 0x48, 0x07, 0x23, 0xba},
+                {0x9b, 0xcf, 0x44, 0x86, 0x24, 0x8d, 0x9f, 0x5d},
+                {0xc3, 0xe9, 0x22, 0x43, 0x12, 0xc8, 0xc1, 0xa0},
+                {0xef, 0xfa, 0x11, 0xaf, 0x09, 0x64, 0xee, 0x50},
+                {0xf9, 0x7d, 0x86, 0xd9, 0x8a, 0x32, 0x77, 0x28},
+                {0xe4, 0xfa, 0x20, 0x54, 0xa8, 0x0b, 0x32, 0x9c},
+                {0x72, 0x7d, 0x10, 0x2a, 0x54, 0x8b, 0x19, 0x4e},
+                {0x39, 0xb0, 0x08, 0x15, 0x2a, 0xcb, 0x82, 0x27},
+                {0x92, 0x58, 0x04, 0x84, 0x15, 0xeb, 0x41, 0x9d},
+                {0x49, 0x2c, 0x02, 0x42, 0x84, 0xfb, 0xae, 0xc0},
+                {0xaa, 0x16, 0x01, 0x21, 0x42, 0xf3, 0x57, 0x60},
+                {0x55, 0x0b, 0x8e, 0x9e, 0x21, 0xf7, 0xa5, 0x30},
+                {0xa4, 0x8b, 0x47, 0x4f, 0x9e, 0xf5, 0xdc, 0x18},
+                {0x70, 0xa6, 0xa5, 0x6e, 0x24, 0x40, 0x59, 0x8e},
+                {0x38, 0x53, 0xdc, 0x37, 0x12, 0x20, 0xa2, 0x47},
+                {0x1c, 0xa7, 0x6e, 0x95, 0x09, 0x10, 0x51, 0xad},
+                {0x0e, 0xdd, 0x37, 0xc4, 0x8a, 0x08, 0xa6, 0xd8},
+                {0x07, 0xe0, 0x95, 0x62, 0x45, 0x04, 0x53, 0x6c},
+                {0x8d, 0x70, 0xc4, 0x31, 0xac, 0x02, 0xa7, 0x36},
+                {0xc8, 0x38, 0x62, 0x96, 0x56, 0x01, 0xdd, 0x1b},
+                {0x64, 0x1c, 0x31, 0x4b, 0x2b, 0x8e, 0xe0, 0x83},
+        }
+        for i := 0; i &lt; 64; i++ </span><span class="cov8" title="1">{
+                a[i] = binary.BigEndian.Uint64(as[i])
+        }</span>
+        <span class="cov8" title="1">for byteN := 0; byteN &lt; 8; byteN++ </span><span class="cov8" title="1">{
+                for byteValN := 0; byteValN &lt; 256; byteValN++ </span><span class="cov8" title="1">{
+                        val := byte(byteValN)
+                        res64 := uint64(0)
+                        for bitN := 0; bitN &lt; 8; bitN++ </span><span class="cov8" title="1">{
+                                if val&amp;0x80 &gt; 0 </span><span class="cov8" title="1">{
+                                        res64 ^= a[(7-byteN)*8+bitN]
+                                }</span>
+                                <span class="cov8" title="1">val &lt;&lt;= 1</span>
+                        }
+                        <span class="cov8" title="1">cache[byteN][byteValN] = res64</span>
+                }
+        }
+}
+
+type Hash struct {
+        size    int
+        buf     []byte
+        n       uint64
+        hsh     []byte
+        chk     []byte
+        tmp     []byte
+        psBuf   []byte
+        eMsgBuf []byte
+        eKBuf   []byte
+        eXorBuf []byte
+        gBuf    []byte
+        addBuf  []byte
+}
+
+// Create new hash object with specified size digest size.
+func New(size int) *Hash <span class="cov8" title="1">{
+        if size != 32 &amp;&amp; size != 64 </span><span class="cov0" title="0">{
+                panic("size must be either 32 or 64")</span>
+        }
+        <span class="cov8" title="1">h := Hash{
+                size:    size,
+                hsh:     make([]byte, BlockSize),
+                chk:     make([]byte, BlockSize),
+                tmp:     make([]byte, BlockSize),
+                psBuf:   make([]byte, BlockSize),
+                eMsgBuf: make([]byte, BlockSize),
+                eKBuf:   make([]byte, BlockSize),
+                eXorBuf: make([]byte, BlockSize),
+                gBuf:    make([]byte, BlockSize),
+                addBuf:  make([]byte, BlockSize),
+        }
+        h.Reset()
+        return &amp;h</span>
+}
+
+func (h *Hash) Reset() <span class="cov8" title="1">{
+        h.n = 0
+        h.buf = nil
+        for i := 0; i &lt; BlockSize; i++ </span><span class="cov8" title="1">{
+                h.chk[i] = 0
+                if h.size == 32 </span><span class="cov8" title="1">{
+                        h.hsh[i] = 1
+                }</span> else<span class="cov8" title="1"> {
+                        h.hsh[i] = 0
+                }</span>
+        }
+}
+
+func (h *Hash) BlockSize() int <span class="cov8" title="1">{
+        return BlockSize
+}</span>
+
+func (h *Hash) Size() int <span class="cov0" title="0">{
+        return h.size
+}</span>
+
+func (h *Hash) Write(data []byte) (int, error) <span class="cov8" title="1">{
+        h.buf = append(h.buf, data...)
+        for len(h.buf) &gt;= BlockSize </span><span class="cov8" title="1">{
+                copy(h.tmp, h.buf[:BlockSize])
+                copy(h.hsh, h.g(h.n, h.hsh, h.tmp))
+                copy(h.chk, h.add512bit(h.chk, h.tmp))
+                h.n += BlockSize * 8
+                h.buf = h.buf[BlockSize:]
+        }</span>
+        <span class="cov8" title="1">return len(data), nil</span>
+}
+
+func (h *Hash) Sum(in []byte) []byte <span class="cov8" title="1">{
+        buf := make([]byte, BlockSize)
+        hsh := make([]byte, BlockSize)
+        copy(h.tmp, buf)
+        copy(buf, h.buf)
+        buf[len(h.buf)] = 1
+        copy(hsh, h.g(h.n, h.hsh, buf))
+        binary.LittleEndian.PutUint64(h.tmp, h.n+uint64(len(h.buf))*8)
+        copy(hsh, h.g(0, hsh, h.tmp))
+        copy(hsh, h.g(0, hsh, h.add512bit(h.chk, buf)))
+        if h.size == 32 </span><span class="cov8" title="1">{
+                return append(in, hsh[BlockSize/2:]...)
+        }</span>
+        <span class="cov8" title="1">return append(in, hsh...)</span>
+}
+
+func (h *Hash) add512bit(chk, data []byte) []byte <span class="cov8" title="1">{
+        var ss uint16
+        for i := 0; i &lt; BlockSize; i++ </span><span class="cov8" title="1">{
+                ss = uint16(chk[i]) + uint16(data[i]) + (ss &gt;&gt; 8)
+                h.addBuf[i] = byte(0xFF &amp; ss)
+        }</span>
+        <span class="cov8" title="1">return h.addBuf</span>
+}
+
+func (h *Hash) g(n uint64, hsh, data []byte) []byte <span class="cov8" title="1">{
+        out := h.gBuf
+        copy(out, hsh)
+        out[0] ^= byte((n &gt;&gt; 0) &amp; 0xFF)
+        out[1] ^= byte((n &gt;&gt; 8) &amp; 0xFF)
+        out[2] ^= byte((n &gt;&gt; 16) &amp; 0xFF)
+        out[3] ^= byte((n &gt;&gt; 24) &amp; 0xFF)
+        out[4] ^= byte((n &gt;&gt; 32) &amp; 0xFF)
+        out[5] ^= byte((n &gt;&gt; 40) &amp; 0xFF)
+        out[6] ^= byte((n &gt;&gt; 48) &amp; 0xFF)
+        out[7] ^= byte((n &gt;&gt; 56) &amp; 0xFF)
+        return blockXor(out, blockXor(out, h.e(l(out, h.ps(out)), data), hsh), data)
+}</span>
+
+func (h *Hash) e(k, msg []byte) []byte <span class="cov8" title="1">{
+        for i := 0; i &lt; 12; i++ </span><span class="cov8" title="1">{
+                msg = l(h.eMsgBuf, h.ps(blockXor(h.eXorBuf, k, msg)))
+                k = l(h.eKBuf, h.ps(blockXor(h.eXorBuf, k, c[i][:])))
+        }</span>
+        <span class="cov8" title="1">return blockXor(h.eXorBuf, k, msg)</span>
+}
+
+func blockXor(dst, x, y []byte) []byte <span class="cov8" title="1">{
+        for i := 0; i &lt; BlockSize; i++ </span><span class="cov8" title="1">{
+                dst[i] = x[i] ^ y[i]
+        }</span>
+        <span class="cov8" title="1">return dst</span>
+}
+
+func (h *Hash) ps(data []byte) []byte <span class="cov8" title="1">{
+        for i := 0; i &lt; BlockSize; i++ </span><span class="cov8" title="1">{
+                h.psBuf[tau[i]] = pi[int(data[i])]
+        }</span>
+        <span class="cov8" title="1">return h.psBuf</span>
+}
+
+func l(out, data []byte) []byte <span class="cov8" title="1">{
+        for i := 0; i &lt; 8; i++ </span><span class="cov8" title="1">{
+                res64 := uint64(0)
+                res64 ^= cache[0][data[8*i+0]]
+                res64 ^= cache[1][data[8*i+1]]
+                res64 ^= cache[2][data[8*i+2]]
+                res64 ^= cache[3][data[8*i+3]]
+                res64 ^= cache[4][data[8*i+4]]
+                res64 ^= cache[5][data[8*i+5]]
+                res64 ^= cache[6][data[8*i+6]]
+                res64 ^= cache[7][data[8*i+7]]
+                binary.LittleEndian.PutUint64(out[i*8:i*8+8], res64)
+        }</span>
+        <span class="cov8" title="1">return out</span>
+}
+
+func (h *Hash) MarshalBinary() (data []byte, err error) <span class="cov8" title="1">{
+        data = make([]byte, len(MarshaledName)+1+8+2*BlockSize+len(h.buf))
+        copy(data, []byte(MarshaledName))
+        idx := len(MarshaledName)
+        data[idx] = byte(h.size)
+        idx += 1
+        binary.BigEndian.PutUint64(data[idx:idx+8], h.n)
+        idx += 8
+        copy(data[idx:], h.hsh)
+        idx += BlockSize
+        copy(data[idx:], h.chk)
+        idx += BlockSize
+        copy(data[idx:], h.buf)
+        return
+}</span>
+
+func (h *Hash) UnmarshalBinary(data []byte) error <span class="cov8" title="1">{
+        expectedLen := len(MarshaledName) + 1 + 8 + 2*BlockSize
+        if len(data) &lt; expectedLen </span><span class="cov0" title="0">{
+                return fmt.Errorf("gogost/internal/gost34112012: len(data) != %d", expectedLen)
+        }</span>
+        <span class="cov8" title="1">if !bytes.HasPrefix(data, []byte(MarshaledName)) </span><span class="cov0" title="0">{
+                return errors.New("gogost/internal/gost34112012: no hash name prefix")
+        }</span>
+        <span class="cov8" title="1">idx := len(MarshaledName)
+        h.size = int(data[idx])
+        idx += 1
+        h.n = binary.BigEndian.Uint64(data[idx : idx+8])
+        idx += 8
+        copy(h.hsh, data[idx:])
+        idx += BlockSize
+        copy(h.chk, data[idx:])
+        idx += BlockSize
+        h.buf = data[idx:]
+        return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">/*
+ * Copyright © 2020-present Artem V. Zaborskiy &lt;ftomza@yandex.ru&gt;. All rights reserved.
+ *
+ * This source code is licensed under the Apache 2.0 license found
+ * in the LICENSE file in the root directory of this source tree.
+ */
+package gogostder
+
+import (
+        "encoding/asn1"
+        "errors"
+        "hash"
+
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012256"
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012512"
+)
+
+type algorithmParam struct {
+        Curve  asn1.ObjectIdentifier
+        Digest asn1.ObjectIdentifier
+}
+
+func ParsePKIXPublicKeyHash(derBytes []byte) (hash hash.Hash, err error) <span class="cov8" title="1">{
+        pki, err := getPublicKeyInfo(derBytes)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">var params algorithmParam
+        rest, err := asn1.Unmarshal(pki.Algorithm.Parameters.FullBytes, &amp;params)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">if len(rest) != 0 </span><span class="cov0" title="0">{
+                return nil, errors.New("x509: trailing data after ASN.1 of Algorithm Parameters")
+        }</span>
+
+        <span class="cov8" title="1">switch </span>{
+        case params.Digest.Equal(oidtc26gost341112256):<span class="cov8" title="1">
+                hash = gost34112012256.New()</span>
+        case params.Digest.Equal(oidtc26gost341112512):<span class="cov0" title="0">
+                hash = gost34112012512.New()</span>
+        default:<span class="cov0" title="0">
+                return nil, errors.New("x509: unknown algorithm")</span>
+        }
+
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">/*
+ * Copyright © 2020-present Artem V. Zaborskiy &lt;ftomza@yandex.ru&gt;. All rights reserved.
+ *
+ * This source code is licensed under the Apache 2.0 license found
+ * in the LICENSE file in the root directory of this source tree.
+ */
+package gogostder
+
+func Reverse(d []byte) <span class="cov0" title="0">{
+        for i, j := 0, len(d)-1; i &lt; j; i, j = i+1, j-1 </span><span class="cov0" title="0">{
+                d[i], d[j] = d[j], d[i]
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">/*
+ * Copyright © 2020-present Artem V. Zaborskiy &lt;ftomza@yandex.ru&gt;. All rights reserved.
+ *
+ * This source code is licensed under the Apache 2.0 license found
+ * in the LICENSE file in the root directory of this source tree.
+ */
+
+package gogostder
+
+import (
+        "crypto/x509/pkix"
+        "encoding/asn1"
+        "encoding/pem"
+        "errors"
+        "fmt"
+        "math/big"
+        "strconv"
+        "time"
+
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost3410"
+        "golang.org/x/crypto/cryptobyte"
+
+        cryptobyteAsn1 "golang.org/x/crypto/cryptobyte/asn1"
+)
+
+var (
+        oidTc26Gost34102012256                = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 1, 1}
+        oidTc26Gost34102012512                = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 1, 2}
+        oidTc26Gost34112012256                = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 2, 2}
+        oidTc26Gost34112012512                = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 2, 3}
+        oidTc26signwithdigestgost341012256    = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 3, 2}
+        oidTc26signwithdigestgost341012512    = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 3, 3}
+        oidTc26agreementgost341012256         = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 6, 1}
+        oidTc26agreementgost341012512         = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 6, 2}
+        oidTc26Gost34102012256Signature       = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 3, 2}
+        oidTc26Gost34102012512Signature       = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 3, 3}
+        oidGostR34102001CryptoProAParamSet    = asn1.ObjectIdentifier{1, 2, 643, 2, 2, 35, 1}
+        oidGostR34102001CryptoProBParamSet    = asn1.ObjectIdentifier{1, 2, 643, 2, 2, 35, 2}
+        oidGostR34102001CryptoProCParamSet    = asn1.ObjectIdentifier{1, 2, 643, 2, 2, 35, 3}
+        oidGostR34102001CryptoProXchAParamSet = asn1.ObjectIdentifier{1, 2, 643, 2, 2, 36, 0}
+        oidGostR34102001CryptoProXchBParamSet = asn1.ObjectIdentifier{1, 2, 643, 2, 2, 36, 1}
+        oidTc26Gost34102012256ParamSetA       = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 1, 1}
+        oidTc26Gost34102012256ParamSetB       = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 1, 2}
+        oidTc26Gost34102012256ParamSetC       = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 1, 3}
+        oidTc26Gost34102012256ParamSetD       = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 1, 4}
+        oidTc26Gost34102012512ParamSetA       = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 2, 1}
+        oidTc26Gost34102012512ParamSetB       = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 2, 2}
+        oidTc26Gost34102012512ParamSetC       = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 2, 1, 2, 3}
+        oidtc26gost341112256                  = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 2, 2}
+        oidtc26gost341112512                  = asn1.ObjectIdentifier{1, 2, 643, 7, 1, 1, 2, 3}
+)
+
+type PublicKeyAlgorithm int
+
+const (
+        UnknownPublicKeyAlgorithm PublicKeyAlgorithm = iota
+        GOST
+)
+
+var publicKeyAlgoName = [...]string{
+        GOST: "GOST",
+}
+
+func (algo PublicKeyAlgorithm) String() string <span class="cov0" title="0">{
+        if 0 &lt; algo &amp;&amp; int(algo) &lt; len(publicKeyAlgoName) </span><span class="cov0" title="0">{
+                return publicKeyAlgoName[algo]
+        }</span>
+        <span class="cov0" title="0">return strconv.Itoa(int(algo))</span>
+}
+
+type certificate struct {
+        Raw                asn1.RawContent
+        TBSCertificate     tbsCertificate
+        SignatureAlgorithm pkix.AlgorithmIdentifier
+        SignatureValue     asn1.BitString
+}
+
+type tbsCertificate struct {
+        Raw                asn1.RawContent
+        Version            int `asn1:"optional,explicit,default:0,tag:0"`
+        SerialNumber       *big.Int
+        SignatureAlgorithm pkix.AlgorithmIdentifier
+        Issuer             asn1.RawValue
+        Validity           validity
+        Subject            asn1.RawValue
+        PublicKeyInfo      publicKeyInfo
+        UniqueId           asn1.BitString   `asn1:"optional,tag:1"`
+        SubjectUniqueId    asn1.BitString   `asn1:"optional,tag:2"`
+        Extensions         []pkix.Extension `asn1:"optional,explicit,tag:3"`
+}
+
+type publicKeyInfo struct {
+        Raw       asn1.RawContent
+        Algorithm pkix.AlgorithmIdentifier
+        PublicKey asn1.BitString
+}
+
+type validity struct {
+        NotBefore, NotAfter time.Time
+}
+
+type pkcs1PublicKey struct {
+        N *big.Int
+        E int
+}
+
+type GostR34102012PublicKeyParameters struct {
+        PublicKeyParamSet asn1.ObjectIdentifier
+        DigestParamSet    asn1.ObjectIdentifier `asn1:"optional"`
+}
+
+func ParseCertificate(derBytes []byte) ([]byte, error) <span class="cov8" title="1">{
+        var cert certificate
+        rest, err := asn1.Unmarshal(derBytes, &amp;cert)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">if len(rest) != 0 </span><span class="cov0" title="0">{
+                return nil, errors.New("x509: trailing data after ASN.1 of certificate")
+        }</span>
+
+        <span class="cov8" title="1">return cert.TBSCertificate.PublicKeyInfo.Raw, nil</span>
+}
+
+func ParsePKIXPublicKey(derBytes []byte) (pub *gost3410.PublicKey, err error) <span class="cov8" title="1">{
+        var pki publicKeyInfo
+        pki, err = getPublicKeyInfo(derBytes)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">algo := getPublicKeyAlgorithmFromOID(pki.Algorithm.Algorithm)
+        if algo == UnknownPublicKeyAlgorithm </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("x509: unknown public key algorithm: %v", pki.Algorithm.Algorithm)
+        }</span>
+        <span class="cov8" title="1">return parsePublicKey(algo, &amp;pki)</span>
+}
+
+func getPublicKeyInfo(derBytes []byte) (publicKeyInfo, error) <span class="cov8" title="1">{
+        var pki publicKeyInfo
+        if rest, err := asn1.Unmarshal(derBytes, &amp;pki); err != nil </span><span class="cov0" title="0">{
+                if _, err := asn1.Unmarshal(derBytes, &amp;pkcs1PublicKey{}); err == nil </span><span class="cov0" title="0">{
+                        return publicKeyInfo{}, errors.New("x509: failed to parse public key (use ParsePKCS1PublicKey instead for this key format)")
+                }</span>
+                <span class="cov0" title="0">return publicKeyInfo{}, err</span>
+        } else<span class="cov8" title="1"> if len(rest) != 0 </span><span class="cov0" title="0">{
+                return publicKeyInfo{}, errors.New("x509: trailing data after ASN.1 of public-key")
+        }</span>
+        <span class="cov8" title="1">return pki, nil</span>
+}
+
+func getPublicKeyAlgorithmFromOID(oid asn1.ObjectIdentifier) PublicKeyAlgorithm <span class="cov8" title="1">{
+        switch </span>{
+        case oid.Equal(oidTc26Gost34102012256):<span class="cov8" title="1">
+                return GOST</span>
+        case oid.Equal(oidTc26Gost34102012512):<span class="cov0" title="0">
+                return GOST</span>
+        case oid.Equal(oidTc26agreementgost341012256):<span class="cov8" title="1">
+                return GOST</span>
+        case oid.Equal(oidTc26agreementgost341012512):<span class="cov0" title="0">
+                return GOST</span>
+        case oid.Equal(oidTc26signwithdigestgost341012256):<span class="cov0" title="0">
+                return GOST</span>
+        case oid.Equal(oidTc26signwithdigestgost341012512):<span class="cov0" title="0">
+                return GOST</span>
+        }
+        <span class="cov0" title="0">return UnknownPublicKeyAlgorithm</span>
+}
+
+func parsePublicKey(algo PublicKeyAlgorithm, keyData *publicKeyInfo) (*gost3410.PublicKey, error) <span class="cov8" title="1">{
+        asn1Data := keyData.PublicKey.RightAlign()
+        switch algo </span>{
+        case GOST:<span class="cov8" title="1">
+                var pubRaw []byte
+                s := cryptobyte.String(asn1Data)
+                if !s.ReadASN1Bytes(&amp;pubRaw, cryptobyteAsn1.OCTET_STRING) </span><span class="cov0" title="0">{
+                        return nil, errors.New("x509: can not decode GOST public key")
+                }</span>
+                <span class="cov8" title="1">curve, err := getCurve(keyData.Algorithm)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+                <span class="cov8" title="1">return gost3410.NewPublicKey(curve, pubRaw)</span>
+        default:<span class="cov0" title="0">
+                return nil, nil</span>
+        }
+}
+
+func getCurve(algoData pkix.AlgorithmIdentifier) (*gost3410.Curve, error) <span class="cov8" title="1">{
+        paramsData := algoData.Parameters.FullBytes
+        var publicKeyParams GostR34102012PublicKeyParameters
+        rest, err := asn1.Unmarshal(paramsData, &amp;publicKeyParams)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.New("x509: failed to parse GOST parameters")
+        }</span>
+        <span class="cov8" title="1">if len(rest) != 0 </span><span class="cov0" title="0">{
+                return nil, errors.New("x509: trailing data after GOST parameters")
+        }</span>
+        <span class="cov8" title="1">var curve *gost3410.Curve
+        switch </span>{
+        case publicKeyParams.PublicKeyParamSet.Equal(oidGostR34102001CryptoProAParamSet):<span class="cov0" title="0">
+                curve = gost3410.CurveIdGostR34102001CryptoProAParamSet()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidGostR34102001CryptoProBParamSet):<span class="cov0" title="0">
+                curve = gost3410.CurveIdGostR34102001CryptoProBParamSet()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidGostR34102001CryptoProCParamSet):<span class="cov0" title="0">
+                curve = gost3410.CurveIdGostR34102001CryptoProCParamSet()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidGostR34102001CryptoProXchAParamSet):<span class="cov8" title="1">
+                curve = gost3410.CurveIdGostR34102001CryptoProXchAParamSet()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidGostR34102001CryptoProXchBParamSet):<span class="cov0" title="0">
+                curve = gost3410.CurveIdGostR34102001CryptoProXchBParamSet()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidTc26Gost34102012256ParamSetA):<span class="cov0" title="0">
+                curve = gost3410.CurveIdtc26gost34102012256paramSetA()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidTc26Gost34102012256ParamSetB):<span class="cov0" title="0">
+                curve = gost3410.CurveIdtc26gost34102012256paramSetB()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidTc26Gost34102012256ParamSetC):<span class="cov0" title="0">
+                curve = gost3410.CurveIdtc26gost34102012256paramSetC()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidTc26Gost34102012256ParamSetD):<span class="cov0" title="0">
+                curve = gost3410.CurveIdtc26gost34102012256paramSetD()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidTc26Gost34102012512ParamSetA):<span class="cov0" title="0">
+                curve = gost3410.CurveIdtc26gost341012512paramSetA()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidTc26Gost34102012512ParamSetB):<span class="cov0" title="0">
+                curve = gost3410.CurveIdtc26gost341012512paramSetB()</span>
+        case publicKeyParams.PublicKeyParamSet.Equal(oidTc26Gost34102012512ParamSetC):<span class="cov0" title="0">
+                curve = gost3410.CurveIdtc26gost34102012512paramSetC()</span>
+        default:<span class="cov0" title="0">
+                return nil, errors.New("x509: unknown GOST curve")</span>
+        }
+        <span class="cov8" title="1">return curve, nil</span>
+}
+
+type pkcs8 struct {
+        Version    int
+        Algo       pkix.AlgorithmIdentifier
+        PrivateKey []byte
+        // optional attributes omitted.
+}
+
+func ParsePKCS8PrivateKey(derBytes []byte) (key *gost3410.PrivateKey, err error) <span class="cov8" title="1">{
+        var privKey pkcs8
+        if _, err := asn1.Unmarshal(derBytes, &amp;privKey); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">algo := getPublicKeyAlgorithmFromOID(privKey.Algo.Algorithm)
+        switch algo </span>{
+        case GOST:<span class="cov8" title="1">
+                var privRaw []byte
+                s := cryptobyte.String(privKey.PrivateKey)
+                if !s.ReadASN1Bytes(&amp;privRaw, cryptobyteAsn1.OCTET_STRING) </span><span class="cov0" title="0">{
+                        return nil, errors.New("x509: can not decode GOST public key")
+                }</span>
+                <span class="cov8" title="1">curve, err := getCurve(privKey.Algo)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+                <span class="cov8" title="1">return gost3410.NewPrivateKey(curve, privRaw)</span>
+        default:<span class="cov0" title="0">
+                return nil, fmt.Errorf("x509: PKCS#8 wrapping contained private key with unknown algorithm: %v", privKey.Algo.Algorithm)</span>
+        }
+}
+
+func DerDecode(data []byte) (*pem.Block, error) <span class="cov8" title="1">{
+        block, _ := pem.Decode(data)
+        if block == nil </span><span class="cov0" title="0">{
+                return nil, errors.New("DER: content not found")
+        }</span>
+
+        <span class="cov8" title="1">return block, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost28147
+
+type CFBEncrypter struct {
+        c  *Cipher
+        iv []byte
+}
+
+func (c *Cipher) NewCFBEncrypter(iv []byte) *CFBEncrypter <span class="cov8" title="1">{
+        if len(iv) != BlockSize </span><span class="cov0" title="0">{
+                panic("iv length is not equal to blocksize")</span>
+        }
+        <span class="cov8" title="1">encrypter := CFBEncrypter{c: c, iv: make([]byte, BlockSize)}
+        copy(encrypter.iv, iv)
+        return &amp;encrypter</span>
+}
+
+func (c *CFBEncrypter) XORKeyStream(dst, src []byte) <span class="cov8" title="1">{
+        var n int
+        i := 0
+MainLoop:
+        for </span><span class="cov8" title="1">{
+                c.c.Encrypt(c.iv, c.iv)
+                for n = 0; n &lt; BlockSize; n++ </span><span class="cov8" title="1">{
+                        if i*BlockSize+n == len(src) </span><span class="cov8" title="1">{
+                                break MainLoop</span>
+                        }
+                        <span class="cov8" title="1">c.iv[n] ^= src[i*BlockSize+n]
+                        dst[i*BlockSize+n] = c.iv[n]</span>
+                }
+                <span class="cov8" title="1">i++</span>
+        }
+        <span class="cov8" title="1">return</span>
+}
+
+type CFBDecrypter struct {
+        c  *Cipher
+        iv []byte
+}
+
+func (c *Cipher) NewCFBDecrypter(iv []byte) *CFBDecrypter <span class="cov8" title="1">{
+        if len(iv) != BlockSize </span><span class="cov0" title="0">{
+                panic("iv length is not equal to blocksize")</span>
+        }
+        <span class="cov8" title="1">decrypter := CFBDecrypter{c: c, iv: make([]byte, BlockSize)}
+        copy(decrypter.iv, iv)
+        return &amp;decrypter</span>
+}
+
+func (c *CFBDecrypter) XORKeyStream(dst, src []byte) <span class="cov8" title="1">{
+        var n int
+        i := 0
+MainLoop:
+        for </span><span class="cov8" title="1">{
+                c.c.Encrypt(c.iv, c.iv)
+                for n = 0; n &lt; BlockSize; n++ </span><span class="cov8" title="1">{
+                        if i*BlockSize+n == len(src) </span><span class="cov8" title="1">{
+                                break MainLoop</span>
+                        }
+                        <span class="cov8" title="1">dst[i*BlockSize+n] = c.iv[n] ^ src[i*BlockSize+n]
+                        c.iv[n] = src[i*BlockSize+n]</span>
+                }
+                <span class="cov8" title="1">i++</span>
+        }
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+// GOST 28147-89 block cipher with ECB, CFB, CTR, MAC modes of operation.
+// RFC 5830.
+package gost28147
+
+const (
+        BlockSize = 8
+        KeySize   = 32
+)
+
+// All 28147 operations are going with two 32-bit halves of the whole
+// block. nv is representation of that one half.
+type nv uint32
+
+// Cyclic 11-bit shift.
+func (n nv) shift11() nv <span class="cov8" title="1">{
+        return ((n &lt;&lt; 11) &amp; (1&lt;&lt;32 - 1)) | ((n &gt;&gt; (32 - 11)) &amp; (1&lt;&lt;32 - 1))
+}</span>
+
+// Seq contains iteration numbers used in the encryption function
+// itself. For example 28147 encryption and decryption process differs
+// only with this sequence.
+type Seq []uint8
+
+var (
+        SeqEncrypt = Seq([]uint8{
+                0, 1, 2, 3, 4, 5, 6, 7,
+                0, 1, 2, 3, 4, 5, 6, 7,
+                0, 1, 2, 3, 4, 5, 6, 7,
+                7, 6, 5, 4, 3, 2, 1, 0,
+        })
+        SeqDecrypt = Seq([]uint8{
+                0, 1, 2, 3, 4, 5, 6, 7,
+                7, 6, 5, 4, 3, 2, 1, 0,
+                7, 6, 5, 4, 3, 2, 1, 0,
+                7, 6, 5, 4, 3, 2, 1, 0,
+        })
+)
+
+type Cipher struct {
+        key  [KeySize]byte
+        sbox *Sbox
+        x    [8]nv
+}
+
+func NewCipher(key []byte, sbox *Sbox) *Cipher <span class="cov8" title="1">{
+        if len(key) != KeySize </span><span class="cov0" title="0">{
+                panic("invalid key size")</span>
+        }
+        <span class="cov8" title="1">c := Cipher{sbox: sbox}
+        copy(c.key[:], key)
+        c.x = [8]nv{
+                nv(key[0]) | nv(key[1])&lt;&lt;8 | nv(key[2])&lt;&lt;16 | nv(key[3])&lt;&lt;24,
+                nv(key[4]) | nv(key[5])&lt;&lt;8 | nv(key[6])&lt;&lt;16 | nv(key[7])&lt;&lt;24,
+                nv(key[8]) | nv(key[9])&lt;&lt;8 | nv(key[10])&lt;&lt;16 | nv(key[11])&lt;&lt;24,
+                nv(key[12]) | nv(key[13])&lt;&lt;8 | nv(key[14])&lt;&lt;16 | nv(key[15])&lt;&lt;24,
+                nv(key[16]) | nv(key[17])&lt;&lt;8 | nv(key[18])&lt;&lt;16 | nv(key[19])&lt;&lt;24,
+                nv(key[20]) | nv(key[21])&lt;&lt;8 | nv(key[22])&lt;&lt;16 | nv(key[23])&lt;&lt;24,
+                nv(key[24]) | nv(key[25])&lt;&lt;8 | nv(key[26])&lt;&lt;16 | nv(key[27])&lt;&lt;24,
+                nv(key[28]) | nv(key[29])&lt;&lt;8 | nv(key[30])&lt;&lt;16 | nv(key[31])&lt;&lt;24,
+        }
+        return &amp;c</span>
+}
+
+func (c *Cipher) BlockSize() int <span class="cov8" title="1">{
+        return BlockSize
+}</span>
+
+// Convert binary byte block to two 32-bit internal integers.
+func block2nvs(b []byte) (n1, n2 nv) <span class="cov8" title="1">{
+        n1 = nv(b[0]) | nv(b[1])&lt;&lt;8 | nv(b[2])&lt;&lt;16 | nv(b[3])&lt;&lt;24
+        n2 = nv(b[4]) | nv(b[5])&lt;&lt;8 | nv(b[6])&lt;&lt;16 | nv(b[7])&lt;&lt;24
+        return
+}</span>
+
+// Convert two 32-bit internal integers to binary byte block.
+func nvs2block(n1, n2 nv, b []byte) <span class="cov8" title="1">{
+        b[0] = byte((n2 &gt;&gt; 0) &amp; 255)
+        b[1] = byte((n2 &gt;&gt; 8) &amp; 255)
+        b[2] = byte((n2 &gt;&gt; 16) &amp; 255)
+        b[3] = byte((n2 &gt;&gt; 24) &amp; 255)
+        b[4] = byte((n1 &gt;&gt; 0) &amp; 255)
+        b[5] = byte((n1 &gt;&gt; 8) &amp; 255)
+        b[6] = byte((n1 &gt;&gt; 16) &amp; 255)
+        b[7] = byte((n1 &gt;&gt; 24) &amp; 255)
+}</span>
+
+func (c *Cipher) xcrypt(seq Seq, n1, n2 nv) (nv, nv) <span class="cov8" title="1">{
+        for _, i := range seq </span><span class="cov8" title="1">{
+                n1, n2 = c.sbox.k(n1+c.x[i]).shift11()^n2, n1
+        }</span>
+        <span class="cov8" title="1">return n1, n2</span>
+}
+
+// Encrypt single block.
+// If provided slices are shorter than the block size, then it will panic.
+func (c *Cipher) Encrypt(dst, src []byte) <span class="cov8" title="1">{
+        n1, n2 := block2nvs(src)
+        n1, n2 = c.xcrypt(SeqEncrypt, n1, n2)
+        nvs2block(n1, n2, dst)
+}</span>
+
+// Decrypt single block.
+// If provided slices are shorter than the block size, then it will panic.
+func (c *Cipher) Decrypt(dst, src []byte) <span class="cov8" title="1">{
+        n1, n2 := block2nvs(src)
+        n1, n2 = c.xcrypt(SeqDecrypt, n1, n2)
+        nvs2block(n1, n2, dst)
+}</span>
+</pre>
+		
+		<pre class="file" id="file6" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost28147
+
+type CTR struct {
+        c  *Cipher
+        n1 nv
+        n2 nv
+}
+
+func (c *Cipher) NewCTR(iv []byte) *CTR <span class="cov8" title="1">{
+        if len(iv) != BlockSize </span><span class="cov0" title="0">{
+                panic("iv length is not equal to blocksize")</span>
+        }
+        <span class="cov8" title="1">n1, n2 := block2nvs(iv)
+        n2, n1 = c.xcrypt(SeqEncrypt, n1, n2)
+        return &amp;CTR{c, n1, n2}</span>
+}
+
+func (c *CTR) XORKeyStream(dst, src []byte) <span class="cov8" title="1">{
+        var n1t nv
+        var n2t nv
+        block := make([]byte, BlockSize)
+        i := 0
+        var n int
+MainLoop:
+        for </span><span class="cov8" title="1">{
+                c.n1 += 0x01010101 // C2
+                c.n2 += 0x01010104 // C1
+                if c.n2 &gt;= 1&lt;&lt;32-1 </span><span class="cov0" title="0">{
+                        c.n2 -= 1&lt;&lt;32 - 1
+                }</span>
+                <span class="cov8" title="1">n1t, n2t = c.c.xcrypt(SeqEncrypt, c.n1, c.n2)
+                nvs2block(n1t, n2t, block)
+                for n = 0; n &lt; BlockSize; n++ </span><span class="cov8" title="1">{
+                        if i*BlockSize+n == len(src) </span><span class="cov8" title="1">{
+                                break MainLoop</span>
+                        }
+                        <span class="cov8" title="1">dst[i*BlockSize+n] = src[i*BlockSize+n] ^ block[n]</span>
+                }
+                <span class="cov8" title="1">i++</span>
+        }
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost28147
+
+type ECBEncrypter struct {
+        c *Cipher
+}
+
+func (c *Cipher) NewECBEncrypter() *ECBEncrypter <span class="cov8" title="1">{
+        e := ECBEncrypter{c}
+        return &amp;e
+}</span>
+
+func (e *ECBEncrypter) CryptBlocks(dst, src []byte) <span class="cov8" title="1">{
+        for i := 0; i &lt; len(src); i += BlockSize </span><span class="cov8" title="1">{
+                e.c.Encrypt(dst[i:i+BlockSize], src[i:i+BlockSize])
+        }</span>
+}
+
+func (e *ECBEncrypter) BlockSize() int <span class="cov0" title="0">{
+        return e.c.BlockSize()
+}</span>
+
+type ECBDecrypter struct {
+        c *Cipher
+}
+
+func (c *Cipher) NewECBDecrypter() *ECBDecrypter <span class="cov8" title="1">{
+        d := ECBDecrypter{c}
+        return &amp;d
+}</span>
+
+func (e *ECBDecrypter) CryptBlocks(dst, src []byte) <span class="cov8" title="1">{
+        for i := 0; i &lt; len(src); i += BlockSize </span><span class="cov8" title="1">{
+                e.c.Decrypt(dst[i:i+BlockSize], src[i:i+BlockSize])
+        }</span>
+}
+
+func (e *ECBDecrypter) BlockSize() int <span class="cov0" title="0">{
+        return e.c.BlockSize()
+}</span>
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost28147
+
+import (
+        "errors"
+)
+
+var (
+        SeqMAC = Seq([]uint8{
+                0, 1, 2, 3, 4, 5, 6, 7,
+                0, 1, 2, 3, 4, 5, 6, 7,
+        })
+)
+
+type MAC struct {
+        c    *Cipher
+        size int
+        iv   []byte
+        prev []byte
+        buf  []byte
+        n1   nv
+        n2   nv
+}
+
+// Create MAC with given tag size and initial initialization vector.
+// Size is in bytes and must be between 1 and 8. To be RFC conformant,
+// iv must be the first block of the authenticated data, second and
+// following ones are fed to Write function.
+func (c *Cipher) NewMAC(size int, iv []byte) (*MAC, error) <span class="cov8" title="1">{
+        if size == 0 || size &gt; 8 </span><span class="cov0" title="0">{
+                return nil, errors.New("gogost/gost28147: invalid tag size")
+        }</span>
+        <span class="cov8" title="1">if len(iv) != BlockSize </span><span class="cov0" title="0">{
+                return nil, errors.New("gogost/gost28147: len(iv) != 8")
+        }</span>
+        <span class="cov8" title="1">m := MAC{c: c, size: size, iv: iv}
+        n2, n1 := block2nvs(iv)
+        m.iv = make([]byte, BlockSize)
+        nvs2block(n1, n2, m.iv)
+        m.prev = make([]byte, BlockSize)
+        m.Reset()
+        return &amp;m, nil</span>
+}
+
+func (m *MAC) Reset() <span class="cov8" title="1">{
+        copy(m.prev, m.iv)
+        m.buf = nil
+}</span>
+
+func (m *MAC) BlockSize() int <span class="cov0" title="0">{
+        return BlockSize
+}</span>
+
+func (m *MAC) Size() int <span class="cov0" title="0">{
+        return m.size
+}</span>
+
+func (m *MAC) Write(b []byte) (int, error) <span class="cov8" title="1">{
+        m.buf = append(m.buf, b...)
+        for len(m.buf) &gt;= BlockSize </span><span class="cov8" title="1">{
+                for i := 0; i &lt; BlockSize; i++ </span><span class="cov8" title="1">{
+                        m.prev[i] ^= m.buf[i]
+                }</span>
+                <span class="cov8" title="1">m.n1, m.n2 = block2nvs(m.prev)
+                m.n1, m.n2 = m.c.xcrypt(SeqMAC, m.n1, m.n2)
+                nvs2block(m.n2, m.n1, m.prev)
+                m.buf = m.buf[8:]</span>
+        }
+        <span class="cov8" title="1">return len(b), nil</span>
+}
+
+func (m *MAC) Sum(b []byte) []byte <span class="cov8" title="1">{
+        if len(m.buf) == 0 </span><span class="cov8" title="1">{
+                return append(b, m.prev[0:m.size]...)
+        }</span>
+        <span class="cov8" title="1">buf := m.buf
+        var i int
+        for i = 0; i &lt; BlockSize-len(m.buf); i++ </span><span class="cov8" title="1">{
+                buf = append(buf, byte(0))
+        }</span>
+        <span class="cov8" title="1">for i = 0; i &lt; BlockSize; i++ </span><span class="cov8" title="1">{
+                buf[i] ^= m.prev[i]
+        }</span>
+        <span class="cov8" title="1">m.n1, m.n2 = block2nvs(buf)
+        m.n1, m.n2 = m.c.xcrypt(SeqMAC, m.n1, m.n2)
+        nvs2block(m.n2, m.n1, buf)
+        return append(b, buf[0:m.size]...)</span>
+}
+</pre>
+		
+		<pre class="file" id="file9" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost28147
+
+// Sbox is a representation of eight substitution boxes.
+type Sbox [8][16]uint8
+
+var (
+        SboxIdGost2814789TestParamSet = Sbox([8][16]uint8{
+                {4, 2, 15, 5, 9, 1, 0, 8, 14, 3, 11, 12, 13, 7, 10, 6},
+                {12, 9, 15, 14, 8, 1, 3, 10, 2, 7, 4, 13, 6, 0, 11, 5},
+                {13, 8, 14, 12, 7, 3, 9, 10, 1, 5, 2, 4, 6, 15, 0, 11},
+                {14, 9, 11, 2, 5, 15, 7, 1, 0, 13, 12, 6, 10, 4, 3, 8},
+                {3, 14, 5, 9, 6, 8, 0, 13, 10, 11, 7, 12, 2, 1, 15, 4},
+                {8, 15, 6, 11, 1, 9, 12, 5, 13, 3, 7, 10, 0, 14, 2, 4},
+                {9, 11, 12, 0, 3, 6, 7, 5, 4, 8, 14, 15, 1, 10, 2, 13},
+                {12, 6, 5, 2, 11, 0, 9, 13, 3, 14, 7, 10, 15, 4, 1, 8},
+        })
+        SboxIdGost2814789CryptoProAParamSet = Sbox([8][16]uint8{
+                {9, 6, 3, 2, 8, 11, 1, 7, 10, 4, 14, 15, 12, 0, 13, 5},
+                {3, 7, 14, 9, 8, 10, 15, 0, 5, 2, 6, 12, 11, 4, 13, 1},
+                {14, 4, 6, 2, 11, 3, 13, 8, 12, 15, 5, 10, 0, 7, 1, 9},
+                {14, 7, 10, 12, 13, 1, 3, 9, 0, 2, 11, 4, 15, 8, 5, 6},
+                {11, 5, 1, 9, 8, 13, 15, 0, 14, 4, 2, 3, 12, 7, 10, 6},
+                {3, 10, 13, 12, 1, 2, 0, 11, 7, 5, 9, 4, 8, 15, 14, 6},
+                {1, 13, 2, 9, 7, 10, 6, 0, 8, 12, 4, 5, 15, 3, 11, 14},
+                {11, 10, 15, 5, 0, 12, 14, 8, 6, 2, 3, 9, 1, 7, 13, 4},
+        })
+        SboxIdGost2814789CryptoProBParamSet = Sbox([8][16]uint8{
+                {8, 4, 11, 1, 3, 5, 0, 9, 2, 14, 10, 12, 13, 6, 7, 15},
+                {0, 1, 2, 10, 4, 13, 5, 12, 9, 7, 3, 15, 11, 8, 6, 14},
+                {14, 12, 0, 10, 9, 2, 13, 11, 7, 5, 8, 15, 3, 6, 1, 4},
+                {7, 5, 0, 13, 11, 6, 1, 2, 3, 10, 12, 15, 4, 14, 9, 8},
+                {2, 7, 12, 15, 9, 5, 10, 11, 1, 4, 0, 13, 6, 8, 14, 3},
+                {8, 3, 2, 6, 4, 13, 14, 11, 12, 1, 7, 15, 10, 0, 9, 5},
+                {5, 2, 10, 11, 9, 1, 12, 3, 7, 4, 13, 0, 6, 15, 8, 14},
+                {0, 4, 11, 14, 8, 3, 7, 1, 10, 2, 9, 6, 15, 13, 5, 12},
+        })
+        SboxIdGost2814789CryptoProCParamSet = Sbox([8][16]uint8{
+                {1, 11, 12, 2, 9, 13, 0, 15, 4, 5, 8, 14, 10, 7, 6, 3},
+                {0, 1, 7, 13, 11, 4, 5, 2, 8, 14, 15, 12, 9, 10, 6, 3},
+                {8, 2, 5, 0, 4, 9, 15, 10, 3, 7, 12, 13, 6, 14, 1, 11},
+                {3, 6, 0, 1, 5, 13, 10, 8, 11, 2, 9, 7, 14, 15, 12, 4},
+                {8, 13, 11, 0, 4, 5, 1, 2, 9, 3, 12, 14, 6, 15, 10, 7},
+                {12, 9, 11, 1, 8, 14, 2, 4, 7, 3, 6, 5, 10, 0, 15, 13},
+                {10, 9, 6, 8, 13, 14, 2, 0, 15, 3, 5, 11, 4, 1, 12, 7},
+                {7, 4, 0, 5, 10, 2, 15, 14, 12, 6, 1, 11, 13, 9, 3, 8},
+        })
+        SboxIdGost2814789CryptoProDParamSet = Sbox([8][16]uint8{
+                {15, 12, 2, 10, 6, 4, 5, 0, 7, 9, 14, 13, 1, 11, 8, 3},
+                {11, 6, 3, 4, 12, 15, 14, 2, 7, 13, 8, 0, 5, 10, 9, 1},
+                {1, 12, 11, 0, 15, 14, 6, 5, 10, 13, 4, 8, 9, 3, 7, 2},
+                {1, 5, 14, 12, 10, 7, 0, 13, 6, 2, 11, 4, 9, 3, 15, 8},
+                {0, 12, 8, 9, 13, 2, 10, 11, 7, 3, 6, 5, 4, 14, 15, 1},
+                {8, 0, 15, 3, 2, 5, 14, 11, 1, 10, 4, 7, 12, 9, 13, 6},
+                {3, 0, 6, 15, 1, 14, 9, 2, 13, 8, 12, 4, 11, 10, 5, 7},
+                {1, 10, 6, 8, 15, 11, 0, 4, 12, 3, 5, 9, 7, 13, 2, 14},
+        })
+        SboxIdtc26gost28147paramZ = Sbox([8][16]uint8{
+                {12, 4, 6, 2, 10, 5, 11, 9, 14, 8, 13, 7, 0, 3, 15, 1},
+                {6, 8, 2, 3, 9, 10, 5, 12, 1, 14, 4, 7, 11, 13, 0, 15},
+                {11, 3, 5, 8, 2, 15, 10, 13, 14, 1, 7, 4, 12, 9, 6, 0},
+                {12, 8, 2, 1, 13, 4, 15, 6, 7, 0, 10, 5, 3, 14, 9, 11},
+                {7, 15, 5, 10, 8, 1, 6, 13, 0, 9, 3, 14, 11, 4, 2, 12},
+                {5, 13, 15, 6, 9, 2, 12, 10, 11, 7, 8, 1, 4, 3, 14, 0},
+                {8, 14, 2, 5, 6, 9, 1, 12, 15, 4, 11, 0, 13, 10, 3, 7},
+                {1, 7, 14, 13, 0, 5, 8, 3, 4, 15, 10, 6, 9, 12, 11, 2},
+        })
+        SboxIdGostR341194TestParamSet = Sbox([8][16]uint8{
+                {4, 10, 9, 2, 13, 8, 0, 14, 6, 11, 1, 12, 7, 15, 5, 3},
+                {14, 11, 4, 12, 6, 13, 15, 10, 2, 3, 8, 1, 0, 7, 5, 9},
+                {5, 8, 1, 13, 10, 3, 4, 2, 14, 15, 12, 7, 6, 0, 9, 11},
+                {7, 13, 10, 1, 0, 8, 9, 15, 14, 4, 6, 12, 11, 2, 5, 3},
+                {6, 12, 7, 1, 5, 15, 13, 8, 4, 10, 9, 14, 0, 3, 11, 2},
+                {4, 11, 10, 0, 7, 2, 1, 13, 3, 6, 8, 5, 9, 12, 15, 14},
+                {13, 11, 4, 1, 3, 15, 5, 9, 0, 10, 14, 7, 6, 8, 2, 12},
+                {1, 15, 13, 0, 5, 7, 10, 4, 9, 2, 3, 14, 6, 11, 8, 12},
+        })
+        SboxAppliedCryptographyParamSet    = SboxIdGostR341194TestParamSet
+        SboxIdGostR341194CryptoProParamSet = Sbox([8][16]uint8{
+                {10, 4, 5, 6, 8, 1, 3, 7, 13, 12, 14, 0, 9, 2, 11, 15},
+                {5, 15, 4, 0, 2, 13, 11, 9, 1, 7, 6, 3, 12, 14, 10, 8},
+                {7, 15, 12, 14, 9, 4, 1, 0, 3, 11, 5, 2, 6, 10, 8, 13},
+                {4, 10, 7, 12, 0, 15, 2, 8, 14, 1, 6, 5, 13, 11, 9, 3},
+                {7, 6, 4, 11, 9, 12, 2, 10, 1, 8, 0, 14, 15, 13, 3, 5},
+                {7, 6, 2, 4, 13, 9, 15, 0, 10, 1, 5, 11, 8, 14, 12, 3},
+                {13, 14, 4, 1, 7, 0, 5, 10, 3, 12, 8, 15, 6, 2, 9, 11},
+                {1, 3, 10, 9, 5, 11, 4, 15, 8, 6, 7, 14, 13, 0, 2, 12},
+        })
+        SboxEACParamSet = Sbox([8][16]uint8{
+                {11, 4, 8, 10, 9, 7, 0, 3, 1, 6, 2, 15, 14, 5, 12, 13},
+                {1, 7, 14, 9, 11, 3, 15, 12, 0, 5, 4, 6, 13, 10, 8, 2},
+                {7, 3, 1, 9, 2, 4, 13, 15, 8, 10, 12, 6, 5, 0, 11, 14},
+                {10, 5, 15, 7, 14, 11, 3, 9, 2, 8, 1, 12, 0, 4, 6, 13},
+                {0, 14, 6, 11, 9, 3, 8, 4, 12, 15, 10, 5, 13, 7, 1, 2},
+                {9, 2, 11, 12, 0, 4, 5, 6, 3, 15, 13, 8, 1, 7, 14, 10},
+                {4, 0, 14, 1, 5, 11, 8, 3, 12, 2, 9, 7, 6, 10, 13, 15},
+                {7, 14, 12, 13, 9, 4, 8, 15, 10, 2, 6, 0, 3, 11, 5, 1},
+        })
+        SboxDefault = &amp;SboxIdGost2814789CryptoProAParamSet
+)
+
+// Sbox substitution itself.
+func (s *Sbox) k(n nv) nv <span class="cov8" title="1">{
+        return nv(s[0][(n&gt;&gt;0)&amp;0x0F])&lt;&lt;0 +
+                nv(s[1][(n&gt;&gt;4)&amp;0x0F])&lt;&lt;4 +
+                nv(s[2][(n&gt;&gt;8)&amp;0x0F])&lt;&lt;8 +
+                nv(s[3][(n&gt;&gt;12)&amp;0x0F])&lt;&lt;12 +
+                nv(s[4][(n&gt;&gt;16)&amp;0x0F])&lt;&lt;16 +
+                nv(s[5][(n&gt;&gt;20)&amp;0x0F])&lt;&lt;20 +
+                nv(s[6][(n&gt;&gt;24)&amp;0x0F])&lt;&lt;24 +
+                nv(s[7][(n&gt;&gt;28)&amp;0x0F])&lt;&lt;28
+}</span>
+</pre>
+		
+		<pre class="file" id="file10" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import (
+        "errors"
+        "math/big"
+)
+
+var (
+        zero    *big.Int = big.NewInt(0)
+        bigInt1 *big.Int = big.NewInt(1)
+        bigInt2 *big.Int = big.NewInt(2)
+        bigInt3 *big.Int = big.NewInt(3)
+        bigInt4 *big.Int = big.NewInt(4)
+)
+
+type Curve struct {
+        Name string // Just simple identifier
+
+        P *big.Int // Characteristic of the underlying prime field
+        Q *big.Int // Elliptic curve subgroup order
+
+        Co *big.Int // Cofactor
+
+        // Equation coefficients of the elliptic curve in canonical form
+        A *big.Int
+        B *big.Int
+
+        // Equation coefficients of the elliptic curve in twisted Edwards form
+        E *big.Int
+        D *big.Int
+
+        // Basic point X and Y coordinates
+        X *big.Int
+        Y *big.Int
+
+        // Cached s/t parameters for Edwards curve points conversion
+        edS *big.Int
+        edT *big.Int
+}
+
+func NewCurve(p, q, a, b, x, y, e, d, co *big.Int) (*Curve, error) <span class="cov8" title="1">{
+        c := Curve{
+                Name: "unknown",
+                P:    p,
+                Q:    q,
+                A:    a,
+                B:    b,
+                X:    x,
+                Y:    y,
+        }
+        r1 := big.NewInt(0)
+        r2 := big.NewInt(0)
+        r1.Mul(c.Y, c.Y)
+        r1.Mod(r1, c.P)
+        r2.Mul(c.X, c.X)
+        r2.Add(r2, c.A)
+        r2.Mul(r2, c.X)
+        r2.Add(r2, c.B)
+        r2.Mod(r2, c.P)
+        c.pos(r2)
+        if r1.Cmp(r2) != 0 </span><span class="cov0" title="0">{
+                return nil, errors.New("gogost/gost3410: invalid curve parameters")
+        }</span>
+        <span class="cov8" title="1">if e != nil &amp;&amp; d != nil </span><span class="cov8" title="1">{
+                c.E = e
+                c.D = d
+        }</span>
+        <span class="cov8" title="1">if co == nil </span><span class="cov8" title="1">{
+                c.Co = bigInt1
+        }</span> else<span class="cov8" title="1"> {
+                c.Co = co
+        }</span>
+        <span class="cov8" title="1">return &amp;c, nil</span>
+}
+
+func (c *Curve) PointSize() int <span class="cov8" title="1">{
+        return PointSize(c.P)
+}</span>
+
+func (c *Curve) pos(v *big.Int) <span class="cov8" title="1">{
+        if v.Cmp(zero) &lt; 0 </span><span class="cov8" title="1">{
+                v.Add(v, c.P)
+        }</span>
+}
+
+func (c *Curve) add(p1x, p1y, p2x, p2y *big.Int) <span class="cov8" title="1">{
+        var t, tx, ty big.Int
+        if p1x.Cmp(p2x) == 0 &amp;&amp; p1y.Cmp(p2y) == 0 </span><span class="cov8" title="1">{
+                // double
+                t.Mul(p1x, p1x)
+                t.Mul(&amp;t, bigInt3)
+                t.Add(&amp;t, c.A)
+                tx.Mul(bigInt2, p1y)
+                tx.ModInverse(&amp;tx, c.P)
+                t.Mul(&amp;t, &amp;tx)
+                t.Mod(&amp;t, c.P)
+        }</span> else<span class="cov8" title="1"> {
+                tx.Sub(p2x, p1x)
+                tx.Mod(&amp;tx, c.P)
+                c.pos(&amp;tx)
+                ty.Sub(p2y, p1y)
+                ty.Mod(&amp;ty, c.P)
+                c.pos(&amp;ty)
+                t.ModInverse(&amp;tx, c.P)
+                t.Mul(&amp;t, &amp;ty)
+                t.Mod(&amp;t, c.P)
+        }</span>
+        <span class="cov8" title="1">tx.Mul(&amp;t, &amp;t)
+        tx.Sub(&amp;tx, p1x)
+        tx.Sub(&amp;tx, p2x)
+        tx.Mod(&amp;tx, c.P)
+        c.pos(&amp;tx)
+        ty.Sub(p1x, &amp;tx)
+        ty.Mul(&amp;ty, &amp;t)
+        ty.Sub(&amp;ty, p1y)
+        ty.Mod(&amp;ty, c.P)
+        c.pos(&amp;ty)
+        p1x.Set(&amp;tx)
+        p1y.Set(&amp;ty)</span>
+}
+
+func (c *Curve) Exp(degree, xS, yS *big.Int) (*big.Int, *big.Int, error) <span class="cov8" title="1">{
+        if degree.Cmp(zero) == 0 </span><span class="cov0" title="0">{
+                return nil, nil, errors.New("gogost/gost3410: zero degree value")
+        }</span>
+        <span class="cov8" title="1">dg := big.NewInt(0).Sub(degree, bigInt1)
+        tx := big.NewInt(0).Set(xS)
+        ty := big.NewInt(0).Set(yS)
+        cx := big.NewInt(0).Set(xS)
+        cy := big.NewInt(0).Set(yS)
+        for dg.Cmp(zero) != 0 </span><span class="cov8" title="1">{
+                if dg.Bit(0) == 1 </span><span class="cov8" title="1">{
+                        c.add(tx, ty, cx, cy)
+                }</span>
+                <span class="cov8" title="1">dg.Rsh(dg, 1)
+                c.add(cx, cy, cx, cy)</span>
+        }
+        <span class="cov8" title="1">return tx, ty, nil</span>
+}
+
+func (our *Curve) Equal(their *Curve) bool <span class="cov0" title="0">{
+        return our.P.Cmp(their.P) == 0 &amp;&amp;
+                our.Q.Cmp(their.Q) == 0 &amp;&amp;
+                our.A.Cmp(their.A) == 0 &amp;&amp;
+                our.B.Cmp(their.B) == 0 &amp;&amp;
+                our.X.Cmp(their.X) == 0 &amp;&amp;
+                our.Y.Cmp(their.Y) == 0 &amp;&amp;
+                ((our.E == nil &amp;&amp; their.E == nil) || our.E.Cmp(their.E) == 0) &amp;&amp;
+                ((our.D == nil &amp;&amp; their.D == nil) || our.D.Cmp(their.D) == 0) &amp;&amp;
+                our.Co.Cmp(their.Co) == 0
+}</span>
+</pre>
+		
+		<pre class="file" id="file11" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import (
+        "math/big"
+)
+
+func (c *Curve) IsEdwards() bool <span class="cov8" title="1">{
+        return c.E != nil
+}</span>
+
+func (c *Curve) EdwardsST() (*big.Int, *big.Int) <span class="cov8" title="1">{
+        if c.edS != nil </span><span class="cov8" title="1">{
+                return c.edS, c.edT
+        }</span>
+        <span class="cov8" title="1">c.edS = big.NewInt(0)
+        c.edS.Set(c.E)
+        c.edS.Sub(c.edS, c.D)
+        c.pos(c.edS)
+        var t big.Int
+        t.SetUint64(4)
+        t.ModInverse(&amp;t, c.P)
+        c.edS.Mul(c.edS, &amp;t)
+        c.edS.Mod(c.edS, c.P)
+        c.edT = big.NewInt(0)
+        c.edT.Set(c.E)
+        c.edT.Add(c.edT, c.D)
+        t.SetUint64(6)
+        t.ModInverse(&amp;t, c.P)
+        c.edT.Mul(c.edT, &amp;t)
+        c.edT.Mod(c.edT, c.P)
+        return c.edS, c.edT</span>
+}
+
+// Convert Weierstrass X,Y coordinates to twisted Edwards U,V
+func XY2UV(c *Curve, x, y *big.Int) (*big.Int, *big.Int) <span class="cov8" title="1">{
+        if !c.IsEdwards() </span><span class="cov0" title="0">{
+                panic("non twisted Edwards curve")</span>
+        }
+        <span class="cov8" title="1">edS, edT := c.EdwardsST()
+        var t big.Int
+        t.Sub(x, edT)
+        c.pos(&amp;t)
+        u := big.NewInt(0)
+        u.ModInverse(y, c.P)
+        u.Mul(u, &amp;t)
+        u.Mod(u, c.P)
+        v := big.NewInt(0).Set(&amp;t)
+        v.Sub(v, edS)
+        c.pos(v)
+        t.Add(&amp;t, edS)
+        t.ModInverse(&amp;t, c.P)
+        v.Mul(v, &amp;t)
+        v.Mod(v, c.P)
+        return u, v</span>
+}
+
+// Convert twisted Edwards U,V coordinates to Weierstrass X,Y
+func UV2XY(c *Curve, u, v *big.Int) (*big.Int, *big.Int) <span class="cov8" title="1">{
+        if !c.IsEdwards() </span><span class="cov0" title="0">{
+                panic("non twisted Edwards curve")</span>
+        }
+        <span class="cov8" title="1">edS, edT := c.EdwardsST()
+        var tx, ty big.Int
+        tx.Add(bigInt1, v)
+        tx.Mul(&amp;tx, edS)
+        tx.Mod(&amp;tx, c.P)
+        ty.Sub(bigInt1, v)
+        c.pos(&amp;ty)
+        x := big.NewInt(0)
+        x.ModInverse(&amp;ty, c.P)
+        x.Mul(x, &amp;tx)
+        x.Add(x, edT)
+        x.Mod(x, c.P)
+        y := big.NewInt(0)
+        y.Mul(u, &amp;ty)
+        y.ModInverse(y, c.P)
+        y.Mul(y, &amp;tx)
+        y.Mod(y, c.P)
+        return x, y</span>
+}
+</pre>
+		
+		<pre class="file" id="file12" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import "math/big"
+
+var (
+        CurveGostR34102001ParamSetcc func() *Curve = func() *Curve <span class="cov0" title="0">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC7,
+                        }),
+                        bytes2big([]byte{
+                                0x5f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
+                                0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
+                                0x60, 0x61, 0x17, 0xa2, 0xf4, 0xbd, 0xe4, 0x28,
+                                0xb7, 0x45, 0x8a, 0x54, 0xb6, 0xe8, 0x7b, 0x85,
+                        }),
+                        bytes2big([]byte{
+                                0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xc4,
+                        }),
+                        bytes2big([]byte{
+                                0x2d, 0x06, 0xB4, 0x26, 0x5e, 0xbc, 0x74, 0x9f,
+                                0xf7, 0xd0, 0xf1, 0xf1, 0xf8, 0x82, 0x32, 0xe8,
+                                0x16, 0x32, 0xe9, 0x08, 0x8f, 0xd4, 0x4b, 0x77,
+                                0x87, 0xd5, 0xe4, 0x07, 0xe9, 0x55, 0x08, 0x0c,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02,
+                        }),
+                        bytes2big([]byte{
+                                0xa2, 0x0e, 0x03, 0x4b, 0xf8, 0x81, 0x3e, 0xf5,
+                                0xc1, 0x8d, 0x01, 0x10, 0x5e, 0x72, 0x6a, 0x17,
+                                0xeb, 0x24, 0x8b, 0x26, 0x4a, 0xe9, 0x70, 0x6f,
+                                0x44, 0x0b, 0xed, 0xc8, 0xcc, 0xb6, 0xb2, 0x2c,
+                        }),
+                        nil,
+                        nil,
+                        nil,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov0" title="0">curve.Name = "GostR34102001ParamSetcc"
+                return curve</span>
+        }
+        // id-GostR3410-2001-TestParamSet
+        CurveIdGostR34102001TestParamSet func() *Curve = func() *Curve <span class="cov8" title="1">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x31,
+                        }),
+                        bytes2big([]byte{
+                                0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
+                                0x50, 0xFE, 0x8A, 0x18, 0x92, 0x97, 0x61, 0x54,
+                                0xC5, 0x9C, 0xFC, 0x19, 0x3A, 0xCC, 0xF5, 0xB3,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07,
+                        }),
+                        bytes2big([]byte{
+                                0x5F, 0xBF, 0xF4, 0x98, 0xAA, 0x93, 0x8C, 0xE7,
+                                0x39, 0xB8, 0xE0, 0x22, 0xFB, 0xAF, 0xEF, 0x40,
+                                0x56, 0x3F, 0x6E, 0x6A, 0x34, 0x72, 0xFC, 0x2A,
+                                0x51, 0x4C, 0x0C, 0xE9, 0xDA, 0xE2, 0x3B, 0x7E,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02,
+                        }),
+                        bytes2big([]byte{
+                                0x08, 0xE2, 0xA8, 0xA0, 0xE6, 0x51, 0x47, 0xD4,
+                                0xBD, 0x63, 0x16, 0x03, 0x0E, 0x16, 0xD1, 0x9C,
+                                0x85, 0xC9, 0x7F, 0x0A, 0x9C, 0xA2, 0x67, 0x12,
+                                0x2B, 0x96, 0xAB, 0xBC, 0xEA, 0x7E, 0x8F, 0xC8,
+                        }),
+                        nil,
+                        nil,
+                        nil,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov8" title="1">curve.Name = "id-GostR3410-2001-TestParamSet"
+                return curve</span>
+        }
+        // id-tc26-gost-3410-12-256-paramSetA
+        CurveIdtc26gost341012256paramSetA func() *Curve = func() *Curve <span class="cov8" title="1">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, 0x97,
+                        }),
+                        bytes2big([]byte{
+                                0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x0F, 0xD8, 0xCD, 0xDF, 0xC8, 0x7B, 0x66, 0x35,
+                                0xC1, 0x15, 0xAF, 0x55, 0x6C, 0x36, 0x0C, 0x67,
+                        }),
+                        bytes2big([]byte{
+                                0xC2, 0x17, 0x3F, 0x15, 0x13, 0x98, 0x16, 0x73,
+                                0xAF, 0x48, 0x92, 0xC2, 0x30, 0x35, 0xA2, 0x7C,
+                                0xE2, 0x5E, 0x20, 0x13, 0xBF, 0x95, 0xAA, 0x33,
+                                0xB2, 0x2C, 0x65, 0x6F, 0x27, 0x7E, 0x73, 0x35,
+                        }),
+                        bytes2big([]byte{
+                                0x29, 0x5F, 0x9B, 0xAE, 0x74, 0x28, 0xED, 0x9C,
+                                0xCC, 0x20, 0xE7, 0xC3, 0x59, 0xA9, 0xD4, 0x1A,
+                                0x22, 0xFC, 0xCD, 0x91, 0x08, 0xE1, 0x7B, 0xF7,
+                                0xBA, 0x93, 0x37, 0xA6, 0xF8, 0xAE, 0x95, 0x13,
+                        }),
+                        bytes2big([]byte{
+                                0x91, 0xE3, 0x84, 0x43, 0xA5, 0xE8, 0x2C, 0x0D,
+                                0x88, 0x09, 0x23, 0x42, 0x57, 0x12, 0xB2, 0xBB,
+                                0x65, 0x8B, 0x91, 0x96, 0x93, 0x2E, 0x02, 0xC7,
+                                0x8B, 0x25, 0x82, 0xFE, 0x74, 0x2D, 0xAA, 0x28,
+                        }),
+                        bytes2big([]byte{
+                                0x32, 0x87, 0x94, 0x23, 0xAB, 0x1A, 0x03, 0x75,
+                                0x89, 0x57, 0x86, 0xC4, 0xBB, 0x46, 0xE9, 0x56,
+                                0x5F, 0xDE, 0x0B, 0x53, 0x44, 0x76, 0x67, 0x40,
+                                0xAF, 0x26, 0x8A, 0xDB, 0x32, 0x32, 0x2E, 0x5C,
+                        }),
+                        bigInt1,
+                        bytes2big([]byte{
+                                0x06, 0x05, 0xF6, 0xB7, 0xC1, 0x83, 0xFA, 0x81,
+                                0x57, 0x8B, 0xC3, 0x9C, 0xFA, 0xD5, 0x18, 0x13,
+                                0x2B, 0x9D, 0xF6, 0x28, 0x97, 0x00, 0x9A, 0xF7,
+                                0xE5, 0x22, 0xC3, 0x2D, 0x6D, 0xC7, 0xBF, 0xFB,
+                        }),
+                        bigInt4,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov8" title="1">curve.Name = "id-tc26-gost-3410-12-256-paramSetA"
+                return curve</span>
+        }
+        // id-tc26-gost-3410-12-256-paramSetB
+        CurveIdtc26gost341012256paramSetB func() *Curve = func() *Curve <span class="cov8" title="1">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, 0x97,
+                        }),
+                        bytes2big([]byte{
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0x6C, 0x61, 0x10, 0x70, 0x99, 0x5A, 0xD1, 0x00,
+                                0x45, 0x84, 0x1B, 0x09, 0xB7, 0x61, 0xB8, 0x93,
+                        }),
+                        bytes2big([]byte{
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, 0x94,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xa6,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
+                        }),
+                        bytes2big([]byte{
+                                0x8D, 0x91, 0xE4, 0x71, 0xE0, 0x98, 0x9C, 0xDA,
+                                0x27, 0xDF, 0x50, 0x5A, 0x45, 0x3F, 0x2B, 0x76,
+                                0x35, 0x29, 0x4F, 0x2D, 0xDF, 0x23, 0xE3, 0xB1,
+                                0x22, 0xAC, 0xC9, 0x9C, 0x9E, 0x9F, 0x1E, 0x14,
+                        }),
+                        nil,
+                        nil,
+                        nil,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov8" title="1">curve.Name = "id-tc26-gost-3410-12-256-paramSetB"
+                return curve</span>
+        }
+        // id-tc26-gost-3410-12-256-paramSetC
+        CurveIdtc26gost341012256paramSetC func() *Curve = func() *Curve <span class="cov8" title="1">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x99,
+                        }),
+                        bytes2big([]byte{
+                                0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
+                                0x5F, 0x70, 0x0C, 0xFF, 0xF1, 0xA6, 0x24, 0xE5,
+                                0xE4, 0x97, 0x16, 0x1B, 0xCC, 0x8A, 0x19, 0x8F,
+                        }),
+                        bytes2big([]byte{
+                                0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x96,
+                        }),
+                        bytes2big([]byte{
+                                0x3E, 0x1A, 0xF4, 0x19, 0xA2, 0x69, 0xA5, 0xF8,
+                                0x66, 0xA7, 0xD3, 0xC2, 0x5C, 0x3D, 0xF8, 0x0A,
+                                0xE9, 0x79, 0x25, 0x93, 0x73, 0xFF, 0x2B, 0x18,
+                                0x2F, 0x49, 0xD4, 0xCE, 0x7E, 0x1B, 0xBC, 0x8B,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
+                        }),
+                        bytes2big([]byte{
+                                0x3F, 0xA8, 0x12, 0x43, 0x59, 0xF9, 0x66, 0x80,
+                                0xB8, 0x3D, 0x1C, 0x3E, 0xB2, 0xC0, 0x70, 0xE5,
+                                0xC5, 0x45, 0xC9, 0x85, 0x8D, 0x03, 0xEC, 0xFB,
+                                0x74, 0x4B, 0xF8, 0xD7, 0x17, 0x71, 0x7E, 0xFC,
+                        }),
+                        nil,
+                        nil,
+                        nil,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov8" title="1">curve.Name = "id-tc26-gost-3410-12-256-paramSetC"
+                return curve</span>
+        }
+        // id-tc26-gost-3410-12-256-paramSetD
+        CurveIdtc26gost341012256paramSetD func() *Curve = func() *Curve <span class="cov8" title="1">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0x9B, 0x9F, 0x60, 0x5F, 0x5A, 0x85, 0x81, 0x07,
+                                0xAB, 0x1E, 0xC8, 0x5E, 0x6B, 0x41, 0xC8, 0xAA,
+                                0xCF, 0x84, 0x6E, 0x86, 0x78, 0x90, 0x51, 0xD3,
+                                0x79, 0x98, 0xF7, 0xB9, 0x02, 0x2D, 0x75, 0x9B,
+                        }),
+                        bytes2big([]byte{
+                                0x9B, 0x9F, 0x60, 0x5F, 0x5A, 0x85, 0x81, 0x07,
+                                0xAB, 0x1E, 0xC8, 0x5E, 0x6B, 0x41, 0xC8, 0xAA,
+                                0x58, 0x2C, 0xA3, 0x51, 0x1E, 0xDD, 0xFB, 0x74,
+                                0xF0, 0x2F, 0x3A, 0x65, 0x98, 0x98, 0x0B, 0xB9,
+                        }),
+                        bytes2big([]byte{
+                                0x9B, 0x9F, 0x60, 0x5F, 0x5A, 0x85, 0x81, 0x07,
+                                0xAB, 0x1E, 0xC8, 0x5E, 0x6B, 0x41, 0xC8, 0xAA,
+                                0xCF, 0x84, 0x6E, 0x86, 0x78, 0x90, 0x51, 0xD3,
+                                0x79, 0x98, 0xF7, 0xB9, 0x02, 0x2D, 0x75, 0x98,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x5a,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                        }),
+                        bytes2big([]byte{
+                                0x41, 0xEC, 0xE5, 0x57, 0x43, 0x71, 0x1A, 0x8C,
+                                0x3C, 0xBF, 0x37, 0x83, 0xCD, 0x08, 0xC0, 0xEE,
+                                0x4D, 0x4D, 0xC4, 0x40, 0xD4, 0x64, 0x1A, 0x8F,
+                                0x36, 0x6E, 0x55, 0x0D, 0xFD, 0xB3, 0xBB, 0x67,
+                        }),
+                        nil,
+                        nil,
+                        nil,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov8" title="1">curve.Name = "id-tc26-gost-3410-12-256-paramSetD"
+                return curve</span>
+        }
+        // id-tc26-gost-3410-12-512-paramSetTest
+        CurveIdtc26gost341012512paramSetTest func() *Curve = func() *Curve <span class="cov0" title="0">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0x45, 0x31, 0xAC, 0xD1, 0xFE, 0x00, 0x23, 0xC7,
+                                0x55, 0x0D, 0x26, 0x7B, 0x6B, 0x2F, 0xEE, 0x80,
+                                0x92, 0x2B, 0x14, 0xB2, 0xFF, 0xB9, 0x0F, 0x04,
+                                0xD4, 0xEB, 0x7C, 0x09, 0xB5, 0xD2, 0xD1, 0x5D,
+                                0xF1, 0xD8, 0x52, 0x74, 0x1A, 0xF4, 0x70, 0x4A,
+                                0x04, 0x58, 0x04, 0x7E, 0x80, 0xE4, 0x54, 0x6D,
+                                0x35, 0xB8, 0x33, 0x6F, 0xAC, 0x22, 0x4D, 0xD8,
+                                0x16, 0x64, 0xBB, 0xF5, 0x28, 0xBE, 0x63, 0x73,
+                        }),
+                        bytes2big([]byte{
+                                0x45, 0x31, 0xAC, 0xD1, 0xFE, 0x00, 0x23, 0xC7,
+                                0x55, 0x0D, 0x26, 0x7B, 0x6B, 0x2F, 0xEE, 0x80,
+                                0x92, 0x2B, 0x14, 0xB2, 0xFF, 0xB9, 0x0F, 0x04,
+                                0xD4, 0xEB, 0x7C, 0x09, 0xB5, 0xD2, 0xD1, 0x5D,
+                                0xA8, 0x2F, 0x2D, 0x7E, 0xCB, 0x1D, 0xBA, 0xC7,
+                                0x19, 0x90, 0x5C, 0x5E, 0xEC, 0xC4, 0x23, 0xF1,
+                                0xD8, 0x6E, 0x25, 0xED, 0xBE, 0x23, 0xC5, 0x95,
+                                0xD6, 0x44, 0xAA, 0xF1, 0x87, 0xE6, 0xE6, 0xDF,
+                        }),
+                        big.NewInt(7),
+                        bytes2big([]byte{
+                                0x1C, 0xFF, 0x08, 0x06, 0xA3, 0x11, 0x16, 0xDA,
+                                0x29, 0xD8, 0xCF, 0xA5, 0x4E, 0x57, 0xEB, 0x74,
+                                0x8B, 0xC5, 0xF3, 0x77, 0xE4, 0x94, 0x00, 0xFD,
+                                0xD7, 0x88, 0xB6, 0x49, 0xEC, 0xA1, 0xAC, 0x43,
+                                0x61, 0x83, 0x40, 0x13, 0xB2, 0xAD, 0x73, 0x22,
+                                0x48, 0x0A, 0x89, 0xCA, 0x58, 0xE0, 0xCF, 0x74,
+                                0xBC, 0x9E, 0x54, 0x0C, 0x2A, 0xDD, 0x68, 0x97,
+                                0xFA, 0xD0, 0xA3, 0x08, 0x4F, 0x30, 0x2A, 0xDC,
+                        }),
+                        bytes2big([]byte{
+                                0x24, 0xD1, 0x9C, 0xC6, 0x45, 0x72, 0xEE, 0x30,
+                                0xF3, 0x96, 0xBF, 0x6E, 0xBB, 0xFD, 0x7A, 0x6C,
+                                0x52, 0x13, 0xB3, 0xB3, 0xD7, 0x05, 0x7C, 0xC8,
+                                0x25, 0xF9, 0x10, 0x93, 0xA6, 0x8C, 0xD7, 0x62,
+                                0xFD, 0x60, 0x61, 0x12, 0x62, 0xCD, 0x83, 0x8D,
+                                0xC6, 0xB6, 0x0A, 0xA7, 0xEE, 0xE8, 0x04, 0xE2,
+                                0x8B, 0xC8, 0x49, 0x97, 0x7F, 0xAC, 0x33, 0xB4,
+                                0xB5, 0x30, 0xF1, 0xB1, 0x20, 0x24, 0x8A, 0x9A,
+                        }),
+                        bytes2big([]byte{
+                                0x2B, 0xB3, 0x12, 0xA4, 0x3B, 0xD2, 0xCE, 0x6E,
+                                0x0D, 0x02, 0x06, 0x13, 0xC8, 0x57, 0xAC, 0xDD,
+                                0xCF, 0xBF, 0x06, 0x1E, 0x91, 0xE5, 0xF2, 0xC3,
+                                0xF3, 0x24, 0x47, 0xC2, 0x59, 0xF3, 0x9B, 0x2C,
+                                0x83, 0xAB, 0x15, 0x6D, 0x77, 0xF1, 0x49, 0x6B,
+                                0xF7, 0xEB, 0x33, 0x51, 0xE1, 0xEE, 0x4E, 0x43,
+                                0xDC, 0x1A, 0x18, 0xB9, 0x1B, 0x24, 0x64, 0x0B,
+                                0x6D, 0xBB, 0x92, 0xCB, 0x1A, 0xDD, 0x37, 0x1E,
+                        }),
+                        nil,
+                        nil,
+                        nil,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov0" title="0">curve.Name = "id-tc26-gost-3410-12-512-paramSetTest"
+                return curve</span>
+        }
+        // id-tc26-gost-3410-12-512-paramSetA
+        CurveIdtc26gost341012512paramSetA func() *Curve = func() *Curve <span class="cov8" title="1">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, 0xC7,
+                        }),
+                        bytes2big([]byte{
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0x27, 0xE6, 0x95, 0x32, 0xF4, 0x8D, 0x89, 0x11,
+                                0x6F, 0xF2, 0x2B, 0x8D, 0x4E, 0x05, 0x60, 0x60,
+                                0x9B, 0x4B, 0x38, 0xAB, 0xFA, 0xD2, 0xB8, 0x5D,
+                                0xCA, 0xCD, 0xB1, 0x41, 0x1F, 0x10, 0xB2, 0x75,
+                        }),
+                        bytes2big([]byte{
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, 0xC4,
+                        }),
+                        bytes2big([]byte{
+                                0xE8, 0xC2, 0x50, 0x5D, 0xED, 0xFC, 0x86, 0xDD,
+                                0xC1, 0xBD, 0x0B, 0x2B, 0x66, 0x67, 0xF1, 0xDA,
+                                0x34, 0xB8, 0x25, 0x74, 0x76, 0x1C, 0xB0, 0xE8,
+                                0x79, 0xBD, 0x08, 0x1C, 0xFD, 0x0B, 0x62, 0x65,
+                                0xEE, 0x3C, 0xB0, 0x90, 0xF3, 0x0D, 0x27, 0x61,
+                                0x4C, 0xB4, 0x57, 0x40, 0x10, 0xDA, 0x90, 0xDD,
+                                0x86, 0x2E, 0xF9, 0xD4, 0xEB, 0xEE, 0x47, 0x61,
+                                0x50, 0x31, 0x90, 0x78, 0x5A, 0x71, 0xC7, 0x60,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03,
+                        }),
+                        bytes2big([]byte{
+                                0x75, 0x03, 0xCF, 0xE8, 0x7A, 0x83, 0x6A, 0xE3,
+                                0xA6, 0x1B, 0x88, 0x16, 0xE2, 0x54, 0x50, 0xE6,
+                                0xCE, 0x5E, 0x1C, 0x93, 0xAC, 0xF1, 0xAB, 0xC1,
+                                0x77, 0x80, 0x64, 0xFD, 0xCB, 0xEF, 0xA9, 0x21,
+                                0xDF, 0x16, 0x26, 0xBE, 0x4F, 0xD0, 0x36, 0xE9,
+                                0x3D, 0x75, 0xE6, 0xA5, 0x0E, 0x3A, 0x41, 0xE9,
+                                0x80, 0x28, 0xFE, 0x5F, 0xC2, 0x35, 0xF5, 0xB8,
+                                0x89, 0xA5, 0x89, 0xCB, 0x52, 0x15, 0xF2, 0xA4,
+                        }),
+                        nil,
+                        nil,
+                        nil,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov8" title="1">curve.Name = "id-tc26-gost-3410-12-512-paramSetA"
+                return curve</span>
+        }
+        // id-tc26-gost-3410-12-512-paramSetB
+        CurveIdtc26gost341012512paramSetB func() *Curve = func() *Curve <span class="cov8" title="1">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6F,
+                        }),
+                        bytes2big([]byte{
+                                0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
+                                0x49, 0xA1, 0xEC, 0x14, 0x25, 0x65, 0xA5, 0x45,
+                                0xAC, 0xFD, 0xB7, 0x7B, 0xD9, 0xD4, 0x0C, 0xFA,
+                                0x8B, 0x99, 0x67, 0x12, 0x10, 0x1B, 0xEA, 0x0E,
+                                0xC6, 0x34, 0x6C, 0x54, 0x37, 0x4F, 0x25, 0xBD,
+                        }),
+                        bytes2big([]byte{
+                                0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6C,
+                        }),
+                        bytes2big([]byte{
+                                0x68, 0x7D, 0x1B, 0x45, 0x9D, 0xC8, 0x41, 0x45,
+                                0x7E, 0x3E, 0x06, 0xCF, 0x6F, 0x5E, 0x25, 0x17,
+                                0xB9, 0x7C, 0x7D, 0x61, 0x4A, 0xF1, 0x38, 0xBC,
+                                0xBF, 0x85, 0xDC, 0x80, 0x6C, 0x4B, 0x28, 0x9F,
+                                0x3E, 0x96, 0x5D, 0x2D, 0xB1, 0x41, 0x6D, 0x21,
+                                0x7F, 0x8B, 0x27, 0x6F, 0xAD, 0x1A, 0xB6, 0x9C,
+                                0x50, 0xF7, 0x8B, 0xEE, 0x1F, 0xA3, 0x10, 0x6E,
+                                0xFB, 0x8C, 0xCB, 0xC7, 0xC5, 0x14, 0x01, 0x16,
+                        }),
+                        bytes2big([]byte{
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02,
+                        }),
+                        bytes2big([]byte{
+                                0x1A, 0x8F, 0x7E, 0xDA, 0x38, 0x9B, 0x09, 0x4C,
+                                0x2C, 0x07, 0x1E, 0x36, 0x47, 0xA8, 0x94, 0x0F,
+                                0x3C, 0x12, 0x3B, 0x69, 0x75, 0x78, 0xC2, 0x13,
+                                0xBE, 0x6D, 0xD9, 0xE6, 0xC8, 0xEC, 0x73, 0x35,
+                                0xDC, 0xB2, 0x28, 0xFD, 0x1E, 0xDF, 0x4A, 0x39,
+                                0x15, 0x2C, 0xBC, 0xAA, 0xF8, 0xC0, 0x39, 0x88,
+                                0x28, 0x04, 0x10, 0x55, 0xF9, 0x4C, 0xEE, 0xEC,
+                                0x7E, 0x21, 0x34, 0x07, 0x80, 0xFE, 0x41, 0xBD,
+                        }),
+                        nil,
+                        nil,
+                        nil,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov8" title="1">curve.Name = "id-tc26-gost-3410-12-512-paramSetB"
+                return curve</span>
+        }
+        // id-tc26-gost-3410-12-512-paramSetC
+        CurveIdtc26gost341012512paramSetC func() *Curve = func() *Curve <span class="cov8" title="1">{
+                curve, err := NewCurve(
+                        bytes2big([]byte{
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD, 0xC7,
+                        }),
+                        bytes2big([]byte{
+                                0x3F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+                                0xC9, 0x8C, 0xDB, 0xA4, 0x65, 0x06, 0xAB, 0x00,
+                                0x4C, 0x33, 0xA9, 0xFF, 0x51, 0x47, 0x50, 0x2C,
+                                0xC8, 0xED, 0xA9, 0xE7, 0xA7, 0x69, 0xA1, 0x26,
+                                0x94, 0x62, 0x3C, 0xEF, 0x47, 0xF0, 0x23, 0xED,
+                        }),
+                        bytes2big([]byte{
+                                0xDC, 0x92, 0x03, 0xE5, 0x14, 0xA7, 0x21, 0x87,
+                                0x54, 0x85, 0xA5, 0x29, 0xD2, 0xC7, 0x22, 0xFB,
+                                0x18, 0x7B, 0xC8, 0x98, 0x0E, 0xB8, 0x66, 0x64,
+                                0x4D, 0xE4, 0x1C, 0x68, 0xE1, 0x43, 0x06, 0x45,
+                                0x46, 0xE8, 0x61, 0xC0, 0xE2, 0xC9, 0xED, 0xD9,
+                                0x2A, 0xDE, 0x71, 0xF4, 0x6F, 0xCF, 0x50, 0xFF,
+                                0x2A, 0xD9, 0x7F, 0x95, 0x1F, 0xDA, 0x9F, 0x2A,
+                                0x2E, 0xB6, 0x54, 0x6F, 0x39, 0x68, 0x9B, 0xD3,
+                        }),
+                        bytes2big([]byte{
+                                0xB4, 0xC4, 0xEE, 0x28, 0xCE, 0xBC, 0x6C, 0x2C,
+                                0x8A, 0xC1, 0x29, 0x52, 0xCF, 0x37, 0xF1, 0x6A,
+                                0xC7, 0xEF, 0xB6, 0xA9, 0xF6, 0x9F, 0x4B, 0x57,
+                                0xFF, 0xDA, 0x2E, 0x4F, 0x0D, 0xE5, 0xAD, 0xE0,
+                                0x38, 0xCB, 0xC2, 0xFF, 0xF7, 0x19, 0xD2, 0xC1,
+                                0x8D, 0xE0, 0x28, 0x4B, 0x8B, 0xFE, 0xF3, 0xB5,
+                                0x2B, 0x8C, 0xC7, 0xA5, 0xF5, 0xBF, 0x0A, 0x3C,
+                                0x8D, 0x23, 0x19, 0xA5, 0x31, 0x25, 0x57, 0xE1,
+                        }),
+                        bytes2big([]byte{
+                                0xE2, 0xE3, 0x1E, 0xDF, 0xC2, 0x3D, 0xE7, 0xBD,
+                                0xEB, 0xE2, 0x41, 0xCE, 0x59, 0x3E, 0xF5, 0xDE,
+                                0x22, 0x95, 0xB7, 0xA9, 0xCB, 0xAE, 0xF0, 0x21,
+                                0xD3, 0x85, 0xF7, 0x07, 0x4C, 0xEA, 0x04, 0x3A,
+                                0xA2, 0x72, 0x72, 0xA7, 0xAE, 0x60, 0x2B, 0xF2,
+                                0xA7, 0xB9, 0x03, 0x3D, 0xB9, 0xED, 0x36, 0x10,
+                                0xC6, 0xFB, 0x85, 0x48, 0x7E, 0xAE, 0x97, 0xAA,
+                                0xC5, 0xBC, 0x79, 0x28, 0xC1, 0x95, 0x01, 0x48,
+                        }),
+                        bytes2big([]byte{
+                                0xF5, 0xCE, 0x40, 0xD9, 0x5B, 0x5E, 0xB8, 0x99,
+                                0xAB, 0xBC, 0xCF, 0xF5, 0x91, 0x1C, 0xB8, 0x57,
+                                0x79, 0x39, 0x80, 0x4D, 0x65, 0x27, 0x37, 0x8B,
+                                0x8C, 0x10, 0x8C, 0x3D, 0x20, 0x90, 0xFF, 0x9B,
+                                0xE1, 0x8E, 0x2D, 0x33, 0xE3, 0x02, 0x1E, 0xD2,
+                                0xEF, 0x32, 0xD8, 0x58, 0x22, 0x42, 0x3B, 0x63,
+                                0x04, 0xF7, 0x26, 0xAA, 0x85, 0x4B, 0xAE, 0x07,
+                                0xD0, 0x39, 0x6E, 0x9A, 0x9A, 0xDD, 0xC4, 0x0F,
+                        }),
+                        bigInt1,
+                        bytes2big([]byte{
+                                0x9E, 0x4F, 0x5D, 0x8C, 0x01, 0x7D, 0x8D, 0x9F,
+                                0x13, 0xA5, 0xCF, 0x3C, 0xDF, 0x5B, 0xFE, 0x4D,
+                                0xAB, 0x40, 0x2D, 0x54, 0x19, 0x8E, 0x31, 0xEB,
+                                0xDE, 0x28, 0xA0, 0x62, 0x10, 0x50, 0x43, 0x9C,
+                                0xA6, 0xB3, 0x9E, 0x0A, 0x51, 0x5C, 0x06, 0xB3,
+                                0x04, 0xE2, 0xCE, 0x43, 0xE7, 0x9E, 0x36, 0x9E,
+                                0x91, 0xA0, 0xCF, 0xC2, 0xBC, 0x2A, 0x22, 0xB4,
+                                0xCA, 0x30, 0x2D, 0xBB, 0x33, 0xEE, 0x75, 0x50,
+                        }),
+                        bigInt4,
+                )
+                if err != nil </span><span class="cov0" title="0">{
+                        panic(err)</span>
+                }
+                <span class="cov8" title="1">curve.Name = "id-tc26-gost-3410-12-512-paramSetC"
+                return curve</span>
+        }
+
+        // Aliases
+
+        // id-GostR3410-2001-CryptoPro-A-ParamSet
+        CurveIdGostR34102001CryptoProAParamSet func() *Curve = func() *Curve <span class="cov8" title="1">{
+                c := CurveIdtc26gost341012256paramSetB()
+                c.Name = "id-GostR3410-2001-CryptoPro-A-ParamSet"
+                return c
+        }</span>
+        // id-GostR3410-2001-CryptoPro-B-ParamSet
+        CurveIdGostR34102001CryptoProBParamSet func() *Curve = func() *Curve <span class="cov8" title="1">{
+                c := CurveIdtc26gost341012256paramSetC()
+                c.Name = "id-GostR3410-2001-CryptoPro-B-ParamSet"
+                return c
+        }</span>
+        // id-GostR3410-2001-CryptoPro-C-ParamSet
+        CurveIdGostR34102001CryptoProCParamSet func() *Curve = func() *Curve <span class="cov8" title="1">{
+                c := CurveIdtc26gost341012256paramSetD()
+                c.Name = "id-GostR3410-2001-CryptoPro-C-ParamSet"
+                return c
+        }</span>
+        // id-GostR3410-2001-CryptoPro-XchA-ParamSet
+        CurveIdGostR34102001CryptoProXchAParamSet func() *Curve = func() *Curve <span class="cov0" title="0">{
+                c := CurveIdGostR34102001CryptoProAParamSet()
+                c.Name = "id-GostR3410-2001-CryptoPro-XchA-ParamSet"
+                return c
+        }</span>
+        // id-GostR3410-2001-CryptoPro-XchB-ParamSet
+        CurveIdGostR34102001CryptoProXchBParamSet func() *Curve = func() *Curve <span class="cov0" title="0">{
+                c := CurveIdGostR34102001CryptoProCParamSet()
+                c.Name = "id-GostR3410-2001-CryptoPro-XchB-ParamSet"
+                return c
+        }</span>
+        // id-tc26-gost-3410-2012-256-paramSetA
+        CurveIdtc26gost34102012256paramSetA func() *Curve = func() *Curve <span class="cov8" title="1">{
+                c := CurveIdtc26gost341012256paramSetA()
+                c.Name = "id-tc26-gost-3410-2012-256-paramSetA"
+                return c
+        }</span>
+        // id-tc26-gost-3410-2012-256-paramSetB
+        CurveIdtc26gost34102012256paramSetB func() *Curve = func() *Curve <span class="cov0" title="0">{
+                c := CurveIdtc26gost341012256paramSetB()
+                c.Name = "id-tc26-gost-3410-2012-256-paramSetB"
+                return c
+        }</span>
+        // id-tc26-gost-3410-2012-256-paramSetC
+        CurveIdtc26gost34102012256paramSetC func() *Curve = func() *Curve <span class="cov0" title="0">{
+                c := CurveIdtc26gost341012256paramSetC()
+                c.Name = "id-tc26-gost-3410-2012-256-paramSetC"
+                return c
+        }</span>
+        // id-tc26-gost-3410-2012-256-paramSetD
+        CurveIdtc26gost34102012256paramSetD func() *Curve = func() *Curve <span class="cov0" title="0">{
+                c := CurveIdtc26gost341012256paramSetD()
+                c.Name = "id-tc26-gost-3410-2012-256-paramSetD"
+                return c
+        }</span>
+        // id-tc26-gost-3410-2012-512-paramSetTest
+        CurveIdtc26gost34102012512paramSetTest func() *Curve = func() *Curve <span class="cov0" title="0">{
+                c := CurveIdtc26gost341012512paramSetTest()
+                c.Name = "id-tc26-gost-3410-2012-512-paramSetTest"
+                return c
+        }</span>
+        // id-tc26-gost-3410-2012-512-paramSetA
+        CurveIdtc26gost34102012512paramSetA func() *Curve = func() *Curve <span class="cov0" title="0">{
+                c := CurveIdtc26gost341012512paramSetA()
+                c.Name = "id-tc26-gost-3410-2012-512-paramSetA"
+                return c
+        }</span>
+        // id-tc26-gost-3410-2012-512-paramSetB
+        CurveIdtc26gost34102012512paramSetB func() *Curve = func() *Curve <span class="cov0" title="0">{
+                c := CurveIdtc26gost341012512paramSetB()
+                c.Name = "id-tc26-gost-3410-2012-512-paramSetB"
+                return c
+        }</span>
+        // id-tc26-gost-3410-2012-512-paramSetC
+        CurveIdtc26gost34102012512paramSetC func() *Curve = func() *Curve <span class="cov8" title="1">{
+                c := CurveIdtc26gost341012512paramSetC()
+                c.Name = "id-tc26-gost-3410-2012-512-paramSetC"
+                return c
+        }</span>
+
+        CurveDefault = CurveIdtc26gost341012256paramSetB
+)
+</pre>
+		
+		<pre class="file" id="file13" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import (
+        "crypto"
+        "errors"
+        "fmt"
+        "io"
+        "math/big"
+)
+
+type PrivateKey struct {
+        C   *Curve
+        Key *big.Int
+}
+
+func NewPrivateKey(c *Curve, raw []byte) (*PrivateKey, error) <span class="cov8" title="1">{
+        pointSize := c.PointSize()
+        if len(raw) != pointSize </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("gogost/gost3410: len(key) != %d", pointSize)
+        }</span>
+        <span class="cov8" title="1">key := make([]byte, pointSize)
+        for i := 0; i &lt; len(key); i++ </span><span class="cov8" title="1">{
+                key[i] = raw[len(raw)-i-1]
+        }</span>
+        <span class="cov8" title="1">k := bytes2big(key)
+        if k.Cmp(zero) == 0 </span><span class="cov0" title="0">{
+                return nil, errors.New("gogost/gost3410: zero private key")
+        }</span>
+        <span class="cov8" title="1">return &amp;PrivateKey{c, k.Mod(k, c.Q)}, nil</span>
+}
+
+func GenPrivateKey(c *Curve, rand io.Reader) (*PrivateKey, error) <span class="cov0" title="0">{
+        raw := make([]byte, c.PointSize())
+        if _, err := io.ReadFull(rand, raw); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov0" title="0">return NewPrivateKey(c, raw)</span>
+}
+
+func (prv *PrivateKey) Raw() []byte <span class="cov0" title="0">{
+        raw := pad(prv.Key.Bytes(), prv.C.PointSize())
+        reverse(raw)
+        return raw
+}</span>
+
+func (prv *PrivateKey) PublicKey() (*PublicKey, error) <span class="cov8" title="1">{
+        x, y, err := prv.C.Exp(prv.Key, prv.C.X, prv.C.Y)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">return &amp;PublicKey{prv.C, x, y}, nil</span>
+}
+
+func (prv *PrivateKey) SignDigest(digest []byte, rand io.Reader) ([]byte, error) <span class="cov8" title="1">{
+        e := bytes2big(digest)
+        e.Mod(e, prv.C.Q)
+        if e.Cmp(zero) == 0 </span><span class="cov0" title="0">{
+                e = big.NewInt(1)
+        }</span>
+        <span class="cov8" title="1">kRaw := make([]byte, prv.C.PointSize())
+        var err error
+        var k *big.Int
+        var r *big.Int
+        d := big.NewInt(0)
+        s := big.NewInt(0)
+</span>Retry:
+        <span class="cov8" title="1">if _, err = io.ReadFull(rand, kRaw); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">k = bytes2big(kRaw)
+        k.Mod(k, prv.C.Q)
+        if k.Cmp(zero) == 0 </span><span class="cov0" title="0">{
+                goto Retry</span>
+        }
+        <span class="cov8" title="1">r, _, err = prv.C.Exp(k, prv.C.X, prv.C.Y)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">r.Mod(r, prv.C.Q)
+        if r.Cmp(zero) == 0 </span><span class="cov0" title="0">{
+                goto Retry</span>
+        }
+        <span class="cov8" title="1">d.Mul(prv.Key, r)
+        k.Mul(k, e)
+        s.Add(d, k)
+        s.Mod(s, prv.C.Q)
+        if s.Cmp(zero) == 0 </span><span class="cov0" title="0">{
+                goto Retry</span>
+        }
+        <span class="cov8" title="1">pointSize := prv.C.PointSize()
+        return append(
+                pad(s.Bytes(), pointSize),
+                pad(r.Bytes(), pointSize)...,
+        ), nil</span>
+}
+
+func (prv *PrivateKey) Sign(rand io.Reader, digest []byte, opts crypto.SignerOpts) ([]byte, error) <span class="cov0" title="0">{
+        return prv.SignDigest(digest, rand)
+}</span>
+
+func (prv *PrivateKey) Public() crypto.PublicKey <span class="cov0" title="0">{
+        pub, err := prv.PublicKey()
+        if err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+        <span class="cov0" title="0">return pub</span>
+}
+
+type PrivateKeyReverseDigest struct {
+        Prv *PrivateKey
+}
+
+func (prv *PrivateKeyReverseDigest) Public() crypto.PublicKey <span class="cov0" title="0">{
+        return prv.Prv.Public()
+}</span>
+
+func (prv *PrivateKeyReverseDigest) Sign(rand io.Reader, digest []byte, opts crypto.SignerOpts) ([]byte, error) <span class="cov0" title="0">{
+        d := make([]byte, len(digest))
+        copy(d, digest)
+        reverse(d)
+        return prv.Prv.Sign(rand, d, opts)
+}</span>
+
+type PrivateKeyReverseDigestAndSignature struct {
+        Prv *PrivateKey
+}
+
+func (prv *PrivateKeyReverseDigestAndSignature) Public() crypto.PublicKey <span class="cov0" title="0">{
+        return prv.Prv.Public()
+}</span>
+
+func (prv *PrivateKeyReverseDigestAndSignature) Sign(rand io.Reader, digest []byte, opts crypto.SignerOpts) ([]byte, error) <span class="cov0" title="0">{
+        d := make([]byte, len(digest))
+        copy(d, digest)
+        reverse(d)
+        sign, err := prv.Prv.Sign(rand, d, opts)
+        if err != nil </span><span class="cov0" title="0">{
+                return sign, err
+        }</span>
+        <span class="cov0" title="0">reverse(sign)
+        return sign, err</span>
+}
+</pre>
+		
+		<pre class="file" id="file14" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import (
+        "crypto"
+        "fmt"
+        "math/big"
+)
+
+type PublicKey struct {
+        C *Curve
+        X *big.Int
+        Y *big.Int
+}
+
+func NewPublicKey(c *Curve, raw []byte) (*PublicKey, error) <span class="cov8" title="1">{
+        pointSize := c.PointSize()
+        key := make([]byte, 2*pointSize)
+        if len(raw) != len(key) </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("gogost/gost3410: len(key) != %d", len(key))
+        }</span>
+        <span class="cov8" title="1">for i := 0; i &lt; len(key); i++ </span><span class="cov8" title="1">{
+                key[i] = raw[len(raw)-i-1]
+        }</span>
+        <span class="cov8" title="1">return &amp;PublicKey{
+                c,
+                bytes2big(key[pointSize : 2*pointSize]),
+                bytes2big(key[:pointSize]),
+        }, nil</span>
+}
+
+func (pub *PublicKey) Raw() []byte <span class="cov8" title="1">{
+        pointSize := pub.C.PointSize()
+        raw := append(
+                pad(pub.Y.Bytes(), pointSize),
+                pad(pub.X.Bytes(), pointSize)...,
+        )
+        reverse(raw)
+        return raw
+}</span>
+
+func (pub *PublicKey) VerifyDigest(digest, signature []byte) (bool, error) <span class="cov8" title="1">{
+        pointSize := pub.C.PointSize()
+        if len(signature) != 2*pointSize </span><span class="cov0" title="0">{
+                return false, fmt.Errorf("gogost/gost3410: len(signature) != %d", 2*pointSize)
+        }</span>
+        <span class="cov8" title="1">s := bytes2big(signature[:pointSize])
+        r := bytes2big(signature[pointSize:])
+        if r.Cmp(zero) &lt;= 0 ||
+                r.Cmp(pub.C.Q) &gt;= 0 ||
+                s.Cmp(zero) &lt;= 0 ||
+                s.Cmp(pub.C.Q) &gt;= 0 </span><span class="cov0" title="0">{
+                return false, nil
+        }</span>
+        <span class="cov8" title="1">e := bytes2big(digest)
+        e.Mod(e, pub.C.Q)
+        if e.Cmp(zero) == 0 </span><span class="cov0" title="0">{
+                e = big.NewInt(1)
+        }</span>
+        <span class="cov8" title="1">v := big.NewInt(0)
+        v.ModInverse(e, pub.C.Q)
+        z1 := big.NewInt(0)
+        z2 := big.NewInt(0)
+        z1.Mul(s, v)
+        z1.Mod(z1, pub.C.Q)
+        z2.Mul(r, v)
+        z2.Mod(z2, pub.C.Q)
+        z2.Sub(pub.C.Q, z2)
+        p1x, p1y, err := pub.C.Exp(z1, pub.C.X, pub.C.Y)
+        if err != nil </span><span class="cov0" title="0">{
+                return false, err
+        }</span>
+        <span class="cov8" title="1">q1x, q1y, err := pub.C.Exp(z2, pub.X, pub.Y)
+        if err != nil </span><span class="cov0" title="0">{
+                return false, err
+        }</span>
+        <span class="cov8" title="1">lm := big.NewInt(0)
+        lm.Sub(q1x, p1x)
+        if lm.Cmp(zero) &lt; 0 </span><span class="cov8" title="1">{
+                lm.Add(lm, pub.C.P)
+        }</span>
+        <span class="cov8" title="1">lm.ModInverse(lm, pub.C.P)
+        z1.Sub(q1y, p1y)
+        lm.Mul(lm, z1)
+        lm.Mod(lm, pub.C.P)
+        lm.Mul(lm, lm)
+        lm.Mod(lm, pub.C.P)
+        lm.Sub(lm, p1x)
+        lm.Sub(lm, q1x)
+        lm.Mod(lm, pub.C.P)
+        if lm.Cmp(zero) &lt; 0 </span><span class="cov0" title="0">{
+                lm.Add(lm, pub.C.P)
+        }</span>
+        <span class="cov8" title="1">lm.Mod(lm, pub.C.Q)
+        return lm.Cmp(r) == 0, nil</span>
+}
+
+func (our *PublicKey) Equal(theirKey crypto.PublicKey) bool <span class="cov0" title="0">{
+        their, ok := theirKey.(*PublicKey)
+        if !ok </span><span class="cov0" title="0">{
+                return false
+        }</span>
+        <span class="cov0" title="0">return our.X.Cmp(their.X) == 0 &amp;&amp; our.Y.Cmp(their.Y) == 0 &amp;&amp; our.C.Equal(their.C)</span>
+}
+</pre>
+		
+		<pre class="file" id="file15" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import (
+        "math/big"
+)
+
+func NewUKM(raw []byte) *big.Int <span class="cov8" title="1">{
+        t := make([]byte, len(raw))
+        for i := 0; i &lt; len(t); i++ </span><span class="cov8" title="1">{
+                t[i] = raw[len(raw)-i-1]
+        }</span>
+        <span class="cov8" title="1">return bytes2big(t)</span>
+}
+</pre>
+		
+		<pre class="file" id="file16" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import (
+        "math/big"
+)
+
+func bytes2big(d []byte) *big.Int <span class="cov8" title="1">{
+        return big.NewInt(0).SetBytes(d)
+}</span>
+
+func reverse(d []byte) <span class="cov8" title="1">{
+        for i, j := 0, len(d)-1; i &lt; j; i, j = i+1, j-1 </span><span class="cov8" title="1">{
+                d[i], d[j] = d[j], d[i]
+        }</span>
+}
+
+func pad(d []byte, size int) []byte <span class="cov8" title="1">{
+        return append(make([]byte, size-len(d)), d...)
+}</span>
+
+func PointSize(p *big.Int) int <span class="cov8" title="1">{
+        if p.BitLen() &gt; 256 </span><span class="cov8" title="1">{
+                return 64
+        }</span>
+        <span class="cov8" title="1">return 32</span>
+}
+</pre>
+		
+		<pre class="file" id="file17" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import (
+        "math/big"
+)
+
+func (prv *PrivateKey) KEK(pub *PublicKey, ukm *big.Int) ([]byte, error) <span class="cov8" title="1">{
+        keyX, keyY, err := prv.C.Exp(prv.Key, pub.X, pub.Y)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">u := big.NewInt(0).Set(ukm).Mul(ukm, prv.C.Co)
+        if u.Cmp(bigInt1) != 0 </span><span class="cov8" title="1">{
+                keyX, keyY, err = prv.C.Exp(u, keyX, keyY)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+        }
+        <span class="cov8" title="1">pk := PublicKey{prv.C, keyX, keyY}
+        return pk.Raw(), nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file18" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import (
+        "errors"
+        "math/big"
+
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost28147"
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost341194"
+)
+
+// RFC 4357 VKO GOST R 34.10-2001 key agreement function.
+// UKM is user keying material, also called VKO-factor.
+func (prv *PrivateKey) KEK2001(pub *PublicKey, ukm *big.Int) ([]byte, error) <span class="cov8" title="1">{
+        if prv.C.PointSize() != 32 </span><span class="cov0" title="0">{
+                return nil, errors.New("gogost/gost3410: KEK2001 is only for 256-bit curves")
+        }</span>
+        <span class="cov8" title="1">key, err := prv.KEK(pub, ukm)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">h := gost341194.New(&amp;gost28147.SboxIdGostR341194CryptoProParamSet)
+        if _, err = h.Write(key); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">return h.Sum(key[:0]), nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file19" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost3410
+
+import (
+        "math/big"
+
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012256"
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012512"
+)
+
+// RFC 7836 VKO GOST R 34.10-2012 256-bit key agreement function.
+// UKM is user keying material, also called VKO-factor.
+func (prv *PrivateKey) KEK2012256(pub *PublicKey, ukm *big.Int) ([]byte, error) <span class="cov8" title="1">{
+        key, err := prv.KEK(pub, ukm)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">h := gost34112012256.New()
+        if _, err = h.Write(key); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">return h.Sum(key[:0]), nil</span>
+}
+
+// RFC 7836 VKO GOST R 34.10-2012 512-bit key agreement function.
+// UKM is user keying material, also called VKO-factor.
+func (prv *PrivateKey) KEK2012512(pub *PublicKey, ukm *big.Int) ([]byte, error) <span class="cov8" title="1">{
+        key, err := prv.KEK(pub, ukm)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">h := gost34112012512.New()
+        if _, err = h.Write(key); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">return h.Sum(key[:0]), nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file20" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost34112012256
+
+import (
+        "crypto/subtle"
+)
+
+type ESPTree struct {
+        keyRoot []byte
+        isPrev  [5]byte
+        key     []byte
+}
+
+func NewESPTree(keyRoot []byte) *ESPTree <span class="cov8" title="1">{
+        key := make([]byte, len(keyRoot))
+        copy(key, keyRoot)
+        t := &amp;ESPTree{
+                keyRoot: key,
+                key:     make([]byte, Size),
+        }
+        t.isPrev[0]++ // invalidate cache
+        t.DeriveCached([]byte{0x00, 0x00, 0x00, 0x00, 0x00})
+        return t
+}</span>
+
+func (t *ESPTree) DeriveCached(is []byte) ([]byte, bool) <span class="cov8" title="1">{
+        if len(is) != 1+2+2 </span><span class="cov0" title="0">{
+                panic("invalid i1+i2+i3 input")</span>
+        }
+        <span class="cov8" title="1">if subtle.ConstantTimeCompare(t.isPrev[:], is) == 1 </span><span class="cov8" title="1">{
+                return t.key, true
+        }</span>
+        <span class="cov8" title="1">kdf1 := NewKDF(t.keyRoot)
+        kdf2 := NewKDF(kdf1.Derive(t.key[:0], []byte("level1"), append([]byte{0}, is[0])))
+        kdf3 := NewKDF(kdf2.Derive(t.key[:0], []byte("level2"), is[1:3]))
+        kdf3.Derive(t.key[:0], []byte("level3"), is[3:5])
+        copy(t.isPrev[:], is)
+        return t.key, false</span>
+}
+
+func (t *ESPTree) Derive(is []byte) []byte <span class="cov8" title="1">{
+        keyDerived := make([]byte, Size)
+        key, _ := t.DeriveCached(is)
+        copy(keyDerived, key)
+        return keyDerived
+}</span>
+</pre>
+		
+		<pre class="file" id="file21" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+// GOST R 34.11-2012 256-bit hash function.
+// RFC 6986.
+package gost34112012256
+
+import (
+        "hash"
+
+        "github.com/nobuenhombre/go-crypto-gost/internal/pkg/gost34112012"
+)
+
+const (
+        BlockSize = gost34112012.BlockSize
+        Size      = 32
+)
+
+/*
+func init() {
+        crypto.RegisterHash(crypto.GOSTR34112012256, New)
+}
+*/
+
+func New() hash.Hash <span class="cov8" title="1">{
+        return gost34112012.New(32)
+}</span>
+</pre>
+		
+		<pre class="file" id="file22" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost34112012256
+
+import (
+        "crypto/hmac"
+        "hash"
+)
+
+type KDF struct {
+        h hash.Hash
+}
+
+func NewKDF(key []byte) *KDF <span class="cov8" title="1">{
+        return &amp;KDF{hmac.New(New, key)}
+}</span>
+
+func (kdf *KDF) Derive(dst, label, seed []byte) (r []byte) <span class="cov8" title="1">{
+        if _, err := kdf.h.Write([]byte{0x01}); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+        <span class="cov8" title="1">if _, err := kdf.h.Write(label); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+        <span class="cov8" title="1">if _, err := kdf.h.Write([]byte{0x00}); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+        <span class="cov8" title="1">if _, err := kdf.h.Write(seed); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+        <span class="cov8" title="1">if _, err := kdf.h.Write([]byte{0x01}); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+        <span class="cov8" title="1">if _, err := kdf.h.Write([]byte{0x00}); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+        <span class="cov8" title="1">r = kdf.h.Sum(dst)
+        kdf.h.Reset()
+        return r</span>
+}
+</pre>
+		
+		<pre class="file" id="file23" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package gost34112012256
+
+import (
+        "encoding/binary"
+)
+
+type TLSTreeParams [3]uint64
+
+var (
+        TLSGOSTR341112256WithMagmaCTROMAC TLSTreeParams = TLSTreeParams{
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xC0, 0x00, 0x00, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFE, 0x00, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF0, 0x00}),
+        }
+        TLSGOSTR341112256WithKuznyechikCTROMAC TLSTreeParams = TLSTreeParams{
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF8, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xC0}),
+        }
+        TLSGOSTR341112256WithKuznyechikMGML TLSTreeParams = TLSTreeParams{
+                binary.BigEndian.Uint64([]byte{0xF8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xF0, 0x00, 0x00, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xE0, 0x00}),
+        }
+        TLSGOSTR341112256WithMagmaMGML TLSTreeParams = TLSTreeParams{
+                binary.BigEndian.Uint64([]byte{0xFF, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xC0, 0x00, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x80}),
+        }
+        TLSGOSTR341112256WithKuznyechikMGMS TLSTreeParams = TLSTreeParams{
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xE0, 0x00, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF8}),
+        }
+        TLSGOSTR341112256WithMagmaMGMS TLSTreeParams = TLSTreeParams{
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFC, 0x00, 0x00, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xE0, 0x00}),
+                binary.BigEndian.Uint64([]byte{0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}),
+        }
+)
+
+type TLSTree struct {
+        params     TLSTreeParams
+        keyRoot    []byte
+        seqNumPrev uint64
+        seq        []byte
+        key        []byte
+}
+
+func NewTLSTree(params TLSTreeParams, keyRoot []byte) *TLSTree <span class="cov8" title="1">{
+        key := make([]byte, len(keyRoot))
+        copy(key, keyRoot)
+        return &amp;TLSTree{
+                params:  params,
+                keyRoot: key,
+                seq:     make([]byte, 8),
+                key:     make([]byte, Size),
+        }
+}</span>
+
+func (t *TLSTree) DeriveCached(seqNum uint64) ([]byte, bool) <span class="cov8" title="1">{
+        if seqNum &gt; 0 &amp;&amp;
+                (seqNum&amp;t.params[0]) == ((t.seqNumPrev)&amp;t.params[0]) &amp;&amp;
+                (seqNum&amp;t.params[1]) == ((t.seqNumPrev)&amp;t.params[1]) &amp;&amp;
+                (seqNum&amp;t.params[2]) == ((t.seqNumPrev)&amp;t.params[2]) </span><span class="cov8" title="1">{
+                return t.key, true
+        }</span>
+        <span class="cov8" title="1">binary.BigEndian.PutUint64(t.seq, seqNum&amp;t.params[0])
+        kdf1 := NewKDF(t.keyRoot)
+        kdf2 := NewKDF(kdf1.Derive(t.key[:0], []byte("level1"), t.seq))
+        binary.BigEndian.PutUint64(t.seq, seqNum&amp;t.params[1])
+        kdf3 := NewKDF(kdf2.Derive(t.key[:0], []byte("level2"), t.seq))
+        binary.BigEndian.PutUint64(t.seq, seqNum&amp;t.params[2])
+        kdf3.Derive(t.key[:0], []byte("level3"), t.seq)
+        t.seqNumPrev = seqNum
+        return t.key, false</span>
+}
+
+func (t *TLSTree) Derive(seqNum uint64) []byte <span class="cov8" title="1">{
+        keyDerived := make([]byte, Size)
+        key, _ := t.DeriveCached(seqNum)
+        copy(keyDerived, key)
+        return keyDerived
+}</span>
+</pre>
+		
+		<pre class="file" id="file24" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+// GOST R 34.11-94 hash function.
+// RFC 5831.
+package gost341194
+
+import (
+        "encoding/binary"
+        "math/big"
+
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost28147"
+)
+
+const (
+        BlockSize = 32
+        Size      = 32
+)
+
+var (
+        SboxDefault *gost28147.Sbox = &amp;gost28147.SboxIdGostR341194TestParamSet
+
+        c2 [BlockSize]byte = [BlockSize]byte{
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        }
+        c3 [BlockSize]byte = [BlockSize]byte{
+                0xff, 0x00, 0xff, 0xff, 0x00, 0x00, 0x00, 0xff,
+                0xff, 0x00, 0x00, 0xff, 0x00, 0xff, 0xff, 0x00,
+                0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff,
+                0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00,
+        }
+        c4 [BlockSize]byte = [BlockSize]byte{
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        }
+
+        big256 *big.Int = big.NewInt(0).SetBit(big.NewInt(0), 256, 1)
+)
+
+type Hash struct {
+        sbox *gost28147.Sbox
+        size uint64
+        hsh  [BlockSize]byte
+        chk  *big.Int
+        buf  []byte
+        tmp  [BlockSize]byte
+}
+
+func New(sbox *gost28147.Sbox) *Hash <span class="cov8" title="1">{
+        h := Hash{sbox: sbox}
+        h.Reset()
+        return &amp;h
+}</span>
+
+func (h *Hash) Reset() <span class="cov8" title="1">{
+        h.size = 0
+        h.hsh = [BlockSize]byte{
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        }
+        h.chk = big.NewInt(0)
+        h.buf = h.buf[:0]
+}</span>
+
+func (h *Hash) BlockSize() int <span class="cov8" title="1">{
+        return BlockSize
+}</span>
+
+func (h *Hash) Size() int <span class="cov8" title="1">{
+        return BlockSize
+}</span>
+
+func fA(in *[BlockSize]byte) *[BlockSize]byte <span class="cov8" title="1">{
+        out := new([BlockSize]byte)
+        out[0] = in[16+0] ^ in[24+0]
+        out[1] = in[16+1] ^ in[24+1]
+        out[2] = in[16+2] ^ in[24+2]
+        out[3] = in[16+3] ^ in[24+3]
+        out[4] = in[16+4] ^ in[24+4]
+        out[5] = in[16+5] ^ in[24+5]
+        out[6] = in[16+6] ^ in[24+6]
+        out[7] = in[16+7] ^ in[24+7]
+        copy(out[8:], in[0:24])
+        return out
+}</span>
+
+func fP(in *[BlockSize]byte) *[BlockSize]byte <span class="cov8" title="1">{
+        return &amp;[BlockSize]byte{
+                in[0], in[8], in[16], in[24], in[1], in[9], in[17],
+                in[25], in[2], in[10], in[18], in[26], in[3],
+                in[11], in[19], in[27], in[4], in[12], in[20],
+                in[28], in[5], in[13], in[21], in[29], in[6],
+                in[14], in[22], in[30], in[7], in[15], in[23], in[31],
+        }
+}</span>
+
+func fChi(in *[BlockSize]byte) *[BlockSize]byte <span class="cov8" title="1">{
+        out := new([BlockSize]byte)
+        out[0] = in[32-2] ^ in[32-4] ^ in[32-6] ^ in[32-8] ^ in[32-32] ^ in[32-26]
+        out[1] = in[32-1] ^ in[32-3] ^ in[32-5] ^ in[32-7] ^ in[32-31] ^ in[32-25]
+        copy(out[2:32], in[0:30])
+        return out
+}</span>
+
+func blockReverse(dst, src []byte) <span class="cov8" title="1">{
+        for i, j := 0, BlockSize-1; i &lt; j; i, j = i+1, j-1 </span><span class="cov8" title="1">{
+                dst[i], dst[j] = src[j], src[i]
+        }</span>
+}
+
+func blockXor(dst, a, b *[BlockSize]byte) <span class="cov8" title="1">{
+        for i := 0; i &lt; BlockSize; i++ </span><span class="cov8" title="1">{
+                dst[i] = a[i] ^ b[i]
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+
+func (h *Hash) step(hin, m [BlockSize]byte) [BlockSize]byte <span class="cov8" title="1">{
+        out := new([BlockSize]byte)
+        u := new([BlockSize]byte)
+        v := new([BlockSize]byte)
+        k := new([BlockSize]byte)
+        (*u) = hin
+        (*v) = m
+        blockXor(k, u, v)
+        k = fP(k)
+        blockReverse(k[:], k[:])
+        c := gost28147.NewCipher(k[:], h.sbox)
+        s := make([]byte, gost28147.BlockSize)
+        c.Encrypt(s, []byte{
+                hin[31], hin[30], hin[29], hin[28], hin[27], hin[26], hin[25], hin[24],
+        })
+        out[31] = s[0]
+        out[30] = s[1]
+        out[29] = s[2]
+        out[28] = s[3]
+        out[27] = s[4]
+        out[26] = s[5]
+        out[25] = s[6]
+        out[24] = s[7]
+
+        blockXor(u, fA(u), &amp;c2)
+        v = fA(fA(v))
+        blockXor(k, u, v)
+        k = fP(k)
+        blockReverse(k[:], k[:])
+        c = gost28147.NewCipher(k[:], h.sbox)
+        c.Encrypt(s, []byte{
+                hin[23], hin[22], hin[21], hin[20], hin[19], hin[18], hin[17], hin[16],
+        })
+        out[23] = s[0]
+        out[22] = s[1]
+        out[21] = s[2]
+        out[20] = s[3]
+        out[19] = s[4]
+        out[18] = s[5]
+        out[17] = s[6]
+        out[16] = s[7]
+
+        blockXor(u, fA(u), &amp;c3)
+        v = fA(fA(v))
+        blockXor(k, u, v)
+        k = fP(k)
+        blockReverse(k[:], k[:])
+        c = gost28147.NewCipher(k[:], h.sbox)
+        c.Encrypt(s, []byte{
+                hin[15], hin[14], hin[13], hin[12], hin[11], hin[10], hin[9], hin[8],
+        })
+        out[15] = s[0]
+        out[14] = s[1]
+        out[13] = s[2]
+        out[12] = s[3]
+        out[11] = s[4]
+        out[10] = s[5]
+        out[9] = s[6]
+        out[8] = s[7]
+
+        blockXor(u, fA(u), &amp;c4)
+        v = fA(fA(v))
+        blockXor(k, u, v)
+        k = fP(k)
+        blockReverse(k[:], k[:])
+        c = gost28147.NewCipher(k[:], h.sbox)
+        c.Encrypt(s, []byte{
+                hin[7], hin[6], hin[5], hin[4], hin[3], hin[2], hin[1], hin[0],
+        })
+        out[7] = s[0]
+        out[6] = s[1]
+        out[5] = s[2]
+        out[4] = s[3]
+        out[3] = s[4]
+        out[2] = s[5]
+        out[1] = s[6]
+        out[0] = s[7]
+
+        for i := 0; i &lt; 12; i++ </span><span class="cov8" title="1">{
+                out = fChi(out)
+        }</span>
+        <span class="cov8" title="1">blockXor(out, out, &amp;m)
+        out = fChi(out)
+        blockXor(out, out, &amp;hin)
+        for i := 0; i &lt; 61; i++ </span><span class="cov8" title="1">{
+                out = fChi(out)
+        }</span>
+        <span class="cov8" title="1">return *out</span>
+}
+
+func (h *Hash) chkAdd(data []byte) *big.Int <span class="cov8" title="1">{
+        i := big.NewInt(0).SetBytes(data)
+        i.Add(i, h.chk)
+        if i.Cmp(big256) != -1 </span><span class="cov8" title="1">{
+                i.Sub(i, big256)
+        }</span>
+        <span class="cov8" title="1">return i</span>
+}
+
+func (h *Hash) Write(data []byte) (int, error) <span class="cov8" title="1">{
+        h.buf = append(h.buf, data...)
+        for len(h.buf) &gt;= BlockSize </span><span class="cov8" title="1">{
+                h.size += BlockSize * 8
+                blockReverse(h.tmp[:], h.buf[:BlockSize])
+                h.chk = h.chkAdd(h.tmp[:])
+                h.buf = h.buf[BlockSize:]
+                h.hsh = h.step(h.hsh, h.tmp)
+        }</span>
+        <span class="cov8" title="1">return len(data), nil</span>
+}
+
+func (h *Hash) Sum(in []byte) []byte <span class="cov8" title="1">{
+        size := h.size
+        chk := h.chk
+        hsh := h.hsh
+        block := new([BlockSize]byte)
+        if len(h.buf) != 0 </span><span class="cov8" title="1">{
+                size += uint64(len(h.buf)) * 8
+                copy(block[:], h.buf)
+                blockReverse(block[:], block[:])
+                chk = h.chkAdd(block[:])
+                hsh = h.step(hsh, *block)
+                block = new([BlockSize]byte)
+        }</span>
+        <span class="cov8" title="1">binary.BigEndian.PutUint64(block[24:], size)
+        hsh = h.step(hsh, *block)
+        block = new([BlockSize]byte)
+        chkBytes := chk.Bytes()
+        copy(block[BlockSize-len(chkBytes):], chkBytes)
+        hsh = h.step(hsh, *block)
+        blockReverse(hsh[:], hsh[:])
+        return append(in, hsh[:]...)</span>
+}
+</pre>
+		
+		<pre class="file" id="file25" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+// GOST 34.12-2015 128-bit (Кузнечик (Kuznechik)) block cipher.
+package gost3412128
+
+const (
+        BlockSize = 16
+        KeySize   = 32
+)
+
+var (
+        lc [BlockSize]byte = [BlockSize]byte{
+                148, 32, 133, 16, 194, 192, 1, 251, 1, 192, 194, 16,
+                133, 32, 148, 1,
+        }
+        pi [256]byte = [256]byte{
+                252, 238, 221, 17, 207, 110, 49, 22, 251, 196, 250,
+                218, 35, 197, 4, 77, 233, 119, 240, 219, 147, 46,
+                153, 186, 23, 54, 241, 187, 20, 205, 95, 193, 249,
+                24, 101, 90, 226, 92, 239, 33, 129, 28, 60, 66, 139,
+                1, 142, 79, 5, 132, 2, 174, 227, 106, 143, 160, 6,
+                11, 237, 152, 127, 212, 211, 31, 235, 52, 44, 81,
+                234, 200, 72, 171, 242, 42, 104, 162, 253, 58, 206,
+                204, 181, 112, 14, 86, 8, 12, 118, 18, 191, 114, 19,
+                71, 156, 183, 93, 135, 21, 161, 150, 41, 16, 123,
+                154, 199, 243, 145, 120, 111, 157, 158, 178, 177,
+                50, 117, 25, 61, 255, 53, 138, 126, 109, 84, 198,
+                128, 195, 189, 13, 87, 223, 245, 36, 169, 62, 168,
+                67, 201, 215, 121, 214, 246, 124, 34, 185, 3, 224,
+                15, 236, 222, 122, 148, 176, 188, 220, 232, 40, 80,
+                78, 51, 10, 74, 167, 151, 96, 115, 30, 0, 98, 68,
+                26, 184, 56, 130, 100, 159, 38, 65, 173, 69, 70,
+                146, 39, 94, 85, 47, 140, 163, 165, 125, 105, 213,
+                149, 59, 7, 88, 179, 64, 134, 172, 29, 247, 48, 55,
+                107, 228, 136, 217, 231, 137, 225, 27, 131, 73, 76,
+                63, 248, 254, 141, 83, 170, 144, 202, 216, 133, 97,
+                32, 113, 103, 164, 45, 43, 9, 91, 203, 155, 37, 208,
+                190, 229, 108, 82, 89, 166, 116, 210, 230, 244, 180,
+                192, 209, 102, 175, 194, 57, 75, 99, 182,
+        }
+        piInv   [256]byte
+        cBlk    [32]*[BlockSize]byte
+        gfCache [256][256]byte
+)
+
+func gf(a, b byte) (c byte) <span class="cov8" title="1">{
+        for b &gt; 0 </span><span class="cov8" title="1">{
+                if b&amp;1 &gt; 0 </span><span class="cov8" title="1">{
+                        c ^= a
+                }</span>
+                <span class="cov8" title="1">if a&amp;0x80 &gt; 0 </span><span class="cov8" title="1">{
+                        a = (a &lt;&lt; 1) ^ 0xC3
+                }</span> else<span class="cov8" title="1"> {
+                        a &lt;&lt;= 1
+                }</span>
+                <span class="cov8" title="1">b &gt;&gt;= 1</span>
+        }
+        <span class="cov8" title="1">return</span>
+}
+
+func l(blk *[BlockSize]byte) <span class="cov8" title="1">{
+        for n := 0; n &lt; BlockSize; n++ </span><span class="cov8" title="1">{
+                blk[0],
+                        blk[1],
+                        blk[2],
+                        blk[3],
+                        blk[4],
+                        blk[5],
+                        blk[6],
+                        blk[7],
+                        blk[8],
+                        blk[9],
+                        blk[10],
+                        blk[11],
+                        blk[12],
+                        blk[13],
+                        blk[14],
+                        blk[15] = (blk[15] ^
+                        gfCache[blk[0]][lc[0]] ^
+                        gfCache[blk[1]][lc[1]] ^
+                        gfCache[blk[2]][lc[2]] ^
+                        gfCache[blk[3]][lc[3]] ^
+                        gfCache[blk[4]][lc[4]] ^
+                        gfCache[blk[5]][lc[5]] ^
+                        gfCache[blk[6]][lc[6]] ^
+                        gfCache[blk[7]][lc[7]] ^
+                        gfCache[blk[8]][lc[8]] ^
+                        gfCache[blk[9]][lc[9]] ^
+                        gfCache[blk[10]][lc[10]] ^
+                        gfCache[blk[11]][lc[11]] ^
+                        gfCache[blk[12]][lc[12]] ^
+                        gfCache[blk[13]][lc[13]] ^
+                        gfCache[blk[14]][lc[14]]),
+                        blk[0],
+                        blk[1],
+                        blk[2],
+                        blk[3],
+                        blk[4],
+                        blk[5],
+                        blk[6],
+                        blk[7],
+                        blk[8],
+                        blk[9],
+                        blk[10],
+                        blk[11],
+                        blk[12],
+                        blk[13],
+                        blk[14]
+        }</span>
+}
+
+func lInv(blk *[BlockSize]byte) <span class="cov8" title="1">{
+        var t byte
+        for n := 0; n &lt; BlockSize; n++ </span><span class="cov8" title="1">{
+                t = blk[0]
+                copy(blk[:], blk[1:])
+                t ^= gfCache[blk[0]][lc[0]]
+                t ^= gfCache[blk[1]][lc[1]]
+                t ^= gfCache[blk[2]][lc[2]]
+                t ^= gfCache[blk[3]][lc[3]]
+                t ^= gfCache[blk[4]][lc[4]]
+                t ^= gfCache[blk[5]][lc[5]]
+                t ^= gfCache[blk[6]][lc[6]]
+                t ^= gfCache[blk[7]][lc[7]]
+                t ^= gfCache[blk[8]][lc[8]]
+                t ^= gfCache[blk[9]][lc[9]]
+                t ^= gfCache[blk[10]][lc[10]]
+                t ^= gfCache[blk[11]][lc[11]]
+                t ^= gfCache[blk[12]][lc[12]]
+                t ^= gfCache[blk[13]][lc[13]]
+                t ^= gfCache[blk[14]][lc[14]]
+                blk[15] = t
+        }</span>
+}
+
+func s(blk *[BlockSize]byte) <span class="cov8" title="1">{
+        blk[0] = pi[int(blk[0])]
+        blk[1] = pi[int(blk[1])]
+        blk[2] = pi[int(blk[2])]
+        blk[3] = pi[int(blk[3])]
+        blk[4] = pi[int(blk[4])]
+        blk[5] = pi[int(blk[5])]
+        blk[6] = pi[int(blk[6])]
+        blk[7] = pi[int(blk[7])]
+        blk[8] = pi[int(blk[8])]
+        blk[9] = pi[int(blk[9])]
+        blk[10] = pi[int(blk[10])]
+        blk[11] = pi[int(blk[11])]
+        blk[12] = pi[int(blk[12])]
+        blk[13] = pi[int(blk[13])]
+        blk[14] = pi[int(blk[14])]
+        blk[15] = pi[int(blk[15])]
+}</span>
+
+func sInv(blk *[BlockSize]byte) <span class="cov8" title="1">{
+        for n := 0; n &lt; BlockSize; n++ </span><span class="cov8" title="1">{
+                blk[n] = piInv[int(blk[n])]
+        }</span>
+}
+
+func init() <span class="cov8" title="1">{
+        for a := 0; a &lt; 256; a++ </span><span class="cov8" title="1">{
+                for b := 0; b &lt; 256; b++ </span><span class="cov8" title="1">{
+                        gfCache[a][b] = gf(byte(a), byte(b))
+                }</span>
+        }
+        <span class="cov8" title="1">for i := 0; i &lt; 256; i++ </span><span class="cov8" title="1">{
+                piInv[int(pi[i])] = byte(i)
+        }</span>
+        <span class="cov8" title="1">for i := 0; i &lt; 32; i++ </span><span class="cov8" title="1">{
+                cBlk[i] = new([BlockSize]byte)
+                cBlk[i][15] = byte(i) + 1
+                l(cBlk[i])
+        }</span>
+}
+
+type Cipher struct {
+        ks [10][BlockSize]byte
+}
+
+func (c *Cipher) BlockSize() int <span class="cov0" title="0">{
+        return BlockSize
+}</span>
+
+func NewCipher(key []byte) *Cipher <span class="cov8" title="1">{
+        if len(key) != KeySize </span><span class="cov0" title="0">{
+                panic("invalid key size")</span>
+        }
+        <span class="cov8" title="1">var ks [10][BlockSize]byte
+        var kr0 [BlockSize]byte
+        var kr1 [BlockSize]byte
+        var krt [BlockSize]byte
+        copy(kr0[:], key[:BlockSize])
+        copy(kr1[:], key[BlockSize:])
+        copy(ks[0][:], kr0[:])
+        copy(ks[1][:], kr1[:])
+        for i := 0; i &lt; 4; i++ </span><span class="cov8" title="1">{
+                for j := 0; j &lt; 8; j++ </span><span class="cov8" title="1">{
+                        xor(krt[:], kr0[:], cBlk[8*i+j][:])
+                        s(&amp;krt)
+                        l(&amp;krt)
+                        xor(krt[:], krt[:], kr1[:])
+                        copy(kr1[:], kr0[:])
+                        copy(kr0[:], krt[:])
+                }</span>
+                <span class="cov8" title="1">copy(ks[2+2*i][:], kr0[:])
+                copy(ks[2+2*i+1][:], kr1[:])</span>
+        }
+        <span class="cov8" title="1">return &amp;Cipher{ks}</span>
+}
+
+func (c *Cipher) Encrypt(dst, src []byte) <span class="cov8" title="1">{
+        blk := new([BlockSize]byte)
+        copy(blk[:], src)
+        for i := 0; i &lt; 9; i++ </span><span class="cov8" title="1">{
+                xor(blk[:], blk[:], c.ks[i][:])
+                s(blk)
+                l(blk)
+        }</span>
+        <span class="cov8" title="1">xor(blk[:], blk[:], c.ks[9][:])
+        copy(dst, blk[:])</span>
+}
+
+func (c *Cipher) Decrypt(dst, src []byte) <span class="cov8" title="1">{
+        blk := new([BlockSize]byte)
+        copy(blk[:], src)
+        for i := 9; i &gt; 0; i-- </span><span class="cov8" title="1">{
+                xor(blk[:], blk[:], c.ks[i][:])
+                lInv(blk)
+                sInv(blk)
+        }</span>
+        <span class="cov8" title="1">xor(dst, blk[:], c.ks[0][:])</span>
+}
+</pre>
+		
+		<pre class="file" id="file26" style="display: none">//go:build amd64 || 386 || ppc64 || ppc64le || s390x
+// +build amd64 386 ppc64 ppc64le s390x
+
+// Fast XOR taken from native crypto/cipher
+
+package gost3412128
+
+import (
+        "unsafe"
+)
+
+const xorWords = BlockSize / int(unsafe.Sizeof(uintptr(0)))
+
+func xor(dst, a, b []byte) <span class="cov8" title="1">{
+        dw := *(*[]uintptr)(unsafe.Pointer(&amp;dst))
+        aw := *(*[]uintptr)(unsafe.Pointer(&amp;a))
+        bw := *(*[]uintptr)(unsafe.Pointer(&amp;b))
+        for i := 0; i &lt; xorWords; i++ </span><span class="cov8" title="1">{
+                dw[i] = aw[i] ^ bw[i]
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file27" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+// GOST 34.12-2015 64-bit (Магма (Magma)) block cipher.
+package gost341264
+
+import (
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost28147"
+)
+
+const (
+        BlockSize = 8
+        KeySize   = 32
+)
+
+type Cipher struct {
+        c   *gost28147.Cipher
+        blk *[BlockSize]byte
+}
+
+func NewCipher(key []byte) *Cipher <span class="cov8" title="1">{
+        if len(key) != KeySize </span><span class="cov0" title="0">{
+                panic("invalid key size")</span>
+        }
+        <span class="cov8" title="1">keyCompatible := make([]byte, KeySize)
+        for i := 0; i &lt; KeySize/4; i++ </span><span class="cov8" title="1">{
+                keyCompatible[i*4+0] = key[i*4+3]
+                keyCompatible[i*4+1] = key[i*4+2]
+                keyCompatible[i*4+2] = key[i*4+1]
+                keyCompatible[i*4+3] = key[i*4+0]
+        }</span>
+        <span class="cov8" title="1">return &amp;Cipher{
+                c:   gost28147.NewCipher(keyCompatible, &amp;gost28147.SboxIdtc26gost28147paramZ),
+                blk: new([BlockSize]byte),
+        }</span>
+}
+
+func (c *Cipher) BlockSize() int <span class="cov0" title="0">{
+        return BlockSize
+}</span>
+
+func (c *Cipher) Encrypt(dst, src []byte) <span class="cov8" title="1">{
+        c.blk[0] = src[7]
+        c.blk[1] = src[6]
+        c.blk[2] = src[5]
+        c.blk[3] = src[4]
+        c.blk[4] = src[3]
+        c.blk[5] = src[2]
+        c.blk[6] = src[1]
+        c.blk[7] = src[0]
+        c.c.Encrypt(c.blk[:], c.blk[:])
+        dst[0] = c.blk[7]
+        dst[1] = c.blk[6]
+        dst[2] = c.blk[5]
+        dst[3] = c.blk[4]
+        dst[4] = c.blk[3]
+        dst[5] = c.blk[2]
+        dst[6] = c.blk[1]
+        dst[7] = c.blk[0]
+}</span>
+
+func (c *Cipher) Decrypt(dst, src []byte) <span class="cov8" title="1">{
+        c.blk[0] = src[7]
+        c.blk[1] = src[6]
+        c.blk[2] = src[5]
+        c.blk[3] = src[4]
+        c.blk[4] = src[3]
+        c.blk[5] = src[2]
+        c.blk[6] = src[1]
+        c.blk[7] = src[0]
+        c.c.Decrypt(c.blk[:], c.blk[:])
+        dst[0] = c.blk[7]
+        dst[1] = c.blk[6]
+        dst[2] = c.blk[5]
+        dst[3] = c.blk[4]
+        dst[4] = c.blk[3]
+        dst[5] = c.blk[2]
+        dst[6] = c.blk[1]
+        dst[7] = c.blk[0]
+}</span>
+</pre>
+		
+		<pre class="file" id="file28" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+// Multilinear Galois Mode (MGM) block cipher mode.
+package mgm
+
+import (
+        "crypto/cipher"
+        "crypto/hmac"
+        "encoding/binary"
+        "errors"
+)
+
+type Mul interface {
+        Mul(x, y []byte) []byte
+}
+
+type MGM struct {
+        MaxSize   uint64
+        BlockSize int
+        TagSize   int
+        cipher    cipher.Block
+        icn       []byte
+        bufP      []byte
+        bufC      []byte
+        padded    []byte
+        sum       []byte
+        mul       Mul
+}
+
+func NewMGM(cipher cipher.Block, tagSize int) (cipher.AEAD, error) <span class="cov8" title="1">{
+        blockSize := cipher.BlockSize()
+        if !(blockSize == 8 || blockSize == 16) </span><span class="cov0" title="0">{
+                return nil, errors.New("gogost/mgm: only 64/128 blocksizes allowed")
+        }</span>
+        <span class="cov8" title="1">if tagSize &lt; 4 || tagSize &gt; blockSize </span><span class="cov0" title="0">{
+                return nil, errors.New("gogost/mgm: invalid tag size")
+        }</span>
+        <span class="cov8" title="1">mgm := MGM{
+                MaxSize:   uint64(1&lt;&lt;uint(blockSize*8/2) - 1),
+                BlockSize: blockSize,
+                TagSize:   tagSize,
+                cipher:    cipher,
+                icn:       make([]byte, blockSize),
+                bufP:      make([]byte, blockSize),
+                bufC:      make([]byte, blockSize),
+                padded:    make([]byte, blockSize),
+                sum:       make([]byte, blockSize),
+        }
+        if blockSize == 8 </span><span class="cov8" title="1">{
+                mgm.mul = newMul64()
+        }</span> else<span class="cov8" title="1"> {
+                mgm.mul = newMul128()
+        }</span>
+        <span class="cov8" title="1">return &amp;mgm, nil</span>
+}
+
+func (mgm *MGM) NonceSize() int <span class="cov0" title="0">{
+        return mgm.BlockSize
+}</span>
+
+func (mgm *MGM) Overhead() int <span class="cov0" title="0">{
+        return mgm.TagSize
+}</span>
+
+func incr(data []byte) <span class="cov8" title="1">{
+        for i := len(data) - 1; i &gt;= 0; i-- </span><span class="cov8" title="1">{
+                data[i]++
+                if data[i] != 0 </span><span class="cov8" title="1">{
+                        return
+                }</span>
+        }
+}
+
+func xor(dst, src1, src2 []byte) <span class="cov8" title="1">{
+        for i := 0; i &lt; len(src1); i++ </span><span class="cov8" title="1">{
+                dst[i] = src1[i] ^ src2[i]
+        }</span>
+}
+
+func (mgm *MGM) validateNonce(nonce []byte) <span class="cov8" title="1">{
+        if len(nonce) != mgm.BlockSize </span><span class="cov0" title="0">{
+                panic("nonce length must be equal to cipher's blocksize")</span>
+        }
+        <span class="cov8" title="1">if nonce[0]&amp;0x80 &gt; 0 </span><span class="cov0" title="0">{
+                panic("nonce must not have higher bit set")</span>
+        }
+}
+
+func (mgm *MGM) validateSizes(text, additionalData []byte) <span class="cov8" title="1">{
+        if len(text) == 0 &amp;&amp; len(additionalData) == 0 </span><span class="cov0" title="0">{
+                panic("at least either *text or additionalData must be provided")</span>
+        }
+        <span class="cov8" title="1">if uint64(len(additionalData)) &gt; mgm.MaxSize </span><span class="cov0" title="0">{
+                panic("additionalData is too big")</span>
+        }
+        <span class="cov8" title="1">if uint64(len(text)+len(additionalData)) &gt; mgm.MaxSize </span><span class="cov0" title="0">{
+                panic("*text with additionalData are too big")</span>
+        }
+}
+
+func (mgm *MGM) auth(out, text, ad []byte) <span class="cov8" title="1">{
+        for i := 0; i &lt; mgm.BlockSize; i++ </span><span class="cov8" title="1">{
+                mgm.sum[i] = 0
+        }</span>
+        <span class="cov8" title="1">adLen := len(ad) * 8
+        textLen := len(text) * 8
+        mgm.icn[0] |= 0x80
+        mgm.cipher.Encrypt(mgm.bufP, mgm.icn) // Z_1 = E_K(1 || ICN)
+        for len(ad) &gt;= mgm.BlockSize </span><span class="cov8" title="1">{
+                mgm.cipher.Encrypt(mgm.bufC, mgm.bufP) // H_i = E_K(Z_i)
+                xor(                                   // sum (xor)= H_i (x) A_i
+                        mgm.sum,
+                        mgm.sum,
+                        mgm.mul.Mul(mgm.bufC, ad[:mgm.BlockSize]),
+                )
+                incr(mgm.bufP[:mgm.BlockSize/2]) // Z_{i+1} = incr_l(Z_i)
+                ad = ad[mgm.BlockSize:]
+        }</span>
+        <span class="cov8" title="1">if len(ad) &gt; 0 </span><span class="cov8" title="1">{
+                copy(mgm.padded, ad)
+                for i := len(ad); i &lt; mgm.BlockSize; i++ </span><span class="cov8" title="1">{
+                        mgm.padded[i] = 0
+                }</span>
+                <span class="cov8" title="1">mgm.cipher.Encrypt(mgm.bufC, mgm.bufP)
+                xor(mgm.sum, mgm.sum, mgm.mul.Mul(mgm.bufC, mgm.padded))
+                incr(mgm.bufP[:mgm.BlockSize/2])</span>
+        }
+
+        <span class="cov8" title="1">for len(text) &gt;= mgm.BlockSize </span><span class="cov8" title="1">{
+                mgm.cipher.Encrypt(mgm.bufC, mgm.bufP) // H_{h+j} = E_K(Z_{h+j})
+                xor(                                   // sum (xor)= H_{h+j} (x) C_j
+                        mgm.sum,
+                        mgm.sum,
+                        mgm.mul.Mul(mgm.bufC, text[:mgm.BlockSize]),
+                )
+                incr(mgm.bufP[:mgm.BlockSize/2]) // Z_{h+j+1} = incr_l(Z_{h+j})
+                text = text[mgm.BlockSize:]
+        }</span>
+        <span class="cov8" title="1">if len(text) &gt; 0 </span><span class="cov8" title="1">{
+                copy(mgm.padded, text)
+                for i := len(text); i &lt; mgm.BlockSize; i++ </span><span class="cov8" title="1">{
+                        mgm.padded[i] = 0
+                }</span>
+                <span class="cov8" title="1">mgm.cipher.Encrypt(mgm.bufC, mgm.bufP)
+                xor(mgm.sum, mgm.sum, mgm.mul.Mul(mgm.bufC, mgm.padded))
+                incr(mgm.bufP[:mgm.BlockSize/2])</span>
+        }
+
+        <span class="cov8" title="1">mgm.cipher.Encrypt(mgm.bufP, mgm.bufP) // H_{h+q+1} = E_K(Z_{h+q+1})
+        // len(A) || len(C)
+        if mgm.BlockSize == 8 </span><span class="cov8" title="1">{
+                binary.BigEndian.PutUint32(mgm.bufC, uint32(adLen))
+                binary.BigEndian.PutUint32(mgm.bufC[mgm.BlockSize/2:], uint32(textLen))
+        }</span> else<span class="cov8" title="1"> {
+                binary.BigEndian.PutUint64(mgm.bufC, uint64(adLen))
+                binary.BigEndian.PutUint64(mgm.bufC[mgm.BlockSize/2:], uint64(textLen))
+        }</span>
+        // sum (xor)= H_{h+q+1} (x) (len(A) || len(C))
+        <span class="cov8" title="1">xor(mgm.sum, mgm.sum, mgm.mul.Mul(mgm.bufC, mgm.bufP))
+        mgm.cipher.Encrypt(mgm.bufP, mgm.sum) // E_K(sum)
+        copy(out, mgm.bufP[:mgm.TagSize])</span>     // MSB_S(E_K(sum))
+}
+
+func (mgm *MGM) crypt(out, in []byte) <span class="cov8" title="1">{
+        mgm.icn[0] &amp;= 0x7F
+        mgm.cipher.Encrypt(mgm.bufP, mgm.icn) // Y_1 = E_K(0 || ICN)
+        for len(in) &gt;= mgm.BlockSize </span><span class="cov8" title="1">{
+                mgm.cipher.Encrypt(mgm.bufC, mgm.bufP) // E_K(Y_i)
+                xor(out, mgm.bufC, in)                 // C_i = P_i (xor) E_K(Y_i)
+                incr(mgm.bufP[mgm.BlockSize/2:])       // Y_i = incr_r(Y_{i-1})
+                out = out[mgm.BlockSize:]
+                in = in[mgm.BlockSize:]
+        }</span>
+        <span class="cov8" title="1">if len(in) &gt; 0 </span><span class="cov8" title="1">{
+                mgm.cipher.Encrypt(mgm.bufC, mgm.bufP)
+                xor(out, in, mgm.bufC)
+        }</span>
+}
+
+func (mgm *MGM) Seal(dst, nonce, plaintext, additionalData []byte) []byte <span class="cov8" title="1">{
+        mgm.validateNonce(nonce)
+        mgm.validateSizes(plaintext, additionalData)
+        if uint64(len(plaintext)) &gt; mgm.MaxSize </span><span class="cov0" title="0">{
+                panic("plaintext is too big")</span>
+        }
+        <span class="cov8" title="1">ret, out := sliceForAppend(dst, len(plaintext)+mgm.TagSize)
+        copy(mgm.icn, nonce)
+        mgm.crypt(out, plaintext)
+        mgm.auth(
+                out[len(plaintext):len(plaintext)+mgm.TagSize],
+                out[:len(plaintext)],
+                additionalData,
+        )
+        return ret</span>
+}
+
+func (mgm *MGM) Open(dst, nonce, ciphertext, additionalData []byte) ([]byte, error) <span class="cov8" title="1">{
+        mgm.validateNonce(nonce)
+        mgm.validateSizes(ciphertext, additionalData)
+        if len(ciphertext) &lt; mgm.TagSize </span><span class="cov0" title="0">{
+                return nil, errors.New("ciphertext is too short")
+        }</span>
+        <span class="cov8" title="1">if uint64(len(ciphertext)-mgm.TagSize) &gt; mgm.MaxSize </span><span class="cov0" title="0">{
+                panic("ciphertext is too big")</span>
+        }
+        <span class="cov8" title="1">ret, out := sliceForAppend(dst, len(ciphertext)-mgm.TagSize)
+        ct := ciphertext[:len(ciphertext)-mgm.TagSize]
+        copy(mgm.icn, nonce)
+        mgm.auth(mgm.sum, ct, additionalData)
+        if !hmac.Equal(mgm.sum[:mgm.TagSize], ciphertext[len(ciphertext)-mgm.TagSize:]) </span><span class="cov0" title="0">{
+                return nil, errors.New("gogost/mgm: invalid authentication tag")
+        }</span>
+        <span class="cov8" title="1">mgm.crypt(out, ct)
+        return ret, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file29" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package mgm
+
+import "encoding/binary"
+
+type mul128 struct{ buf [16]byte }
+
+func newMul128() *mul128 <span class="cov8" title="1">{
+        return &amp;mul128{}
+}</span>
+
+func gf128half(n int, t, x0, x1, z0, z1 uint64) (uint64, uint64, uint64, uint64, uint64) <span class="cov8" title="1">{
+        var sign bool
+        for i := 0; i &lt; n; i++ </span><span class="cov8" title="1">{
+                if t&amp;1 &gt; 0 </span><span class="cov8" title="1">{
+                        z0, z1 = z0^x0, z1^x1
+                }</span>
+                <span class="cov8" title="1">t &gt;&gt;= 1
+                sign = x1&gt;&gt;63 &gt; 0
+                x1 = (x1 &lt;&lt; 1) ^ (x0 &gt;&gt; 63)
+                x0 &lt;&lt;= 1
+                if sign </span><span class="cov8" title="1">{
+                        x0 ^= 0x87
+                }</span>
+        }
+        <span class="cov8" title="1">return t, x0, x1, z0, z1</span>
+}
+
+func (mul *mul128) Mul(x, y []byte) []byte <span class="cov8" title="1">{
+        x1 := binary.BigEndian.Uint64(x[:8])
+        x0 := binary.BigEndian.Uint64(x[8:])
+        y1 := binary.BigEndian.Uint64(y[:8])
+        y0 := binary.BigEndian.Uint64(y[8:])
+        t, x0, x1, z0, z1 := gf128half(64, y0, x0, x1, 0, 0)
+        t, x0, x1, z0, z1 = gf128half(63, y1, x0, x1, z0, z1)
+        if t&amp;1 &gt; 0 </span><span class="cov8" title="1">{
+                z0, z1 = z0^x0, z1^x1
+        }</span>
+        <span class="cov8" title="1">binary.BigEndian.PutUint64(mul.buf[:8], z1)
+        binary.BigEndian.PutUint64(mul.buf[8:], z0)
+        return mul.buf[:]</span>
+}
+</pre>
+		
+		<pre class="file" id="file30" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package mgm
+
+import "math/big"
+
+const Mul64MaxBit = 64 - 1
+
+var R64 = big.NewInt(0).SetBytes([]byte{
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1b,
+})
+
+type mul64 struct {
+        x   *big.Int
+        y   *big.Int
+        z   *big.Int
+        buf [8]byte
+}
+
+func newMul64() *mul64 <span class="cov8" title="1">{
+        return &amp;mul64{
+                x: big.NewInt(0),
+                y: big.NewInt(0),
+                z: big.NewInt(0),
+        }
+}</span>
+
+func (mul *mul64) Mul(x, y []byte) []byte <span class="cov8" title="1">{
+        mul.x.SetBytes(x)
+        mul.y.SetBytes(y)
+        mul.z.SetInt64(0)
+        for mul.y.BitLen() != 0 </span><span class="cov8" title="1">{
+                if mul.y.Bit(0) == 1 </span><span class="cov8" title="1">{
+                        mul.z.Xor(mul.z, mul.x)
+                }</span>
+                <span class="cov8" title="1">if mul.x.Bit(Mul64MaxBit) == 1 </span><span class="cov8" title="1">{
+                        mul.x.SetBit(mul.x, Mul64MaxBit, 0)
+                        mul.x.Lsh(mul.x, 1)
+                        mul.x.Xor(mul.x, R64)
+                }</span> else<span class="cov8" title="1"> {
+                        mul.x.Lsh(mul.x, 1)
+                }</span>
+                <span class="cov8" title="1">mul.y.Rsh(mul.y, 1)</span>
+        }
+        <span class="cov8" title="1">zBytes := mul.z.Bytes()
+        rem := len(x) - len(zBytes)
+        for i := 0; i &lt; rem; i++ </span><span class="cov8" title="1">{
+                mul.buf[i] = 0
+        }</span>
+        <span class="cov8" title="1">copy(mul.buf[rem:], zBytes)
+        return mul.buf[:]</span>
+}
+</pre>
+		
+		<pre class="file" id="file31" style="display: none">package mgm
+
+// Taken from go/src/crypto/cipher/gcm.go
+func sliceForAppend(in []byte, n int) (head, tail []byte) <span class="cov8" title="1">{
+        if total := len(in) + n; cap(in) &gt;= total </span><span class="cov8" title="1">{
+                head = in[:total]
+        }</span> else<span class="cov8" title="1"> {
+                head = make([]byte, total)
+                copy(head, in)
+        }</span>
+        <span class="cov8" title="1">tail = head[len(in):]
+        return</span>
+}
+</pre>
+		
+		<pre class="file" id="file32" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+// PRF_IPSEC_PRFPLUS_GOSTR3411_2012_{256,512} as defined in R 50.1.113-2016.
+package prfplus
+
+import (
+        "crypto/hmac"
+        "hash"
+
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012256"
+        "github.com/nobuenhombre/go-crypto-gost/pkg/gost34112012512"
+)
+
+type PRFIPsecPRFPlusGOSTR34112012 struct{ h hash.Hash }
+
+func NewPRFIPsecPRFPlusGOSTR34112012256(key []byte) PRFForPlus <span class="cov8" title="1">{
+        return PRFIPsecPRFPlusGOSTR34112012{hmac.New(gost34112012256.New, key)}
+}</span>
+
+func NewPRFIPsecPRFPlusGOSTR34112012512(key []byte) PRFForPlus <span class="cov8" title="1">{
+        return PRFIPsecPRFPlusGOSTR34112012{hmac.New(gost34112012512.New, key)}
+}</span>
+
+func (prf PRFIPsecPRFPlusGOSTR34112012) BlockSize() int <span class="cov8" title="1">{
+        return prf.h.Size()
+}</span>
+
+func (prf PRFIPsecPRFPlusGOSTR34112012) Derive(salt []byte) []byte <span class="cov8" title="1">{
+        if _, err := prf.h.Write(salt); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+        <span class="cov8" title="1">sum := prf.h.Sum(nil)
+        prf.h.Reset()
+        return sum</span>
+}
+</pre>
+		
+		<pre class="file" id="file33" style="display: none">// GoGOST -- Pure Go GOST cryptographic functions library
+// Copyright (C) 2015-2022 Sergey Matveev &lt;stargrave@stargrave.org&gt;
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+package prfplus
+
+type PRFForPlus interface {
+        BlockSize() int
+        Derive(salt []byte) []byte
+}
+
+// prf+ function as defined in RFC 7296 (IKEv2)
+func PRFPlus(prf PRFForPlus, dst, salt []byte) <span class="cov8" title="1">{
+        in := make([]byte, prf.BlockSize()+len(salt)+1)
+        in[len(in)-1] = byte(0x01)
+        copy(in[prf.BlockSize():], salt)
+        copy(in[:prf.BlockSize()], prf.Derive(in[prf.BlockSize():]))
+        copy(dst, in[:prf.BlockSize()])
+        n := len(dst) / prf.BlockSize()
+        if n == 0 </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">if n*prf.BlockSize() != len(dst) </span><span class="cov0" title="0">{
+                n++
+        }</span>
+        <span class="cov8" title="1">n--
+        out := dst[prf.BlockSize():]
+        for i := 0; i &lt; n; i++ </span><span class="cov8" title="1">{
+                in[len(in)-1] = byte(i + 2)
+                copy(in[:prf.BlockSize()], prf.Derive(in))
+                copy(out, in[:prf.BlockSize()])
+                if i+1 != n </span><span class="cov0" title="0">{
+                        out = out[prf.BlockSize():]
+                }</span>
+        }
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

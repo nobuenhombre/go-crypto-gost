@@ -1,0 +1,15 @@
+language: go
+
+go:
+  - 1.17.x
+
+before_install:
+  - go install github.com/axw/gocov/gocov@latest
+  - go install github.com/AlekSi/gocov-xml@latest
+  - go get -t -v ./...
+
+script:
+  - make codecove
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -f coverage.xml -v
