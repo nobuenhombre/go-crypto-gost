@@ -6,6 +6,7 @@ package oids
 import (
 	"encoding/asn1"
 	"fmt"
+
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 

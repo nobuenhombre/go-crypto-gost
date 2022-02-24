@@ -4,9 +4,10 @@ import (
 	"encoding/asn1"
 	"errors"
 	"fmt"
-	"github.com/nobuenhombre/suikat/pkg/ge"
 	"reflect"
 	"testing"
+
+	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
 type getIDTest struct {
