@@ -2,10 +2,11 @@ package hash
 
 import (
 	"errors"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
-	"github.com/nobuenhombre/suikat/pkg/ge"
 	"reflect"
 	"testing"
+
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
+	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
 type getTest struct {

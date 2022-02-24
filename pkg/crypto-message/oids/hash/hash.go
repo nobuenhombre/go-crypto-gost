@@ -81,8 +81,8 @@ func (h Function) New() hash.Hash {
 }
 
 // getList
-// en: get a list of hash functions and asn1.ObjectIdentifier matches
-// ru: получить список соответствий Хеш Функций и asn1.ObjectIdentifier
+// en: get a list of hash functions and oids.ID matches
+// ru: получить список соответствий Хеш Функций и oids.ID
 func getList() map[oids.ID]Function {
 	return map[oids.ID]Function{
 		oids.HashFuncSHA1:        SHA1,
@@ -96,8 +96,8 @@ func getList() map[oids.ID]Function {
 }
 
 // Get
-// en: get hash function by the corresponding oids const
-// ru: получить хэш функцию по соответствующей oids константе
+// en: get hash function by the corresponding oids.ID const
+// ru: получить хэш функцию по соответствующей oids.ID константе
 func Get(oidId oids.ID) (Function, error) {
 	_, err := oids.Get(oidId)
 	if err != nil {
