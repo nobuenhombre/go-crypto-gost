@@ -2,32 +2,31 @@ package curves
 
 import (
 	"encoding/asn1"
+
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/gost3410"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
-type GostR34102012PublicKeyParameters struct {
+type Parameters struct {
 	PublicKeyParamSet asn1.ObjectIdentifier
 	DigestParamSet    asn1.ObjectIdentifier `asn1:"optional"`
 }
 
-// algoData pkix.AlgorithmIdentifier
-// paramsData := algoData.Parameters.FullBytes
+func DecodeDER(der containers.DER) (*gost3410.Curve, error) {
+	var params Parameters
 
-func NewCurveFromDER(derData []byte) (*gost3410.Curve, error) {
-	var publicKeyParams GostR34102012PublicKeyParameters
-
-	rest, err := asn1.Unmarshal(derData, &publicKeyParams)
+	rest, err := asn1.Unmarshal(der, &params)
 	if err != nil {
-		return nil, ge.New("x509: failed to parse GOST parameters")
+		return nil, ge.Pin(err)
 	}
 
 	if len(rest) != 0 {
-		return nil, ge.New("x509: trailing data after GOST parameters")
+		return nil, ge.Pin(&containers.TrailingDataError{})
 	}
 
-	oidId, err := oids.GetID(publicKeyParams.PublicKeyParamSet)
+	oidId, err := oids.GetID(params.PublicKeyParamSet)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}

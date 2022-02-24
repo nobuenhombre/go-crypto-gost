@@ -1,3 +1,6 @@
+// Package curves provides
+// en: a set of functions for working with *gost3410.Curve in relation to the GOST encryption standard
+// ru: набор функции работы с *gost3410.Curve применительно стандарта шифрования GOST
 package curves
 
 import (
@@ -6,7 +9,9 @@ import (
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
-// publicKeyParams.PublicKeyParamSet.Equal()
+// getList
+// en: get a list of *gost3410.Curve and oids.ID matches
+// ru: получить список соответствий *gost3410.Curve и oids.ID
 func getList() map[oids.ID]*gost3410.Curve {
 	return map[oids.ID]*gost3410.Curve{
 		oids.GostR34102001CryptoProAParamSet:    gost3410.CurveIdGostR34102001CryptoProAParamSet(),
@@ -24,6 +29,9 @@ func getList() map[oids.ID]*gost3410.Curve {
 	}
 }
 
+// Get
+// en: get *gost3410.Curve by the corresponding oids.ID const
+// ru: получить *gost3410.Curve по соответствующей oids.ID константе
 func Get(oidId oids.ID) (*gost3410.Curve, error) {
 	_, err := oids.Get(oidId)
 	if err != nil {
