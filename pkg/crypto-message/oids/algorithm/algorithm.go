@@ -1,6 +1,18 @@
+// Package algorithm provides
+// en: set of constants and functions for working with encryption algorithms in relation to the GOST encryption standard
+// ru: набор констант и функции работы с алгоритмами шифрования применительно стандарта шифрования GOST
 package algorithm
 
 import "errors"
+
+type Family int
+
+const (
+	FamilyRSA Family = iota
+	FamilyDSA
+	FamilyECDSA
+	FamilyGOSTR3410
+)
 
 // UnsupportedAlgorithmError
 // en: error - Unsupported Algorithm
