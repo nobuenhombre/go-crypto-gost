@@ -1,3 +1,6 @@
+// Package oids provides
+// en: a set of constants and functions for working with ASN.1 OBJECT IDENTIFIER in relation to the GOST encryption standard
+// ru: набор констант и функции работы с ASN.1 OBJECT IDENTIFIER применительно стандарта шифрования GOST
 package oids
 
 import (
@@ -65,6 +68,9 @@ const (
 	HashFuncGostR341194                ID = "HashFuncGostR341194"
 )
 
+// getList
+// en: get a list of constants and asn1.ObjectIdentifier matches
+// ru: получить список соответствий констант и asn1.ObjectIdentifier
 func getList() map[ID]asn1.ObjectIdentifier {
 	return map[ID]asn1.ObjectIdentifier{
 		Unknown:                            {0},
@@ -124,6 +130,9 @@ func getList() map[ID]asn1.ObjectIdentifier {
 	}
 }
 
+// GetID
+// en: get a constant by the corresponding asn1.ObjectIdentifier
+// ru: получить константу по соответствующему asn1.ObjectIdentifier
 func GetID(oid asn1.ObjectIdentifier) (ID, error) {
 	list := getList()
 	for key, item := range list {
@@ -132,9 +141,12 @@ func GetID(oid asn1.ObjectIdentifier) (ID, error) {
 		}
 	}
 
-	return "", ge.Pin(&ge.NotFoundError{Key: fmt.Sprintf("%#v", oid)})
+	return Unknown, ge.Pin(&ge.NotFoundError{Key: fmt.Sprintf("%#v", oid)})
 }
 
+// Get
+// en: get asn1.ObjectIdentifier by the corresponding constant
+// ru: получить asn1.ObjectIdentifier по соответствующей константе
 func Get(oidId ID) (asn1.ObjectIdentifier, error) {
 	list := getList()
 
