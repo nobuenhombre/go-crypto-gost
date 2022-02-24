@@ -3,7 +3,9 @@ package certificate
 import (
 	"encoding/asn1"
 	"encoding/pem"
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/pem-format"
+
+	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+
 	"github.com/nobuenhombre/suikat/pkg/fico"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 	"github.com/nobuenhombre/suikat/pkg/inslice"

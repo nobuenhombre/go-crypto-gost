@@ -2,10 +2,11 @@ package main
 
 import (
 	"bytes"
+	"log"
+
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate"
 	"github.com/nobuenhombre/suikat/pkg/fico"
 	"github.com/nobuenhombre/suikat/pkg/ge"
-	"log"
 )
 
 func main() {

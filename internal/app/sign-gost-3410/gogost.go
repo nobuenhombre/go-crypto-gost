@@ -3,8 +3,9 @@ package signGost3410
 import (
 	"crypto/rand"
 	"fmt"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/hash"
 	"reflect"
+
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/hash"
 
 	//goGostCrypto "github.com/ftomza/go-gost-crypto"
 	"io"

@@ -5,18 +5,23 @@ package main
 
 import (
 	"crypto/rand"
+	"reflect"
+
 	readGost3410CertPem "github.com/nobuenhombre/go-crypto-gost/internal/app/read-gost-3410-cert-pem"
 	signGost3410 "github.com/nobuenhombre/go-crypto-gost/internal/app/sign-gost-3410"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate"
 	privateKey "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/private-key"
 	signedMessage "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message"
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/pkcs7gost"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/hash"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/pkcs7gost"
+	"github.com/nobuenhombre/suikat/pkg/chunks"
+	"github.com/nobuenhombre/suikat/pkg/colorog"
+	"github.com/nobuenhombre/suikat/pkg/dates"
 	"github.com/nobuenhombre/suikat/pkg/fico"
 	"github.com/nobuenhombre/suikat/pkg/ge"
-	"log"
-	"reflect"
 )
+
+var log = colorog.NewColoredLog(true, dates.DateTimeFormatDashYYYYMMDDHHmmss)
 
 func main() {
 	keysPath := "keys/old/"
@@ -31,7 +36,7 @@ func main() {
 		log.Fatalf("CLI config error [%v]", err)
 	}
 
-	log.Printf("config = %#v", cfg)
+	log.Infoln("config = %#v", cfg)
 
 	// 2. Загружаем Приватный ключ из файла
 	//-------------------------------------
@@ -47,7 +52,7 @@ func main() {
 		log.Fatal(ge.Pin(err))
 	}
 
-	log.Printf("gost3410PrivateKey = %#v, \n gost3410PublicKey = %#v", gost3410PrivateKey, gost3410PublicKey)
+	log.Messagef("gost3410PrivateKey = %#v, \n gost3410PublicKey = %#v", gost3410PrivateKey, gost3410PublicKey)
 
 	// 4. Загружаем Публичный ключ из Файла который есть на диске
 	//-----------------------------------------------------------
@@ -61,9 +66,10 @@ func main() {
 		log.Fatal(ge.Pin(err))
 	}
 
-	log.Printf("gost3410PublicKey = %#v \n containerGostPublicKey = %#v", gost3410PublicKey, gost3410PublicKeyCertificate)
-
-	if !reflect.DeepEqual(gost3410PublicKey, gost3410PublicKeyCertificate) {
+	if reflect.DeepEqual(gost3410PublicKey, gost3410PublicKeyCertificate) {
+		log.Successln("Loaded and Generated Public Keys Identical")
+		log.Messagef("gost3410PublicKey = %#v \n containerGostPublicKey = %#v", gost3410PublicKey, gost3410PublicKeyCertificate)
+	} else {
 		log.Fatalln("Public key Restored from Private key (private.key.pem) - HAVE difference with Public key Loaded from public.key.pem")
 	}
 
@@ -74,7 +80,7 @@ func main() {
 		log.Fatal(ge.Pin(err))
 	}
 
-	log.Println(message)
+	log.Messageln(message)
 
 	//notBefore := time.Date(2021, time.September, 1, 0, 0, 0, 0, dates.GetSamaraLocation())
 	//notAfter := time.Date(2022, time.January, 1, 0, 0, 0, 0, dates.GetSamaraLocation())
@@ -103,6 +109,18 @@ func main() {
 		log.Fatal(ge.Pin(err))
 	}
 
+	// 7. Проверяем соответствие Подписи и Дайджеста при помощи Публичного ключа
+	isValidSignDigest, err := gost3410PublicKeyCertificate.VerifyDigest(digest, signDigest)
+	if err != nil {
+		log.Fatal(ge.Pin(err))
+	}
+
+	if isValidSignDigest {
+		log.Successln("signature digest VALID")
+	} else {
+		log.Fatal("signature digest is INVALID")
+	}
+
 	// My signature is not validated by other implementations. What is wrong?
 	// - Try to reverse SIGNATURE (like sign[::-1] in Python).
 	// - Try to swap SIGNATURE halves (sign[len(sign)/2:] + sign[:len(sign)/2]).
@@ -120,29 +138,51 @@ func main() {
 	//
 	// It is GOST: do you expect serialization unification?!
 
-	// 7. Проверяем соответствие Подписи и Дайджеста при помощи Публичного ключа
-	isValidSignDigest, err := gost3410PublicKeyCertificate.VerifyDigest(digest, signDigest)
-	if err != nil {
-		log.Fatal(ge.Pin(err))
-	}
-
-	if !isValidSignDigest {
-		log.Fatal("signature digest is invalid")
-	}
-
 	// 7. Пробуем сравнить подписи message и signDigest
 
 	//gost3410PrivateKey.
 	//
 	//
-	//isValidSignDigestCMS, err := gost3410PublicKeyCertificate.VerifyDigest(digest, message.GetEncryptedDigest())
-	//if err != nil {
-	//	log.Fatal(ge.Pin(err))
-	//}
-	//
-	//if !isValidSignDigestCMS {
-	//	log.Fatal("signature digest is invalid CMS")
-	//}
+
+	// direct digest
+	isValidSignDigestCMS, err := gost3410PublicKeyCertificate.VerifyDigest(digest, message.GetEncryptedDigest())
+	if err != nil {
+		log.Fatal(ge.Pin(err))
+	}
+
+	if isValidSignDigestCMS {
+		log.Successln("signature digest is VALID CMS")
+	} else {
+		log.Errorln("signature digest is invalid CMS")
+	}
+
+	// reverted digest
+	revertedDigest := chunks.ReverseFullBytes(digest)
+
+	isValidSignRevertedDigestCMS, err := gost3410PublicKeyCertificate.VerifyDigest(revertedDigest, message.GetEncryptedDigest())
+	if err != nil {
+		log.Fatal(ge.Pin(err))
+	}
+
+	if isValidSignRevertedDigestCMS {
+		log.Successln("signature REVERTED digest is VALID CMS")
+	} else {
+		log.Fatalln("signature REVERTED digest is invalid CMS")
+	}
+
+	// swapped digest
+	swappedDigest, _ := chunks.SwapHalfBytes(digest)
+
+	isValidSignSwappedDigestCMS, err := gost3410PublicKeyCertificate.VerifyDigest(swappedDigest, message.GetEncryptedDigest())
+	if err != nil {
+		log.Fatal(ge.Pin(err))
+	}
+
+	if isValidSignSwappedDigestCMS {
+		log.Successln("signature SWAPPED digest is VALID CMS")
+	} else {
+		log.Errorln("signature SWAPPED digest is invalid CMS")
+	}
 
 	signPKCS7, err := pkcs7gost.SignAndDetach(sourceMessage, certificate[0], gost3410PrivateKey)
 	if err != nil {

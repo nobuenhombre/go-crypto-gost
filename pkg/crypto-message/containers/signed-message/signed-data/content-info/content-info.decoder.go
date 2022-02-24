@@ -2,6 +2,7 @@ package contentInfo
 
 import (
 	"encoding/asn1"
+
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 

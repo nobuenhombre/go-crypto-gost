@@ -3,11 +3,14 @@ package publicKeyInfo
 import (
 	"crypto/x509/pkix"
 	"encoding/asn1"
+
+	publicKeyAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
+
+	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/curves"
 	hashOid "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/hash"
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/pem-format"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/gost3410"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 	"golang.org/x/crypto/cryptobyte"
@@ -27,15 +30,15 @@ type algorithmParam struct {
 	Digest asn1.ObjectIdentifier
 }
 
-func (pki *PublicKeyInfo) GetAlgorithm() (algorithm.PublicKeyAlgorithm, error) {
+func (pki *PublicKeyInfo) GetAlgorithm() (publicKeyAlgorithm.PublicKeyAlgorithm, error) {
 	oidId, err := oids.GetID(pki.Algorithm.Algorithm)
 	if err != nil {
-		return algorithm.UnknownAlgorithm, ge.Pin(err)
+		return publicKeyAlgorithm.UnknownAlgorithm, ge.Pin(err)
 	}
 
-	algo, err := algorithm.GetPublicKeyAlgorithm(oidId)
+	algo, err := publicKeyAlgorithm.Get(oidId)
 	if err != nil {
-		return algorithm.UnknownAlgorithm, ge.Pin(err)
+		return publicKeyAlgorithm.UnknownAlgorithm, ge.Pin(err)
 	}
 
 	return algo, nil
@@ -75,7 +78,7 @@ func (pki *PublicKeyInfo) GetPublicKey() (*gost3410.PublicKey, error) {
 	asn1Data := pki.PublicKey.RightAlign()
 
 	switch algo {
-	case algorithm.GostR34102001, algorithm.GostR34102012256, algorithm.GostR34102012512:
+	case publicKeyAlgorithm.GostR34102001, publicKeyAlgorithm.GostR34102012256, publicKeyAlgorithm.GostR34102012512:
 		var pubRaw []byte
 
 		s := cryptobyte.String(asn1Data)
@@ -83,7 +86,7 @@ func (pki *PublicKeyInfo) GetPublicKey() (*gost3410.PublicKey, error) {
 			return nil, ge.New("x509: can not decode GOST public key")
 		}
 
-		curve, err := curves.NewCurveFromDER(pki.Algorithm.Parameters.FullBytes)
+		curve, err := curves.DecodeDER(pki.Algorithm.Parameters.FullBytes)
 		if err != nil {
 			return nil, ge.Pin(err)
 		}

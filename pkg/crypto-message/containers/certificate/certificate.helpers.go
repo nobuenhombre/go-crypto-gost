@@ -4,12 +4,17 @@ import (
 	"bytes"
 	"crypto/rsa"
 	"encoding/asn1"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm"
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/pem-format"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/gost3410"
-	"github.com/nobuenhombre/suikat/pkg/ge"
 	"log"
 	"math/big"
+
+	publicKeyAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
+	signatureAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/signature-algorithm"
+
+	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm"
+	"github.com/nobuenhombre/go-crypto-gost/pkg/gost3410"
+	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
 func IsCertificatesEqual(a, b *Certificate) bool {
@@ -79,7 +84,7 @@ func checkSignatureGostR34102012512(signature, digest, pubKey []byte) error {
 }
 
 // checkSignatureRSA - see. https://golang.org/src/crypto/x509/x509.go?s=27969:28036#L800
-func checkSignatureRSA(algo *algorithm.SignatureAlgorithm, signature, digest, pubKey []byte) error {
+func checkSignatureRSA(algo *signatureAlgorithm.SignatureAlgorithm, signature, digest, pubKey []byte) error {
 	p := new(PKCS1PublicKey)
 
 	rest, err := asn1.Unmarshal(pubKey, p)
@@ -103,9 +108,9 @@ func checkSignatureRSA(algo *algorithm.SignatureAlgorithm, signature, digest, pu
 // checkSignature - verifies signature over provided public key and digest/signature algorithm pair
 // ToDo create and store PublicKey in certificate during parse state
 // ToDo concern algorithm parameters for GOST cryptography . adjust PublicKey ParamSet according to them
-func checkSignature(algo *algorithm.SignatureAlgorithm, signedSource, signature, pubKey []byte) error {
+func checkSignature(algo *signatureAlgorithm.SignatureAlgorithm, signedSource, signature, pubKey []byte) error {
 
-	if algo == nil || !algo.Hash.Actual() || !algo.PublicKeyAlgorithm.Actual() {
+	if algo == nil || !algo.Hash.IsActual() || !algo.PublicKeyAlgorithm.IsActual() {
 		return ge.Pin(&algorithm.UnsupportedAlgorithmError{})
 	}
 
@@ -116,19 +121,19 @@ func checkSignature(algo *algorithm.SignatureAlgorithm, signedSource, signature,
 	var err error
 
 	switch algo.PublicKeyAlgorithm {
-	case algorithm.GostR34102001, algorithm.GostR34102012256:
+	case publicKeyAlgorithm.GostR34102001, publicKeyAlgorithm.GostR34102012256:
 		err = checkSignatureGostR34102001(signature, digest, pubKey)
 		if err != nil {
 			return ge.Pin(err)
 		}
 
-	case algorithm.GostR34102012512:
+	case publicKeyAlgorithm.GostR34102012512:
 		err = checkSignatureGostR34102012512(signature, digest, pubKey)
 		if err != nil {
 			return ge.Pin(err)
 		}
 
-	case algorithm.RSA:
+	case publicKeyAlgorithm.RSA:
 		err = checkSignatureRSA(algo, signature, digest, pubKey)
 		if err != nil {
 			return ge.Pin(err)

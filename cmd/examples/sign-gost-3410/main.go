@@ -6,10 +6,11 @@ package main
 
 import (
 	"crypto/rand"
+	"log"
+
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/curves"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/hash"
-	"log"
 
 	signGost3410 "github.com/nobuenhombre/go-crypto-gost/internal/app/sign-gost-3410"
 	"github.com/nobuenhombre/suikat/pkg/ge"

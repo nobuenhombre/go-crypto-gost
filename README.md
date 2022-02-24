@@ -210,3 +210,4 @@ http://gostcrypto.com/tool-asn1.html
  
 LITERATURE
 https://www.altlinux.org/OSS-GOST-Crypto
+//GOST-R  https://www.cryptopro.ru/sites/default/files/products/tls/tk26iok.pdf

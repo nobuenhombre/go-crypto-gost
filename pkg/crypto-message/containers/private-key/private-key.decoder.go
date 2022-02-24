@@ -3,10 +3,13 @@ package privateKey
 import (
 	"encoding/asn1"
 	"encoding/pem"
+
+	publicKeyAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
+
+	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/curves"
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/pem-format"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/gost3410"
 	"github.com/nobuenhombre/suikat/pkg/fico"
 	"github.com/nobuenhombre/suikat/pkg/ge"
@@ -27,13 +30,13 @@ func NewPrivateKeyFromDER(derData []byte) (key *gost3410.PrivateKey, err error) 
 		return nil, ge.Pin(err)
 	}
 
-	algo, err := algorithm.GetPublicKeyAlgorithm(oidId)
+	algo, err := publicKeyAlgorithm.Get(oidId)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
 	switch algo {
-	case algorithm.GostR34102001, algorithm.GostR34102012256, algorithm.GostR34102012512:
+	case publicKeyAlgorithm.GostR34102001, publicKeyAlgorithm.GostR34102012256, publicKeyAlgorithm.GostR34102012512:
 		var privateKeyRaw []byte
 
 		if len(privateKey.PrivateKey) == 34 {
@@ -45,7 +48,7 @@ func NewPrivateKeyFromDER(derData []byte) (key *gost3410.PrivateKey, err error) 
 			privateKeyRaw = privateKey.PrivateKey
 		}
 
-		curve, err := curves.NewCurveFromDER(privateKey.Algorithm.Parameters.FullBytes)
+		curve, err := curves.DecodeDER(privateKey.Algorithm.Parameters.FullBytes)
 		if err != nil {
 			return nil, ge.Pin(err)
 		}

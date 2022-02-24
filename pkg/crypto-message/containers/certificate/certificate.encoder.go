@@ -4,9 +4,11 @@ import (
 	"bytes"
 	"encoding/asn1"
 	"encoding/pem"
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/pem-format"
-	"github.com/nobuenhombre/suikat/pkg/ge"
 	"log"
+
+	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+
+	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
 func (c *Certificate) EncodeToDER() ([]byte, error) {

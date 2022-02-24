@@ -9,9 +9,10 @@ package tbsCertificate
 import (
 	"crypto/x509/pkix"
 	"encoding/asn1"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate/tbs-certificate/public-key-info"
 	"math/big"
 	"time"
+
+	publicKeyInfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate/tbs-certificate/public-key-info"
 )
 
 type Validity struct {

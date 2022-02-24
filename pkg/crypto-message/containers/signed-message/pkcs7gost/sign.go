@@ -6,7 +6,9 @@ import (
 	"crypto/x509/pkix"
 	"encoding/asn1"
 	"encoding/pem"
-	"fmt"
+
+	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate"
 	signedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data"
 	contentInfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/content-info"
@@ -14,11 +16,9 @@ import (
 	signerInfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/signer-info"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
 	hashOid "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/hash"
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/pem-format"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/gost3410"
+	"github.com/nobuenhombre/suikat/pkg/chunks"
 	"github.com/nobuenhombre/suikat/pkg/ge"
-	"log"
-	"time"
 )
 
 // SignedData is an opaque data structure for creating signed data payloads
@@ -80,12 +80,13 @@ func marshalAttributes(attrs []signerInfo.Attribute) ([]byte, error) {
 		A []signerInfo.Attribute `asn1:"set"`
 	}{A: attrs})
 	if err != nil {
-		return nil, err
+		return nil, ge.Pin(err)
 	}
 
 	// Remove the leading sequence octets
 	var raw asn1.RawValue
 	asn1.Unmarshal(encodedAttributes, &raw)
+
 	return raw.Bytes, nil
 }
 
@@ -131,8 +132,9 @@ func (sd *SignedData) AddSignerChain(ee *certificate.Certificate, pkey *gost3410
 	} else {
 		err := verifyPartialChain(ee, parents)
 		if err != nil {
-			return err
+			return ge.Pin(err)
 		}
+
 		// the first parent is the issuer
 		ias.IssuerName = asn1.RawValue{FullBytes: parents[0].TBSCertificate.Subject.FullBytes} // RawSubject
 	}
@@ -159,57 +161,62 @@ func (sd *SignedData) AddSignerChain(ee *certificate.Certificate, pkey *gost3410
 
 	encryptionOid, err := oids.Get(digestOidId)
 	if err != nil {
-		return err
+		return ge.Pin(err)
 	}
 
-	oidAttributeContentType, err := oids.Get(oids.AttributeContentType)
-	if err != nil {
-		return err
-	}
+	//oidAttributeContentType, err := oids.Get(oids.AttributeContentType)
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//oidAttributeMessageDigest, err := oids.Get(oids.AttributeMessageDigest)
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//oidAttributeSigningTime, err := oids.Get(oids.AttributeSigningTime)
+	//if err != nil {
+	//	return err
+	//}
 
-	oidAttributeMessageDigest, err := oids.Get(oids.AttributeMessageDigest)
-	if err != nil {
-		return err
-	}
+	//attrs := &signerInfo.Attributes{}
+	//attrs.Add(oidAttributeContentType, sd.sd.ContentInfo.ContentType)
+	//attrs.Add(oidAttributeMessageDigest, sd.messageDigest)
+	//attrs.Add(oidAttributeSigningTime, time.Now().UTC())
+	//
+	//for _, attr := range config.ExtraSignedAttributes {
+	//	attrs.Add(attr.Type, attr.Value)
+	//}
 
-	oidAttributeSigningTime, err := oids.Get(oids.AttributeSigningTime)
-	if err != nil {
-		return err
-	}
+	//finalAttrs, err := attrs.ForMarshalling()
+	//if err != nil {
+	//	return err
+	//}
 
-	attrs := &signerInfo.Attributes{}
-	attrs.Add(oidAttributeContentType, sd.sd.ContentInfo.ContentType)
-	attrs.Add(oidAttributeMessageDigest, sd.messageDigest)
-	attrs.Add(oidAttributeSigningTime, time.Now().UTC())
+	//unsignedAttrs := &signerInfo.Attributes{}
+	//for _, attr := range config.ExtraUnsignedAttributes {
+	//	unsignedAttrs.Add(attr.Type, attr.Value)
+	//}
 
-	for _, attr := range config.ExtraSignedAttributes {
-		attrs.Add(attr.Type, attr.Value)
-	}
-
-	finalAttrs, err := attrs.ForMarshalling()
-	if err != nil {
-		return err
-	}
-
-	unsignedAttrs := &signerInfo.Attributes{}
-	for _, attr := range config.ExtraUnsignedAttributes {
-		unsignedAttrs.Add(attr.Type, attr.Value)
-	}
-
-	finalUnsignedAttrs, err := unsignedAttrs.ForMarshalling()
-	if err != nil {
-		return err
-	}
+	//finalUnsignedAttrs, err := unsignedAttrs.ForMarshalling()
+	//if err != nil {
+	//	return err
+	//}
 
 	// create signature of signed attributes
-	signature, err := signAttributes(finalAttrs, pkey, hash)
+	//signature, err := signAttributes(finalAttrs, pkey, hash)
+	//if err != nil {
+	//	return err
+	//}
+
+	signature, err := signRevertedDigest(sd.messageDigest, pkey, hash)
 	if err != nil {
-		return err
+		return ge.Pin(err)
 	}
 
 	signer := signerInfo.SignerInfo{
-		AuthenticatedAttributes:   finalAttrs,
-		UnauthenticatedAttributes: finalUnsignedAttrs,
+		AuthenticatedAttributes:   nil, //finalAttrs,
+		UnauthenticatedAttributes: nil, //finalUnsignedAttrs,
 		DigestAlgorithm:           pkix.AlgorithmIdentifier{Algorithm: sd.digestOid},
 		DigestEncryptionAlgorithm: pkix.AlgorithmIdentifier{Algorithm: encryptionOid},
 		IssuerAndSerialNumber:     ias,
@@ -245,7 +252,7 @@ func (sd *SignedData) SignWithoutAttr(ee *certificate.Certificate, pkey *gost341
 
 	hash, err := hashOid.Get(hashOidId)
 	if err != nil {
-		return err
+		return ge.Pin(err)
 	}
 
 	h := hash.New()
@@ -254,7 +261,7 @@ func (sd *SignedData) SignWithoutAttr(ee *certificate.Certificate, pkey *gost341
 
 	signature, err = pkey.Sign(rand.Reader, sd.messageDigest, nil)
 	if err != nil {
-		return err
+		return ge.Pin(err)
 	}
 
 	var ias signerInfo.IssuerAndSerial
@@ -267,7 +274,7 @@ func (sd *SignedData) SignWithoutAttr(ee *certificate.Certificate, pkey *gost341
 		// infer it from the digest algorithm
 		sd.encryptionOid, err = oids.Get(hashOidId)
 		if err != nil {
-			return err
+			return ge.Pin(err)
 		}
 	}
 
@@ -315,12 +322,12 @@ func (sd *SignedData) Finish() ([]byte, error) {
 
 	inner, err := asn1.Marshal(sd.sd)
 	if err != nil {
-		return nil, err
+		return nil, ge.Pin(err)
 	}
 
 	oidSignedData, err := oids.Get(oids.SignedData)
 	if err != nil {
-		return nil, err
+		return nil, ge.Pin(err)
 	}
 
 	outer := contentInfo.ContentInfo{
@@ -353,12 +360,12 @@ func (sd *SignedData) RemoveUnauthenticatedAttributes() {
 func verifyPartialChain(cert *certificate.Certificate, parents []*certificate.Certificate) error {
 	//var x x509.Certificate
 	if len(parents) == 0 {
-		return fmt.Errorf("pkcs7: zero parents provided to verify the signature of certificate") // %q , cert.Subject.CommonName)
+		return ge.New("pkcs7: zero parents provided to verify the signature of certificate") // %q , cert.Subject.CommonName)
 	}
 
 	err := cert.CheckSignatureFrom(parents[0])
 	if err != nil {
-		return fmt.Errorf("pkcs7: certificate signature from parent is invalid: %v", err)
+		return ge.Pin(err)
 	}
 
 	if len(parents) == 1 {
@@ -383,6 +390,16 @@ func signAttributes(attrs []signerInfo.Attribute, key *gost3410.PrivateKey, dige
 	return key.Sign(rand.Reader, hash, nil)
 }
 
+func signRevertedDigest(digest []byte, key *gost3410.PrivateKey, digestAlg hashOid.Function) ([]byte, error) {
+	revertedDigest := chunks.ReverseFullBytes(digest)
+
+	//h := digestAlg.New()
+	//h.Write(revertedDigest)
+	//hash := h.Sum(nil)
+
+	return key.Sign(rand.Reader, revertedDigest, nil)
+}
+
 // concats and wraps the certificates in the RawValue structure
 func marshalCertificates(certs []*certificate.Certificate) rawCertificates.RawCertificates {
 	var buf bytes.Buffer
@@ -404,7 +421,7 @@ func marshalCertificateBytes(certs []byte) (rawCertificates.RawCertificates, err
 
 	b, err := asn1.Marshal(val)
 	if err != nil {
-		return rawCertificates.RawCertificates{}, err
+		return rawCertificates.RawCertificates{}, ge.Pin(err)
 	}
 
 	return rawCertificates.RawCertificates{Raw: b}, nil
@@ -413,11 +430,11 @@ func marshalCertificateBytes(certs []byte) (rawCertificates.RawCertificates, err
 func SignAndDetach(content []byte, cert *certificate.Certificate, privateKey *gost3410.PrivateKey) (signed []byte, err error) {
 	toBeSigned, err := NewSignedData(content)
 	if err != nil {
-		return nil, fmt.Errorf("Cannot initialize signed data: %s", err)
+		return nil, ge.Pin(err)
 	}
 
 	if err = toBeSigned.AddSigner(cert, privateKey, SignerInfoConfig{}); err != nil {
-		return nil, fmt.Errorf("Cannot add signer: %s", err)
+		return nil, ge.Pin(err)
 	}
 
 	// Detach signature, omit if you want an embedded signature
@@ -425,14 +442,14 @@ func SignAndDetach(content []byte, cert *certificate.Certificate, privateKey *go
 
 	signed, err = toBeSigned.Finish()
 	if err != nil {
-		return nil, fmt.Errorf("Cannot finish signing data: %s", err)
+		return nil, ge.Pin(err)
 	}
 
 	var buffer bytes.Buffer
 
 	err = pem.Encode(&buffer, &pem.Block{Type: pemFormat.Default, Bytes: signed})
 	if err != nil {
-		log.Fatal(err)
+		return nil, ge.Pin(err)
 	}
 
 	return buffer.Bytes(), nil
@@ -455,5 +472,5 @@ func SignAndDetach(content []byte, cert *certificate.Certificate, privateKey *go
 	//	return
 	//}
 
-	return signed, nil
+	//return signed, nil
 }

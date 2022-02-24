@@ -2,7 +2,9 @@ package publicKeyInfo
 
 import (
 	"encoding/asn1"
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/pem-format"
+
+	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 

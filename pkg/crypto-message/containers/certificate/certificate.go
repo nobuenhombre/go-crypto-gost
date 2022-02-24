@@ -3,15 +3,18 @@ package certificate
 import (
 	"crypto/x509/pkix"
 	"encoding/asn1"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate/tbs-certificate"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm"
-	"github.com/nobuenhombre/suikat/pkg/ge"
 	"time"
+
+	publicKeyAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
+	signatureAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/signature-algorithm"
+
+	tbsCertificate "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate/tbs-certificate"
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
+	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
 type Service interface {
-	CheckSignature(algo *algorithm.SignatureAlgorithm, signedSource, signature []byte) (err error)
+	CheckSignature(algo *signatureAlgorithm.SignatureAlgorithm, signedSource, signature []byte) (err error)
 	CheckSignatureFrom(parent *Certificate) error
 	IsValidOnDate(date time.Time) bool
 	EncodeToDER() ([]byte, error)
@@ -27,14 +30,14 @@ type Certificate struct {
 }
 
 // CheckSignature - Verifies signature over certificate public key
-func (c *Certificate) CheckSignature(algo *algorithm.SignatureAlgorithm, signedSource, signature []byte) (err error) {
+func (c *Certificate) CheckSignature(algo *signatureAlgorithm.SignatureAlgorithm, signedSource, signature []byte) (err error) {
 	var pubKey []byte
 
 	if algo == nil {
 		return ge.New("empty algorithm")
 	}
 
-	if algo.PublicKeyAlgorithm == algorithm.RSA {
+	if algo.PublicKeyAlgorithm == publicKeyAlgorithm.RSA {
 		pubKey = c.TBSCertificate.PublicKeyInfo.PublicKey.RightAlign()
 	} else {
 		var v asn1.RawValue
@@ -69,7 +72,7 @@ func (c *Certificate) CheckSignatureFrom(parent *Certificate) error {
 		return ge.Pin(err)
 	}
 
-	algo, err := algorithm.GetSignatureAlgorithm(oidId)
+	algo, err := signatureAlgorithm.Get(oidId)
 	if err != nil {
 		return ge.Pin(err)
 	}

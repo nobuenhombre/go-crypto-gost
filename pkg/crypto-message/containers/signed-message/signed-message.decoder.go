@@ -2,11 +2,13 @@ package signedMessage
 
 import (
 	"encoding/pem"
+
+	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+
 	signedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/content-info"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/unsigned-data"
+	contentInfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/content-info"
+	unsignedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/unsigned-data"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/pem-format"
 	"github.com/nobuenhombre/suikat/pkg/fico"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 	"github.com/nobuenhombre/suikat/pkg/inslice"

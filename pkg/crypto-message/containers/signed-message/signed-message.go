@@ -19,12 +19,13 @@ package signedMessage
 
 import (
 	"bytes"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/signer-info"
-	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/unsigned-data"
 	"math/big"
 	"time"
+
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate"
+	signedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data"
+	signerInfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/signer-info"
+	unsignedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/unsigned-data"
 
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
@@ -209,7 +210,7 @@ func (cms *CMS) FindCertificateSigner(caList []*certificate.Certificate) (*certi
 //			return ge.Pin(err)
 //		}
 //
-//		if !digestHashFunc.Actual() {
+//		if !digestHashFunc.IsActual() {
 //			return ge.Pin(&algorithm.UnsupportedAlgorithmError{})
 //		}
 //
