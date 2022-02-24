@@ -4,9 +4,9 @@ import (
 	"crypto/x509/pkix"
 )
 
-type PKCS8 struct {
+// Container - asn.1 Private Key structure
+type Container struct {
 	Version    int
 	Algorithm  pkix.AlgorithmIdentifier
 	PrivateKey []byte
-	// optional attributes omitted.
 }

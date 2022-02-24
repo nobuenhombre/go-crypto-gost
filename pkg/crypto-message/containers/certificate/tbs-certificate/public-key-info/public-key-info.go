@@ -1,3 +1,13 @@
+// Package publicKeyInfo provides
+// en: structure of the public key representation in the asn.1, methods for this structure
+//     and the decoding function from DER
+// ru: структуру представления публичного ключа в asn.1, методы для этой структуры
+//     и функцию декодирования из DER
+//
+// asn.1 - Abstract Syntax Notation One (ASN. 1) is a standard interface description language
+// for defining data structures that can be serialized and deserialized in a cross-platform way.
+// It is broadly used in telecommunications and computer networking, and especially in cryptography.
+// https://en.wikipedia.org/wiki/ASN.1
 package publicKeyInfo
 
 import (
@@ -17,9 +27,9 @@ import (
 	cryptobyteAsn1 "golang.org/x/crypto/cryptobyte/asn1"
 )
 
-// PublicKeyInfo - asn.1 Certificate PublicKey structure
+// Container - asn.1 Certificate PublicKey structure
 // RFC5280
-type PublicKeyInfo struct {
+type Container struct {
 	Raw       asn1.RawContent
 	Algorithm pkix.AlgorithmIdentifier
 	PublicKey asn1.BitString
@@ -30,7 +40,7 @@ type algorithmParam struct {
 	Digest asn1.ObjectIdentifier
 }
 
-func (pki *PublicKeyInfo) GetAlgorithm() (publicKeyAlgorithm.PublicKeyAlgorithm, error) {
+func (pki *Container) GetAlgorithm() (publicKeyAlgorithm.PublicKeyAlgorithm, error) {
 	oidId, err := oids.GetID(pki.Algorithm.Algorithm)
 	if err != nil {
 		return publicKeyAlgorithm.UnknownAlgorithm, ge.Pin(err)
@@ -44,7 +54,7 @@ func (pki *PublicKeyInfo) GetAlgorithm() (publicKeyAlgorithm.PublicKeyAlgorithm,
 	return algo, nil
 }
 
-func (pki *PublicKeyInfo) GetHashFunction() (hashOid.Function, error) {
+func (pki *Container) GetHashFunction() (hashOid.Function, error) {
 	var params algorithmParam
 
 	rest, err := asn1.Unmarshal(pki.Algorithm.Parameters.FullBytes, &params)
@@ -69,7 +79,7 @@ func (pki *PublicKeyInfo) GetHashFunction() (hashOid.Function, error) {
 	return hashFunc, nil
 }
 
-func (pki *PublicKeyInfo) GetPublicKey() (*gost3410.PublicKey, error) {
+func (pki *Container) GetPublicKey() (*gost3410.PublicKey, error) {
 	algo, err := pki.GetAlgorithm()
 	if err != nil {
 		return nil, ge.Pin(err)

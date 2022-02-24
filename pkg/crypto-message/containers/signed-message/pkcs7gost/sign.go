@@ -7,8 +7,7 @@ import (
 	"encoding/asn1"
 	"encoding/pem"
 
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
-
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate"
 	signedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data"
 	contentInfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/content-info"
@@ -23,8 +22,8 @@ import (
 
 // SignedData is an opaque data structure for creating signed data payloads
 type SignedData struct {
-	sd                  signedData.SignedData
-	certs               []*certificate.Certificate
+	sd                  signedData.Container
+	certs               []*certificate.Container
 	data, messageDigest []byte
 	digestOid           asn1.ObjectIdentifier
 	encryptionOid       asn1.ObjectIdentifier
@@ -44,12 +43,12 @@ func NewSignedData(data []byte) (*SignedData, error) {
 		return nil, ge.Pin(err)
 	}
 
-	ci := contentInfo.ContentInfo{
+	ci := contentInfo.Container{
 		ContentType: oidData,
 		Content:     asn1.RawValue{Class: 2, Tag: 0, Bytes: content, IsCompound: true},
 	}
 
-	sd := signedData.SignedData{
+	sd := signedData.Container{
 		ContentInfo: ci,
 		Version:     1,
 	}
@@ -105,8 +104,8 @@ func (sd *SignedData) SetEncryptionAlgorithm(d asn1.ObjectIdentifier) {
 }
 
 // AddSigner is a wrapper around AddSignerChain() that adds a signer without any parent.
-func (sd *SignedData) AddSigner(ee *certificate.Certificate, pkey *gost3410.PrivateKey, config SignerInfoConfig) error {
-	var parents []*certificate.Certificate
+func (sd *SignedData) AddSigner(ee *certificate.Container, pkey *gost3410.PrivateKey, config SignerInfoConfig) error {
+	var parents []*certificate.Container
 	return sd.AddSignerChain(ee, pkey, parents, config)
 }
 
@@ -118,7 +117,7 @@ func (sd *SignedData) AddSigner(ee *certificate.Certificate, pkey *gost3410.Priv
 //
 // The signature algorithm used to hash the data is the one of the end-entity
 // certificate.
-func (sd *SignedData) AddSignerChain(ee *certificate.Certificate, pkey *gost3410.PrivateKey, parents []*certificate.Certificate, config SignerInfoConfig) error {
+func (sd *SignedData) AddSignerChain(ee *certificate.Container, pkey *gost3410.PrivateKey, parents []*certificate.Container, config SignerInfoConfig) error {
 	// Following RFC 2315, 9.2 SignerInfo type, the distinguished name of
 	// the issuer of the end-entity signer is stored in the issuerAndSerialNumber
 	// section of the SignedData.SignerInfo, alongside the serial number of
@@ -130,7 +129,7 @@ func (sd *SignedData) AddSignerChain(ee *certificate.Certificate, pkey *gost3410
 		// no parent, the issuer is the end-entity cert itself
 		ias.IssuerName = asn1.RawValue{FullBytes: ee.TBSCertificate.Issuer.FullBytes} // RawIssuer
 	} else {
-		err := verifyPartialChain(ee, parents)
+		err := certificate.VerifyPartialChain(ee, parents)
 		if err != nil {
 			return ge.Pin(err)
 		}
@@ -180,7 +179,7 @@ func (sd *SignedData) AddSignerChain(ee *certificate.Certificate, pkey *gost3410
 	//}
 
 	//attrs := &signerInfo.Attributes{}
-	//attrs.Add(oidAttributeContentType, sd.sd.ContentInfo.ContentType)
+	//attrs.Add(oidAttributeContentType, sd.sd.Container.ContentType)
 	//attrs.Add(oidAttributeMessageDigest, sd.messageDigest)
 	//attrs.Add(oidAttributeSigningTime, time.Now().UTC())
 	//
@@ -214,7 +213,7 @@ func (sd *SignedData) AddSignerChain(ee *certificate.Certificate, pkey *gost3410
 		return ge.Pin(err)
 	}
 
-	signer := signerInfo.SignerInfo{
+	signer := signerInfo.Container{
 		AuthenticatedAttributes:   nil, //finalAttrs,
 		UnauthenticatedAttributes: nil, //finalUnsignedAttrs,
 		DigestAlgorithm:           pkix.AlgorithmIdentifier{Algorithm: sd.digestOid},
@@ -241,7 +240,7 @@ func (sd *SignedData) AddSignerChain(ee *certificate.Certificate, pkey *gost3410
 // This function is needed to sign old Android APKs, something you probably
 // shouldn't do unless you're maintaining backward compatibility for old
 // applications.
-func (sd *SignedData) SignWithoutAttr(ee *certificate.Certificate, pkey *gost3410.PrivateKey, config SignerInfoConfig) error {
+func (sd *SignedData) SignWithoutAttr(ee *certificate.Container, pkey *gost3410.PrivateKey, config SignerInfoConfig) error {
 	var signature []byte
 	sd.sd.DigestAlgorithmIdentifiers = append(sd.sd.DigestAlgorithmIdentifiers, pkix.AlgorithmIdentifier{Algorithm: sd.digestOid})
 
@@ -278,7 +277,7 @@ func (sd *SignedData) SignWithoutAttr(ee *certificate.Certificate, pkey *gost341
 		}
 	}
 
-	signer := signerInfo.SignerInfo{
+	signer := signerInfo.Container{
 		DigestAlgorithm:           pkix.AlgorithmIdentifier{Algorithm: sd.digestOid},
 		DigestEncryptionAlgorithm: pkix.AlgorithmIdentifier{Algorithm: sd.encryptionOid},
 		IssuerAndSerialNumber:     ias,
@@ -294,7 +293,7 @@ func (sd *SignedData) SignWithoutAttr(ee *certificate.Certificate, pkey *gost341
 }
 
 // AddCertificate adds the certificate to the payload. Useful for parent certificates
-func (sd *SignedData) AddCertificate(cert *certificate.Certificate) {
+func (sd *SignedData) AddCertificate(cert *certificate.Container) {
 	sd.certs = append(sd.certs, cert)
 }
 
@@ -306,19 +305,24 @@ func (sd *SignedData) Detach() error {
 		return ge.Pin(err)
 	}
 
-	sd.sd.ContentInfo = contentInfo.ContentInfo{ContentType: oidData}
+	sd.sd.ContentInfo = contentInfo.Container{ContentType: oidData}
 
 	return nil
 }
 
 // GetSignedData returns the private Signed Data
-func (sd *SignedData) GetSignedData() *signedData.SignedData {
+func (sd *SignedData) GetSignedData() *signedData.Container {
 	return &sd.sd
 }
 
 // Finish marshals the content and its signers
 func (sd *SignedData) Finish() ([]byte, error) {
-	sd.sd.RawCertificates = marshalCertificates(sd.certs)
+	rawCertificates, err := rawCertificates.DecodeCertificatesContainer(sd.certs)
+	if err != nil {
+		return nil, ge.Pin(err)
+	}
+
+	sd.sd.RawCertificates = *rawCertificates
 
 	inner, err := asn1.Marshal(sd.sd)
 	if err != nil {
@@ -330,7 +334,7 @@ func (sd *SignedData) Finish() ([]byte, error) {
 		return nil, ge.Pin(err)
 	}
 
-	outer := contentInfo.ContentInfo{
+	outer := contentInfo.Container{
 		ContentType: oidSignedData,
 		Content:     asn1.RawValue{Class: 2, Tag: 0, Bytes: inner, IsCompound: true},
 	}
@@ -351,29 +355,6 @@ func (sd *SignedData) RemoveUnauthenticatedAttributes() {
 	for i := range sd.sd.SignerInfos {
 		sd.sd.SignerInfos[i].UnauthenticatedAttributes = nil
 	}
-}
-
-// verifyPartialChain checks that a given cert is issued by the first parent in the list,
-// then continue down the path. It doesn't require the last parent to be a root CA,
-// or to be trusted in any truststore. It simply verifies that the chain provided, albeit
-// partial, makes sense.
-func verifyPartialChain(cert *certificate.Certificate, parents []*certificate.Certificate) error {
-	//var x x509.Certificate
-	if len(parents) == 0 {
-		return ge.New("pkcs7: zero parents provided to verify the signature of certificate") // %q , cert.Subject.CommonName)
-	}
-
-	err := cert.CheckSignatureFrom(parents[0])
-	if err != nil {
-		return ge.Pin(err)
-	}
-
-	if len(parents) == 1 {
-		// there is no more parent to check, return
-		return nil
-	}
-
-	return verifyPartialChain(parents[0], parents[1:])
 }
 
 // signs the DER encoded form of the attributes with the private key
@@ -400,34 +381,7 @@ func signRevertedDigest(digest []byte, key *gost3410.PrivateKey, digestAlg hashO
 	return key.Sign(rand.Reader, revertedDigest, nil)
 }
 
-// concats and wraps the certificates in the RawValue structure
-func marshalCertificates(certs []*certificate.Certificate) rawCertificates.RawCertificates {
-	var buf bytes.Buffer
-
-	for _, cert := range certs {
-		buf.Write(cert.Raw)
-	}
-
-	rawCerts, _ := marshalCertificateBytes(buf.Bytes())
-
-	return rawCerts
-}
-
-// Even though, the tag & length are stripped out during marshalling the
-// RawContent, we have to encode it into the RawContent. If its missing,
-// then `asn1.Marshal()` will strip out the certificate wrapper instead.
-func marshalCertificateBytes(certs []byte) (rawCertificates.RawCertificates, error) {
-	var val = asn1.RawValue{Bytes: certs, Class: 2, Tag: 0, IsCompound: true}
-
-	b, err := asn1.Marshal(val)
-	if err != nil {
-		return rawCertificates.RawCertificates{}, ge.Pin(err)
-	}
-
-	return rawCertificates.RawCertificates{Raw: b}, nil
-}
-
-func SignAndDetach(content []byte, cert *certificate.Certificate, privateKey *gost3410.PrivateKey) (signed []byte, err error) {
+func SignAndDetach(content []byte, cert *certificate.Container, privateKey *gost3410.PrivateKey) (signed []byte, err error) {
 	toBeSigned, err := NewSignedData(content)
 	if err != nil {
 		return nil, ge.Pin(err)
@@ -447,7 +401,7 @@ func SignAndDetach(content []byte, cert *certificate.Certificate, privateKey *go
 
 	var buffer bytes.Buffer
 
-	err = pem.Encode(&buffer, &pem.Block{Type: pemFormat.Default, Bytes: signed})
+	err = pem.Encode(&buffer, &pem.Block{Type: containers.Default, Bytes: signed})
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
@@ -471,6 +425,5 @@ func SignAndDetach(content []byte, cert *certificate.Certificate, privateKey *go
 	//	err = fmt.Errorf("Cannot verify our signed data: %s", err)
 	//	return
 	//}
-
 	//return signed, nil
 }

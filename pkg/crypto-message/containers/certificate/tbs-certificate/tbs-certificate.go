@@ -1,9 +1,19 @@
-// TBSCertificate (TBS подразумевает To-Be-Signed) — это основное поле сертификата,
+// Package tbsCertificate provides
+// en: structure of the Container representation in the asn.1, methods for this structure
+//     and the decoding function from DER
+// ru: структуру представления Container в asn.1, методы для этой структуры
+//     и функцию декодирования из DER
+//
+// asn.1 - Abstract Syntax Notation One (ASN. 1) is a standard interface description language
+// for defining data structures that can be serialized and deserialized in a cross-platform way.
+// It is broadly used in telecommunications and computer networking, and especially in cryptography.
+// https://en.wikipedia.org/wiki/ASN.1
+//
+// Container (TBS подразумевает To-Be-Signed) — это основное поле сертификата,
 // представляет собой последовательность, содержащую информацию,
 // связанную с субъектом сертификата и центром сертификации, который его выдал.
-// TBSCertificate содержит данные, которые используются для вычисления подписи сертификата
+// Container содержит данные, которые используются для вычисления подписи сертификата
 // ( цифровой подписи ), которая кодируется с использованием особых правил кодирования ASN.1 ( DER ) X.690 .
-
 package tbsCertificate
 
 import (
@@ -19,15 +29,9 @@ type Validity struct {
 	NotBefore, NotAfter time.Time
 }
 
-//type publicKeyInfo struct {
-//	Raw       asn1.RawContent
-//	Algorithm pkix.AlgorithmIdentifier
-//	PublicKey asn1.BitString
-//}
-
-// TBSCertificate - asn.1 x509Certificate::TBSCertificate structure
+// Container - asn.1 x509Certificate::Container structure
 // RFC5280
-type TBSCertificate struct {
+type Container struct {
 	Raw                asn1.RawContent
 	Version            int `asn1:"optional,explicit,default:0,tag:0"`
 	SerialNumber       *big.Int
@@ -35,22 +39,8 @@ type TBSCertificate struct {
 	Issuer             asn1.RawValue
 	Validity           Validity
 	Subject            asn1.RawValue
-	PublicKeyInfo      publicKeyInfo.PublicKeyInfo
+	PublicKeyInfo      publicKeyInfo.Container
 	UniqueId           asn1.BitString   `asn1:"optional,tag:1"`
 	SubjectUniqueId    asn1.BitString   `asn1:"optional,tag:2"`
 	Extensions         []pkix.Extension `asn1:"optional,explicit,tag:3"`
 }
-
-//type tbsCertificate struct {
-//	Raw                asn1.RawContent
-//	Version            int `asn1:"optional,explicit,default:0,tag:0"`
-//	SerialNumber       *big.Int
-//	SignatureAlgorithm pkix.AlgorithmIdentifier
-//	Issuer             asn1.RawValue
-//	Validity           validity
-//	Subject            asn1.RawValue
-//	PublicKeyInfo      publicKeyInfo
-//	UniqueId           asn1.BitString   `asn1:"optional,tag:1"`
-//	SubjectUniqueId    asn1.BitString   `asn1:"optional,tag:2"`
-//	Extensions         []pkix.Extension `asn1:"optional,explicit,tag:3"`
-//}

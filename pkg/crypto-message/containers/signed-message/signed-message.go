@@ -33,27 +33,27 @@ import (
 type CryptographicMessage interface {
 	GetCertificateSerialNumber() *big.Int
 	IsValidOnDate(date time.Time) bool
-	FindCertificateSigner(caList []*certificate.Certificate) (*certificate.Certificate, error)
+	FindCertificateSigner(caList []*certificate.Container) (*certificate.Container, error)
 	//Verify(content []byte, notBefore, notAfter time.Time) error
 	GetEncryptedDigest() []byte
 	EncodeToDER() ([]byte, error)
 	EncodeToPEM() ([]byte, error)
 }
 
-// CMS represent Cryptographic Message Syntax (CMS)
+// Container represent Cryptographic Message Syntax (CMS)
 // with Signed-data Content Type - RFC5652
-type CMS struct {
-	Certificates []*certificate.Certificate
-	Content      *unsignedData.UnsignedData
-	SignedData   *signedData.SignedData
+type Container struct {
+	Certificates []*certificate.Container
+	Content      *unsignedData.Container
+	SignedData   *signedData.Container
 }
 
-func (cms *CMS) GetEncryptedDigest() []byte {
+func (cms *Container) GetEncryptedDigest() []byte {
 	return cms.SignedData.SignerInfos[0].EncryptedDigest
 }
 
 // GetCertificateSerialNumber - returns Signer first Certificate serial number.
-func (cms *CMS) GetCertificateSerialNumber() *big.Int {
+func (cms *Container) GetCertificateSerialNumber() *big.Int {
 	if len(cms.Certificates) == 0 {
 		return nil
 	}
@@ -62,7 +62,7 @@ func (cms *CMS) GetCertificateSerialNumber() *big.Int {
 }
 
 // getCertificateByIssuerAndSerial find certificate by Issuer byte sequence and Serial number
-func (cms *CMS) getCertificateByIssuerAndSerial(ias signerInfo.IssuerAndSerial) *certificate.Certificate {
+func (cms *Container) getCertificateByIssuerAndSerial(ias signerInfo.IssuerAndSerial) *certificate.Container {
 	for _, cert := range cms.Certificates {
 		isSerialMatch := cert.TBSCertificate.SerialNumber.Cmp(ias.SerialNumber) == 0
 		isIssuerMatch := bytes.Compare(cert.TBSCertificate.Issuer.FullBytes, ias.IssuerName.FullBytes) == 0
@@ -75,7 +75,7 @@ func (cms *CMS) getCertificateByIssuerAndSerial(ias signerInfo.IssuerAndSerial) 
 	return nil
 }
 
-func (cms *CMS) IsValidOnDate(date time.Time) bool {
+func (cms *Container) IsValidOnDate(date time.Time) bool {
 	for _, cert := range cms.Certificates {
 		isValid := cert.IsValidOnDate(date)
 		if !isValid {
@@ -87,8 +87,8 @@ func (cms *CMS) IsValidOnDate(date time.Time) bool {
 }
 
 // FindCertificateSigner find certificate signer
-func (cms *CMS) FindCertificateSigner(caList []*certificate.Certificate) (*certificate.Certificate, error) {
-	var signerCertificate *certificate.Certificate
+func (cms *Container) FindCertificateSigner(caList []*certificate.Container) (*certificate.Container, error) {
+	var signerCertificate *certificate.Container
 
 	signerCertificate = nil
 	for _, cert := range cms.Certificates {

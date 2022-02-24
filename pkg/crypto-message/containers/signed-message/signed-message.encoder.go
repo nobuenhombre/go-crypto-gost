@@ -1,11 +1,11 @@
 package signedMessage
 
-func (cms *CMS) EncodeToDER() ([]byte, error) {
+func (cms *Container) EncodeToDER() ([]byte, error) {
 	// todo - please release
 	return nil, nil
 }
 
-func (cms *CMS) EncodeToPEM() ([]byte, error) {
+func (cms *Container) EncodeToPEM() ([]byte, error) {
 	// todo - please release
 	return nil, nil
 }

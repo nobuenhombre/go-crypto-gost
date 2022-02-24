@@ -16,7 +16,7 @@ func main() {
 		log.Fatal(ge.Pin(err))
 	}
 
-	caList, err := certificate.NewCertificatesFromPEM(certPEM)
+	caList, err := certificate.DecodePEM(certPEM)
 	if err != nil {
 		log.Fatal(ge.Pin(err))
 	}

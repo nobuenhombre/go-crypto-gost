@@ -4,22 +4,24 @@ import (
 	"encoding/asn1"
 	"encoding/pem"
 
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
 
 	"github.com/nobuenhombre/suikat/pkg/fico"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 	"github.com/nobuenhombre/suikat/pkg/inslice"
 )
 
-// NewCertificatesFromDER parses a single certificate from the given ASN.1 DER data.
-func NewCertificatesFromDER(derData []byte) ([]*Certificate, error) {
-	var result []*Certificate
+// DecodeDER
+// en: parses a multiple certificates from the given ASN.1 DER data.
+// ru: парсит DER данные и выдает слайс сертификатов
+func DecodeDER(derData containers.DER) ([]*Container, error) {
+	var result []*Container
 
 	data := derData
 	for len(data) > 0 {
 		var err error
 
-		cert := &Certificate{}
+		cert := &Container{}
 
 		data, err = asn1.Unmarshal(data, cert)
 		if err != nil {
@@ -32,13 +34,16 @@ func NewCertificatesFromDER(derData []byte) ([]*Certificate, error) {
 	return result, nil
 }
 
-func NewCertificatesFromPEM(pemData []byte) ([]*Certificate, error) {
+// DecodePEM
+// en: parses a multiple certificates from the given ASN.1 PEM data.
+// ru: парсит PEM данные и выдает слайс сертификатов
+func DecodePEM(pemData containers.PEM) ([]*Container, error) {
 	var der *pem.Block
 
 	buffer := pemData
-	allow := []string{pemFormat.Certificate}
+	allow := []string{containers.Certificate}
 
-	result := make([]*Certificate, 0)
+	result := make([]*Container, 0)
 
 	for len(buffer) > 0 {
 		der, buffer = pem.Decode(pemData)
@@ -50,7 +55,7 @@ func NewCertificatesFromPEM(pemData []byte) ([]*Certificate, error) {
 			})
 		}
 
-		certs, err := NewCertificatesFromDER(der.Bytes)
+		certs, err := DecodeDER(der.Bytes)
 		if err != nil {
 			return nil, ge.Pin(err)
 		}
@@ -61,12 +66,16 @@ func NewCertificatesFromPEM(pemData []byte) ([]*Certificate, error) {
 	return result, nil
 }
 
-func NewCertificatesFromFile(file string) ([]*Certificate, error) {
+// DecodePEMFile
+// en: parses a multiple certificates from the given ASN.1 PEM file.
+// ru: парсит указанный файл в формате PEM и возвращает слайс сертификатов
+func DecodePEMFile(file string) ([]*Container, error) {
 	txtFile := fico.TxtFile(file)
+
 	pem, err := txtFile.ReadBytes()
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
-	return NewCertificatesFromPEM(pem)
+	return DecodePEM(pem)
 }

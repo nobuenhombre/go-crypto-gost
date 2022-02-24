@@ -12,13 +12,9 @@ type IssuerAndSerial struct {
 	SerialNumber *big.Int
 }
 
-//type SignedAttrs struct {
-//	Raw asn1.RawContent
-//}
-
-// SignerInfo asn.1 CMS  struct
+// Container asn.1 CMS  struct
 // RFC5652
-type SignerInfo struct {
+type Container struct {
 	Version                   int `asn1:"default:1"`
 	IssuerAndSerialNumber     IssuerAndSerial
 	DigestAlgorithm           pkix.AlgorithmIdentifier
@@ -28,11 +24,13 @@ type SignerInfo struct {
 	UnauthenticatedAttributes []Attribute `asn1:"optional,tag:1"`
 }
 
-func (si *SignerInfo) SetUnauthenticatedAttributes(extraUnsignedAttrs []Attribute) error {
+func (si *Container) SetUnauthenticatedAttributes(extraUnsignedAttrs []Attribute) error {
 	unsignedAttrs := &Attributes{}
+
 	for _, attr := range extraUnsignedAttrs {
 		unsignedAttrs.Add(attr.Type, attr.Value)
 	}
+
 	finalUnsignedAttrs, err := unsignedAttrs.ForMarshalling()
 	if err != nil {
 		return err

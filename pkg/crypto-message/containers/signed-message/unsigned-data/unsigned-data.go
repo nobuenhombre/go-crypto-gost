@@ -3,15 +3,17 @@ package unsignedData
 import (
 	"encoding/asn1"
 
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
-type UnsignedData []byte
+type Container []byte
 
-func NewUnsignedData(data []byte) (*UnsignedData, error) {
+func DecodeDER(data containers.DER) (*Container, error) {
 	var (
 		compound asn1.RawValue
-		content  UnsignedData
+		content  Container
 	)
 
 	if len(data) > 0 {

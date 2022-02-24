@@ -14,8 +14,8 @@ import (
 	"github.com/nobuenhombre/suikat/pkg/inslice"
 )
 
-func NewCryptoMessageFromContentInfo(info *contentInfo.ContentInfo) (CryptographicMessage, error) {
-	signedData, err := signedData.NewSignedDataFromInfoContent(info.Content.Bytes)
+func DecodeContentInfoContainer(info *contentInfo.Container) (CryptographicMessage, error) {
+	signedData, err := signedData.DecodeDER(info.Content.Bytes)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
@@ -25,21 +25,21 @@ func NewCryptoMessageFromContentInfo(info *contentInfo.ContentInfo) (Cryptograph
 		return nil, ge.Pin(err)
 	}
 
-	content, err := unsignedData.NewUnsignedData(signedData.ContentInfo.Content.Bytes)
+	content, err := unsignedData.DecodeDER(signedData.ContentInfo.Content.Bytes)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
-	return &CMS{
+	return &Container{
 		Content:      content,
 		Certificates: certificates,
 		SignedData:   signedData,
 	}, nil
 }
 
-// NewCryptoMessageFromDER - Parse parses a CMS from the given DER data.
-func NewCryptoMessageFromDER(derData []byte) (CryptographicMessage, error) {
-	info, err := contentInfo.NewContentInfoFromDER(derData)
+// DecodeDER - Parse parses a Container from the given DER data.
+func DecodeDER(derData []byte) (CryptographicMessage, error) {
+	info, err := contentInfo.DecodeDER(derData)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
@@ -50,7 +50,7 @@ func NewCryptoMessageFromDER(derData []byte) (CryptographicMessage, error) {
 	}
 
 	if info.IsContentType(oid) {
-		return NewCryptoMessageFromContentInfo(info)
+		return DecodeContentInfoContainer(info)
 	} else {
 		return nil, ge.Pin(&ge.MismatchError{
 			ComparedItems: "ContentType oid",
@@ -60,7 +60,7 @@ func NewCryptoMessageFromDER(derData []byte) (CryptographicMessage, error) {
 	}
 }
 
-func NewCryptoMessageFromPEM(pemData []byte) (CryptographicMessage, error) {
+func DecodePEM(pemData []byte) (CryptographicMessage, error) {
 	allow := []string{pemFormat.Default, pemFormat.CMS}
 
 	der, _ := pem.Decode(pemData)
@@ -72,15 +72,16 @@ func NewCryptoMessageFromPEM(pemData []byte) (CryptographicMessage, error) {
 		})
 	}
 
-	return NewCryptoMessageFromDER(der.Bytes)
+	return DecodeDER(der.Bytes)
 }
 
-func NewCryptoMessageFromFile(file string) (CryptographicMessage, error) {
+func DecodePEMFile(file string) (CryptographicMessage, error) {
 	txtFile := fico.TxtFile(file)
+
 	pem, err := txtFile.ReadBytes()
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
-	return NewCryptoMessageFromPEM(pem)
+	return DecodePEM(pem)
 }

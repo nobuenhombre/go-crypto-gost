@@ -18,8 +18,8 @@ import (
 	cryptobyteAsn1 "golang.org/x/crypto/cryptobyte/asn1"
 )
 
-func NewPrivateKeyFromDER(derData []byte) (key *gost3410.PrivateKey, err error) {
-	var privateKey PKCS8
+func DecodeDER(derData pemFormat.DER) (key *gost3410.PrivateKey, err error) {
+	var privateKey Container
 
 	if _, err := asn1.Unmarshal(derData, &privateKey); err != nil {
 		return nil, ge.Pin(err)
@@ -61,7 +61,7 @@ func NewPrivateKeyFromDER(derData []byte) (key *gost3410.PrivateKey, err error) 
 	}
 }
 
-func NewPrivateKeyFromPEM(pemData []byte) (key *gost3410.PrivateKey, err error) {
+func DecodePEM(pemData []byte) (key *gost3410.PrivateKey, err error) {
 	allow := []string{pemFormat.PrivateKey}
 
 	der, _ := pem.Decode(pemData)
@@ -73,15 +73,15 @@ func NewPrivateKeyFromPEM(pemData []byte) (key *gost3410.PrivateKey, err error) 
 		})
 	}
 
-	return NewPrivateKeyFromDER(der.Bytes)
+	return DecodeDER(der.Bytes)
 }
 
-func NewPrivateKeyFromFile(file string) (key *gost3410.PrivateKey, err error) {
+func DecodePEMFile(file string) (key *gost3410.PrivateKey, err error) {
 	txtFile := fico.TxtFile(file)
 	pem, err := txtFile.ReadBytes()
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
-	return NewPrivateKeyFromPEM(pem)
+	return DecodePEM(pem)
 }

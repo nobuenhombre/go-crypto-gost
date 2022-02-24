@@ -40,7 +40,7 @@ func main() {
 
 	// 2. Загружаем Приватный ключ из файла
 	//-------------------------------------
-	gost3410PrivateKey, err := privateKey.NewPrivateKeyFromFile(keysPath + cfg.PrivateKeyFile)
+	gost3410PrivateKey, err := privateKey.DecodePEMFile(keysPath + cfg.PrivateKeyFile)
 	if err != nil {
 		log.Fatal(ge.Pin(err))
 	}
@@ -56,7 +56,7 @@ func main() {
 
 	// 4. Загружаем Публичный ключ из Файла который есть на диске
 	//-----------------------------------------------------------
-	certificate, err := certificate.NewCertificatesFromFile(keysPath + cfg.PublicKeyFile)
+	certificate, err := certificate.DecodePEMFile(keysPath + cfg.PublicKeyFile)
 	if err != nil {
 		log.Fatal(ge.Pin(err))
 	}
@@ -75,7 +75,7 @@ func main() {
 
 	//// 5. Загрузим готовую подпись из файла
 	////-------------------------------------
-	message, err := signedMessage.NewCryptoMessageFromFile(messagesPath + cfg.MessageFileSign)
+	message, err := signedMessage.DecodePEMFile(messagesPath + cfg.MessageFileSign)
 	if err != nil {
 		log.Fatal(ge.Pin(err))
 	}

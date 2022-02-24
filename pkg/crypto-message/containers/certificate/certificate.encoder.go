@@ -4,14 +4,15 @@ import (
 	"bytes"
 	"encoding/asn1"
 	"encoding/pem"
-	"log"
 
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
-
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
-func (c *Certificate) EncodeToDER() ([]byte, error) {
+// EncodeToDER
+// en: convert certificate to DER data.
+// ru: конвертирует сертификат в DER данные
+func (c *Container) EncodeToDER() (containers.DER, error) {
 	derData, err := asn1.Marshal(*c)
 	if err != nil {
 		return nil, ge.Pin(err)
@@ -20,7 +21,10 @@ func (c *Certificate) EncodeToDER() ([]byte, error) {
 	return derData, nil
 }
 
-func (c *Certificate) EncodeToPEM() ([]byte, error) {
+// EncodeToPEM
+// en: convert certificate to PEM data.
+// ru: конвертирует сертификат в PEM данные
+func (c *Container) EncodeToPEM() (containers.PEM, error) {
 	derData, err := c.EncodeToDER()
 	if err != nil {
 		return nil, ge.Pin(err)
@@ -28,9 +32,9 @@ func (c *Certificate) EncodeToPEM() ([]byte, error) {
 
 	var buffer bytes.Buffer
 
-	err = pem.Encode(&buffer, &pem.Block{Type: pemFormat.Certificate, Bytes: derData})
+	err = pem.Encode(&buffer, &pem.Block{Type: containers.Certificate, Bytes: derData})
 	if err != nil {
-		log.Fatal(err)
+		return nil, ge.Pin(err)
 	}
 
 	return buffer.Bytes(), nil

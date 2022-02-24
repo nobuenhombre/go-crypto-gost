@@ -7,6 +7,8 @@ import (
 	"log"
 	"math/big"
 
+	"github.com/nobuenhombre/suikat/pkg/chunks"
+
 	publicKeyAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
 	signatureAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/signature-algorithm"
 
@@ -17,20 +19,11 @@ import (
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
-func IsCertificatesEqual(a, b *Certificate) bool {
+func IsCertificatesEqual(a, b *Container) bool {
 	isIssuerEqual := bytes.Equal(a.TBSCertificate.Issuer.FullBytes, b.TBSCertificate.Issuer.FullBytes)
 	isPublicKeyEqual := bytes.Equal(a.TBSCertificate.PublicKeyInfo.PublicKey.Bytes, b.TBSCertificate.PublicKeyInfo.PublicKey.Bytes)
 
 	return isIssuerEqual && isPublicKeyEqual
-}
-
-// Reverse - some GOST cryptographic function accept LE (little endian) Big integer as bytes array.
-// golang big.Int internal representation is BE (big endian)
-// Reverse convert LE to BE and vice versa
-func Reverse(d []byte) {
-	for i, j := 0, len(d)-1; i < j; i, j = i+1, j-1 {
-		d[i], d[j] = d[j], d[i]
-	}
 }
 
 // RSA public key PKCS#1 representation
@@ -47,7 +40,10 @@ func checkSignatureGostR34102001(signature, digest, pubKey []byte) error {
 		return ge.Pin(err)
 	}
 
-	Reverse(digest)
+	// Reverse - some GOST cryptographic function accept LE (little endian) Big integer as bytes array.
+	// golang big.Int internal representation is BE (big endian)
+	// Reverse convert LE to BE and vice versa
+	chunks.ReverseFullBytes(digest)
 
 	ok, err := pk.VerifyDigest(digest, signature[:])
 	if err != nil {
@@ -69,7 +65,10 @@ func checkSignatureGostR34102012512(signature, digest, pubKey []byte) error {
 		return ge.Pin(err)
 	}
 
-	Reverse(digest)
+	// Reverse - some GOST cryptographic function accept LE (little endian) Big integer as bytes array.
+	// golang big.Int internal representation is BE (big endian)
+	// Reverse convert LE to BE and vice versa
+	chunks.ReverseFullBytes(digest)
 
 	ok, err := pk.VerifyDigest(digest, signature[:])
 	if err != nil {
@@ -144,4 +143,27 @@ func checkSignature(algo *signatureAlgorithm.SignatureAlgorithm, signedSource, s
 	}
 
 	return nil
+}
+
+// VerifyPartialChain checks that a given cert is issued by the first parent in the list,
+// then continue down the path. It doesn't require the last parent to be a root CA,
+// or to be trusted in any truststore. It simply verifies that the chain provided, albeit
+// partial, makes sense.
+func VerifyPartialChain(cert *Container, parents []*Container) error {
+	//var x x509.Certificate
+	if len(parents) == 0 {
+		return ge.New("pkcs7: zero parents provided to verify the signature of certificate") // %q , cert.Subject.CommonName)
+	}
+
+	err := cert.CheckSignatureFrom(parents[0])
+	if err != nil {
+		return ge.Pin(err)
+	}
+
+	if len(parents) == 1 {
+		// there is no more parent to check, return
+		return nil
+	}
+
+	return VerifyPartialChain(parents[0], parents[1:])
 }

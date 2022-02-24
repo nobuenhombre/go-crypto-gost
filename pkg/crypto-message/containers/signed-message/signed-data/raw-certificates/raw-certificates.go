@@ -4,6 +4,6 @@ import (
 	"encoding/asn1"
 )
 
-type RawCertificates struct {
+type Container struct {
 	Raw asn1.RawContent
 }

@@ -1,3 +1,13 @@
+// Package certificate provides
+// en: structure of the Container representation in the asn.1, methods for this structure
+//     and the decoding function from DER
+// ru: структуру представления Container в asn.1, методы для этой структуры
+//     и функцию декодирования из DER
+//
+// asn.1 - Abstract Syntax Notation One (ASN. 1) is a standard interface description language
+// for defining data structures that can be serialized and deserialized in a cross-platform way.
+// It is broadly used in telecommunications and computer networking, and especially in cryptography.
+// https://en.wikipedia.org/wiki/ASN.1
 package certificate
 
 import (
@@ -15,22 +25,22 @@ import (
 
 type Service interface {
 	CheckSignature(algo *signatureAlgorithm.SignatureAlgorithm, signedSource, signature []byte) (err error)
-	CheckSignatureFrom(parent *Certificate) error
+	CheckSignatureFrom(parent *Container) error
 	IsValidOnDate(date time.Time) bool
 	EncodeToDER() ([]byte, error)
 	EncodeToPEM() ([]byte, error)
-	GetSource() *Certificate
+	GetSource() *Container
 }
 
-type Certificate struct {
+type Container struct {
 	Raw                asn1.RawContent
-	TBSCertificate     tbsCertificate.TBSCertificate
+	TBSCertificate     tbsCertificate.Container
 	SignatureAlgorithm pkix.AlgorithmIdentifier
 	SignatureValue     asn1.BitString
 }
 
 // CheckSignature - Verifies signature over certificate public key
-func (c *Certificate) CheckSignature(algo *signatureAlgorithm.SignatureAlgorithm, signedSource, signature []byte) (err error) {
+func (c *Container) CheckSignature(algo *signatureAlgorithm.SignatureAlgorithm, signedSource, signature []byte) (err error) {
 	var pubKey []byte
 
 	if algo == nil {
@@ -54,7 +64,7 @@ func (c *Certificate) CheckSignature(algo *signatureAlgorithm.SignatureAlgorithm
 
 // CheckSignatureFrom verifies that the signature on c is a valid signature
 // from parent.
-func (c *Certificate) CheckSignatureFrom(parent *Certificate) error {
+func (c *Container) CheckSignatureFrom(parent *Container) error {
 	if parent == nil {
 		return nil
 	}
@@ -80,7 +90,7 @@ func (c *Certificate) CheckSignatureFrom(parent *Certificate) error {
 	return parent.CheckSignature(algo, c.TBSCertificate.Raw, c.SignatureValue.RightAlign())
 }
 
-func (c *Certificate) IsValidOnDate(date time.Time) bool {
+func (c *Container) IsValidOnDate(date time.Time) bool {
 	isAfter := date.After(c.TBSCertificate.Validity.NotAfter)
 	isBefore := date.Before(c.TBSCertificate.Validity.NotBefore)
 
@@ -91,6 +101,6 @@ func (c *Certificate) IsValidOnDate(date time.Time) bool {
 	return true
 }
 
-func (c *Certificate) GetSource() *Certificate {
+func (c *Container) GetSource() *Container {
 	return c
 }

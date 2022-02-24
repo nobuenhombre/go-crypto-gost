@@ -7,8 +7,8 @@ import (
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
-func (raw *RawCertificates) EncodeToCertificates() ([]*certificate.Certificate, error) {
-	var v []*certificate.Certificate
+func (raw *Container) EncodeToCertificates() ([]*certificate.Container, error) {
+	var v []*certificate.Container
 
 	if len(raw.Raw) == 0 {
 		return nil, ge.Pin(nil)
@@ -22,23 +22,12 @@ func (raw *RawCertificates) EncodeToCertificates() ([]*certificate.Certificate, 
 
 	asn1Data := val.Bytes
 
-	//for len(asn1Data) > 0 {
-	certs, err := certificate.NewCertificatesFromDER(asn1Data)
+	certs, err := certificate.DecodeDER(asn1Data)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
-	//cert := new(Certificate)
-	//
-	//var err error
-	//
-	//asn1Data, err = asn1.Unmarshal(asn1Data, cert)
-	//if err != nil {
-	//	return nil, ge.Pin(err)
-	//}
-
 	v = append(v, certs...)
-	//}
 
 	return v, nil
 }
