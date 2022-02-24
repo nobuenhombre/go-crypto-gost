@@ -2,6 +2,7 @@
 *.key.pem
 *.cer
 *.sig
+*.dump
 message.txt
 message.txt.sig
 *.message.txt
