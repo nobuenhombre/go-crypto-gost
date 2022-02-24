@@ -40,12 +40,10 @@ func TestGetID(t *testing.T) {
 		test := &getIDTests[i]
 		out, err := GetID(test.in)
 
-		var e *ge.IdentityError
-
 		outEqual := reflect.DeepEqual(out, test.out)
 		errEqual := err == nil
 		if test.err != nil {
-			errEqual = errors.As(err, &e) && reflect.DeepEqual(e.Parent, test.err)
+			errEqual = errors.Is(err, test.err)
 		}
 
 		if !(outEqual && errEqual) {
@@ -87,12 +85,10 @@ func TestGet(t *testing.T) {
 		test := &getTests[i]
 		out, err := Get(test.in)
 
-		var e *ge.IdentityError
-
 		outEqual := reflect.DeepEqual(out, test.out)
 		errEqual := err == nil
 		if test.err != nil {
-			errEqual = errors.As(err, &e) && reflect.DeepEqual(e.Parent, test.err)
+			errEqual = errors.Is(err, test.err)
 		}
 
 		if !(outEqual && errEqual) {
