@@ -8,7 +8,7 @@
 
 ## RUS
 **GO CRYPTO GOST** - Библиотека компонентов 
-предназначена для создания цифровой подписи при помощи криптографических алгоритмов GOST 34.10
+предназначена для создания цифровой подписи в формате PEM при помощи криптографических алгоритмов GOST 34.10
 
 Основана на полном форке библиотеки
 1. https://git.cypherpunks.ru/gogost.git
@@ -23,7 +23,7 @@
 
 ## ENG
 **GO CRYPTO GOST** - Component Library
-Designed to create a digital signature using cryptographic algorithms GOST 34.10
+Designed to create a digital signature in PEM container using cryptographic algorithms GOST 34.10
 
 Based on a full fork of the library
 1. https://git.cypherpunks.ru/gogost.git
