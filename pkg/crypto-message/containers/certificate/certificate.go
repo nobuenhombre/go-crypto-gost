@@ -15,16 +15,16 @@ import (
 	"encoding/asn1"
 	"time"
 
-	publicKeyAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
-	signatureAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/signature-algorithm"
+	publickeyalgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
+	signaturealgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/signature-algorithm"
 
-	tbsCertificate "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate/tbs-certificate"
+	tbscertificate "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate/tbs-certificate"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
 type Service interface {
-	CheckSignature(algo *signatureAlgorithm.SignatureAlgorithm, signedSource, signature []byte) (err error)
+	CheckSignature(algo *signaturealgorithm.SignatureAlgorithm, signedSource, signature []byte) (err error)
 	CheckSignatureFrom(parent *Container) error
 	IsValidOnDate(date time.Time) bool
 	EncodeToDER() ([]byte, error)
@@ -34,20 +34,24 @@ type Service interface {
 
 type Container struct {
 	Raw                asn1.RawContent
-	TBSCertificate     tbsCertificate.Container
+	TBSCertificate     tbscertificate.Container
 	SignatureAlgorithm pkix.AlgorithmIdentifier
 	SignatureValue     asn1.BitString
 }
 
 // CheckSignature - Verifies signature over certificate public key
-func (c *Container) CheckSignature(algo *signatureAlgorithm.SignatureAlgorithm, signedSource, signature []byte) (err error) {
+func (c *Container) CheckSignature(
+	algo *signaturealgorithm.SignatureAlgorithm,
+	signedSource,
+	signature []byte,
+) (err error) {
 	var pubKey []byte
 
 	if algo == nil {
 		return ge.New("empty algorithm")
 	}
 
-	if algo.PublicKeyAlgorithm == publicKeyAlgorithm.RSA {
+	if algo.PublicKeyAlgorithm == publickeyalgorithm.RSA {
 		pubKey = c.TBSCertificate.PublicKeyInfo.PublicKey.RightAlign()
 	} else {
 		var v asn1.RawValue
@@ -77,12 +81,12 @@ func (c *Container) CheckSignatureFrom(parent *Container) error {
 		})
 	}
 
-	oidId, err := oids.GetID(c.TBSCertificate.SignatureAlgorithm.Algorithm)
+	oidID, err := oids.GetID(c.TBSCertificate.SignatureAlgorithm.Algorithm)
 	if err != nil {
 		return ge.Pin(err)
 	}
 
-	algo, err := signatureAlgorithm.Get(oidId)
+	algo, err := signaturealgorithm.Get(oidID)
 	if err != nil {
 		return ge.Pin(err)
 	}

@@ -1,4 +1,4 @@
-package privateKey
+package privatekey
 
 import (
 	"crypto/x509/pkix"

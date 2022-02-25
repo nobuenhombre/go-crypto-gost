@@ -15,17 +15,15 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-package signedMessage
+package signedmessage
 
 import (
-	"bytes"
 	"math/big"
 	"time"
 
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate"
-	signedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data"
-	signerInfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/signer-info"
-	unsignedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/unsigned-data"
+	signeddata "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data"
+	unsigneddata "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/unsigned-data"
 
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
@@ -34,7 +32,6 @@ type CryptographicMessage interface {
 	GetCertificateSerialNumber() *big.Int
 	IsValidOnDate(date time.Time) bool
 	FindCertificateSigner(caList []*certificate.Container) (*certificate.Container, error)
-	//Verify(content []byte, notBefore, notAfter time.Time) error
 	GetEncryptedDigest() []byte
 	EncodeToDER() ([]byte, error)
 	EncodeToPEM() ([]byte, error)
@@ -44,8 +41,8 @@ type CryptographicMessage interface {
 // with Signed-data Content Type - RFC5652
 type Container struct {
 	Certificates []*certificate.Container
-	Content      *unsignedData.Container
-	SignedData   *signedData.Container
+	Content      *unsigneddata.Container
+	SignedData   *signeddata.Container
 }
 
 func (cms *Container) GetEncryptedDigest() []byte {
@@ -59,20 +56,6 @@ func (cms *Container) GetCertificateSerialNumber() *big.Int {
 	}
 
 	return cms.Certificates[0].TBSCertificate.SerialNumber
-}
-
-// getCertificateByIssuerAndSerial find certificate by Issuer byte sequence and Serial number
-func (cms *Container) getCertificateByIssuerAndSerial(ias signerInfo.IssuerAndSerial) *certificate.Container {
-	for _, cert := range cms.Certificates {
-		isSerialMatch := cert.TBSCertificate.SerialNumber.Cmp(ias.SerialNumber) == 0
-		isIssuerMatch := bytes.Compare(cert.TBSCertificate.Issuer.FullBytes, ias.IssuerName.FullBytes) == 0
-
-		if isSerialMatch && isIssuerMatch {
-			return cert
-		}
-	}
-
-	return nil
 }
 
 func (cms *Container) IsValidOnDate(date time.Time) bool {
@@ -91,6 +74,7 @@ func (cms *Container) FindCertificateSigner(caList []*certificate.Container) (*c
 	var signerCertificate *certificate.Container
 
 	signerCertificate = nil
+
 	for _, cert := range cms.Certificates {
 		for _, caCert := range caList {
 			if certificate.IsCertificatesEqual(cert, caCert) {
@@ -268,18 +252,3 @@ func (cms *Container) FindCertificateSigner(caList []*certificate.Container) (*c
 //
 //	return nil
 //}
-
-//func BytesEqual(a, b []byte) bool {
-//	if len(a) != len(b) {
-//		return false
-//	}
-//
-//	for key := range a {
-//		if a[key] != b[key] {
-//			return false
-//		}
-//	}
-//
-//	return true
-//}
-//

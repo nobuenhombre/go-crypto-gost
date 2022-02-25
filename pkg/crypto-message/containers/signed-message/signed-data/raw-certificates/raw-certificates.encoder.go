@@ -1,4 +1,4 @@
-package rawCertificates
+package rawcertificates
 
 import (
 	"encoding/asn1"
@@ -15,6 +15,7 @@ func (raw *Container) EncodeToCertificates() ([]*certificate.Container, error) {
 	}
 
 	var val asn1.RawValue
+
 	_, err := asn1.Unmarshal(raw.Raw, &val)
 	if err != nil {
 		return nil, ge.Pin(err)

@@ -1,4 +1,4 @@
-package rawCertificates
+package rawcertificates
 
 import (
 	"bytes"
@@ -19,7 +19,7 @@ func DecodeCertificatesContainer(certificates []*certificate.Container) (*Contai
 		}
 	}
 
-	var val = asn1.RawValue{Bytes: buf.Bytes(), Class: 2, Tag: 0, IsCompound: true}
+	var val = asn1.RawValue{Bytes: buf.Bytes(), Class: asn1.ClassContextSpecific, Tag: 0, IsCompound: true}
 
 	b, err := asn1.Marshal(val)
 	if err != nil {
@@ -27,5 +27,4 @@ func DecodeCertificatesContainer(certificates []*certificate.Container) (*Contai
 	}
 
 	return &Container{Raw: b}, nil
-
 }

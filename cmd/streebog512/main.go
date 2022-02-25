@@ -33,13 +33,18 @@ var (
 
 func main() {
 	flag.Parse()
+
 	if *version {
 		fmt.Println(gogost.Version)
+
 		return
 	}
+
 	h := gost34112012512.New()
+
 	if _, err := io.Copy(h, os.Stdin); err != nil {
 		panic(err)
 	}
+
 	fmt.Println(hex.EncodeToString(h.Sum(nil)))
 }

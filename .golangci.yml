@@ -1,6 +1,7 @@
 # all available settings of specific linters
 linters:
   disable:
+    - gomoddirectives
     - godot
     - testpackage
     - nakedret
@@ -22,29 +23,9 @@ linters:
     - nolintlint
     # todo - remove in future
     - gosimple
-    - ineffassign
-    - staticcheck
-    - errcheck
-    - deadcode
-    - unused
-    - varcheck
     - gosec
     - exhaustive
-    - gomnd
     - thelper
-    - stylecheck
-    - nlreturn
-    - goerr113
-    - gochecknoglobals
-    - wsl
-    - whitespace
-    - revive
-    - lll
-    - gochecknoinits
-    - dupl
-    - unparam
-    - structcheck
-    - exportloopref
     - godox
 
 issues:
@@ -55,6 +36,172 @@ issues:
         - gomnd
         - dupl
         - gochecknoglobals
+    - path: pkg/gost3410/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: pkg/gost3413/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: pkg/gost28147/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: pkg/gost341194/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: pkg/gost341264/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: pkg/gost3412128/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: pkg/gost34112012256/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: pkg/gost34112012512/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: pkg/mgm/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - unparam
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: pkg/prfplus/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
+    - path: internal/pkg/gost34112012/
+      linters:
+        - wsl
+        - gomnd
+        - gochecknoglobals
+        - errcheck
+        - staticcheck
+        - ineffassign
+        - stylecheck
+        - goerr113
+        - dupl
+        - gochecknoinits
+        - lll
+        - revive
+        - nlreturn
 
 # all available settings of specific linters
 linters-settings:

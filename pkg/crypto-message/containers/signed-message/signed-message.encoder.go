@@ -1,4 +1,4 @@
-package signedMessage
+package signedmessage
 
 func (cms *Container) EncodeToDER() ([]byte, error) {
 	// todo - please release

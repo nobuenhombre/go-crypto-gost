@@ -1,4 +1,4 @@
-package unsignedData
+package unsigneddata
 
 import (
 	"encoding/asn1"
@@ -24,14 +24,10 @@ func DecodeDER(data containers.DER) (*Container, error) {
 	}
 
 	// Compound octet string
-	if compound.IsCompound {
-		if compound.Tag == 4 {
-			_, err := asn1.Unmarshal(compound.Bytes, &content)
-			if err != nil {
-				return nil, ge.Pin(err)
-			}
-		} else {
-			content = compound.Bytes
+	if compound.IsCompound && compound.Tag == 4 {
+		_, err := asn1.Unmarshal(compound.Bytes, &content)
+		if err != nil {
+			return nil, ge.Pin(err)
 		}
 	} else {
 		// assuming this is tag 04

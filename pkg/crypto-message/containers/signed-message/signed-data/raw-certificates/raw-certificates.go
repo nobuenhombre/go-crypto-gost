@@ -1,4 +1,4 @@
-package rawCertificates
+package rawcertificates
 
 import (
 	"encoding/asn1"

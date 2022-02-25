@@ -1,4 +1,4 @@
-package contentInfo
+package contentinfo
 
 import (
 	"encoding/asn1"

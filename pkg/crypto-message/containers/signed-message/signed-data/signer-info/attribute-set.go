@@ -1,16 +1,8 @@
-package signerInfo
+package signerinfo
 
 import (
 	"bytes"
-	"encoding/asn1"
 )
-
-// Attribute asn.1 CMS
-// RFC5652
-type Attribute struct {
-	Type  asn1.ObjectIdentifier
-	Value asn1.RawValue `asn1:"set"`
-}
 
 type sortableAttribute struct {
 	SortKey   []byte

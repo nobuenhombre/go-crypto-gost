@@ -1,4 +1,4 @@
-package signerInfo
+package signerinfo
 
 import (
 	"encoding/asn1"
@@ -30,7 +30,7 @@ func (attrs *Attributes) ForMarshalling() ([]Attribute, error) {
 
 		attr := Attribute{
 			Type:  attrType,
-			Value: asn1.RawValue{Tag: 17, IsCompound: true, Bytes: asn1Value}, // 17 == SET tag
+			Value: asn1.RawValue{Tag: asn1.TagSet, IsCompound: true, Bytes: asn1Value},
 		}
 
 		encoded, err := asn1.Marshal(attr)

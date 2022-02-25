@@ -1,9 +1,13 @@
 .idea
+.run
 *.key.pem
 *.cer
 *.sig
+*.sign
 *.dump
 message.txt
 message.txt.sig
+message.txt.sign
 *.message.txt
 *.message.txt.sig
+*.message.txt.sign

@@ -26,12 +26,12 @@ func DecodeDER(der containers.DER) (*gost3410.Curve, error) {
 		return nil, ge.Pin(&containers.TrailingDataError{})
 	}
 
-	oidId, err := oids.GetID(params.PublicKeyParamSet)
+	oidID, err := oids.GetID(params.PublicKeyParamSet)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
-	curve, err := Get(oidId)
+	curve, err := Get(oidID)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}

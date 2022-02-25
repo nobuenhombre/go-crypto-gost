@@ -1,9 +1,9 @@
-// Package publicKeyAlgorithm provides
+// Package publickeyalgorithm provides
 // en: a set of constants and functions for working with encryption algorithms for public keys
 //     in relation to the GOST encryption standard
 // ru: набор констант и функции работы с алгоритмами шифрования для публичных ключей
 //     применительно стандарта шифрования GOST
-package publicKeyAlgorithm
+package publickeyalgorithm
 
 import (
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
@@ -70,17 +70,17 @@ func getList() map[oids.ID]PublicKeyAlgorithm {
 // Get
 // en: get public key algorithm by the corresponding oids.ID const
 // ru: получить алгоритм публичного ключа по соответствующей oids.ID константе
-func Get(oidId oids.ID) (PublicKeyAlgorithm, error) {
-	_, err := oids.Get(oidId)
+func Get(oidID oids.ID) (PublicKeyAlgorithm, error) {
+	_, err := oids.Get(oidID)
 	if err != nil {
 		return UnknownAlgorithm, ge.Pin(err)
 	}
 
 	list := getList()
 
-	result, found := list[oidId]
+	result, found := list[oidID]
 	if !found {
-		return UnknownAlgorithm, ge.Pin(&ge.NotFoundError{Key: string(oidId)})
+		return UnknownAlgorithm, ge.Pin(&ge.NotFoundError{Key: string(oidID)})
 	}
 
 	return result, nil

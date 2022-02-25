@@ -1,4 +1,4 @@
-// Package publicKeyInfo provides
+// Package publickeyinfo provides
 // en: structure of the public key representation in the asn.1, methods for this structure
 //     and the decoding function from DER
 // ru: структуру представления публичного ключа в asn.1, методы для этой структуры
@@ -8,15 +8,15 @@
 // for defining data structures that can be serialized and deserialized in a cross-platform way.
 // It is broadly used in telecommunications and computer networking, and especially in cryptography.
 // https://en.wikipedia.org/wiki/ASN.1
-package publicKeyInfo
+package publickeyinfo
 
 import (
 	"crypto/x509/pkix"
 	"encoding/asn1"
 
-	publicKeyAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
+	publickeyalgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
 
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
 
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/curves"
@@ -40,15 +40,15 @@ type algorithmParam struct {
 	Digest asn1.ObjectIdentifier
 }
 
-func (pki *Container) GetAlgorithm() (publicKeyAlgorithm.PublicKeyAlgorithm, error) {
-	oidId, err := oids.GetID(pki.Algorithm.Algorithm)
+func (pki *Container) GetAlgorithm() (publickeyalgorithm.PublicKeyAlgorithm, error) {
+	oidID, err := oids.GetID(pki.Algorithm.Algorithm)
 	if err != nil {
-		return publicKeyAlgorithm.UnknownAlgorithm, ge.Pin(err)
+		return publickeyalgorithm.UnknownAlgorithm, ge.Pin(err)
 	}
 
-	algo, err := publicKeyAlgorithm.Get(oidId)
+	algo, err := publickeyalgorithm.Get(oidID)
 	if err != nil {
-		return publicKeyAlgorithm.UnknownAlgorithm, ge.Pin(err)
+		return publickeyalgorithm.UnknownAlgorithm, ge.Pin(err)
 	}
 
 	return algo, nil
@@ -63,15 +63,15 @@ func (pki *Container) GetHashFunction() (hashOid.Function, error) {
 	}
 
 	if len(rest) != 0 {
-		return hashOid.UnknownHashFunction, ge.Pin(&pemFormat.TrailingDataError{})
+		return hashOid.UnknownHashFunction, ge.Pin(&containers.TrailingDataError{})
 	}
 
-	hashOidId, err := oids.GetID(params.Digest)
+	hashOidID, err := oids.GetID(params.Digest)
 	if err != nil {
 		return hashOid.UnknownHashFunction, ge.Pin(err)
 	}
 
-	hashFunc, err := hashOid.Get(hashOidId)
+	hashFunc, err := hashOid.Get(hashOidID)
 	if err != nil {
 		return hashOid.UnknownHashFunction, ge.Pin(err)
 	}
@@ -88,7 +88,7 @@ func (pki *Container) GetPublicKey() (*gost3410.PublicKey, error) {
 	asn1Data := pki.PublicKey.RightAlign()
 
 	switch algo {
-	case publicKeyAlgorithm.GostR34102001, publicKeyAlgorithm.GostR34102012256, publicKeyAlgorithm.GostR34102012512:
+	case publickeyalgorithm.GostR34102001, publickeyalgorithm.GostR34102012256, publickeyalgorithm.GostR34102012512:
 		var pubRaw []byte
 
 		s := cryptobyte.String(asn1Data)

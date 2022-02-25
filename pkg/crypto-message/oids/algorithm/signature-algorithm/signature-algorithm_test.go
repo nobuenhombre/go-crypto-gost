@@ -1,4 +1,4 @@
-package signatureAlgorithm
+package signaturealgorithm
 
 import (
 	"errors"
@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
-	publicKeyAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
+	publickeyalgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/hash"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
@@ -23,7 +23,7 @@ func getTestsGet() []getTest {
 			in: oids.Tc26Gost34102012256,
 			out: &SignatureAlgorithm{
 				"GOST-3410_12_256",
-				publicKeyAlgorithm.GostR34102012256,
+				publickeyalgorithm.GostR34102012256,
 				hash.UnknownHashFunction,
 			},
 			err: nil,
@@ -46,6 +46,7 @@ func TestGet(t *testing.T) {
 		out, err := Get(test.in)
 
 		outEqual := reflect.DeepEqual(out, test.out)
+
 		errEqual := err == nil
 		if test.err != nil {
 			errEqual = errors.Is(err, test.err)

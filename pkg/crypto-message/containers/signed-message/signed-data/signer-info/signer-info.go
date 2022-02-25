@@ -1,4 +1,4 @@
-package signerInfo
+package signerinfo
 
 import (
 	"crypto/x509/pkix"

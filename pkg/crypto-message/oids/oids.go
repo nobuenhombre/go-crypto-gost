@@ -1,6 +1,8 @@
 // Package oids provides
-// en: a set of constants and functions for working with ASN.1 OBJECT IDENTIFIER in relation to the GOST encryption standard
-// ru: набор констант и функции работы с ASN.1 OBJECT IDENTIFIER применительно стандарта шифрования GOST
+// en: a set of constants and functions for working with ASN.1 OBJECT IDENTIFIER
+//     in relation to the GOST encryption standard
+// ru: набор констант и функции работы с ASN.1 OBJECT IDENTIFIER
+//     применительно стандарта шифрования GOST
 package oids
 
 import (
@@ -148,12 +150,12 @@ func GetID(oid asn1.ObjectIdentifier) (ID, error) {
 // Get
 // en: get asn1.ObjectIdentifier by the corresponding constant
 // ru: получить asn1.ObjectIdentifier по соответствующей константе
-func Get(oidId ID) (asn1.ObjectIdentifier, error) {
+func Get(oidID ID) (asn1.ObjectIdentifier, error) {
 	list := getList()
 
-	result, found := list[oidId]
+	result, found := list[oidID]
 	if !found {
-		return nil, ge.Pin(&ge.NotFoundError{Key: string(oidId)})
+		return nil, ge.Pin(&ge.NotFoundError{Key: string(oidID)})
 	}
 
 	return result, nil

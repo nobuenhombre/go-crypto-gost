@@ -1,13 +1,13 @@
-package signGost3410
+package signgost3410
 
 import (
 	"crypto/rand"
-	"fmt"
-	"reflect"
+
+	privateKeyPkg "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/private-key"
 
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/hash"
+	"github.com/nobuenhombre/suikat/pkg/chunks"
 
-	//goGostCrypto "github.com/ftomza/go-gost-crypto"
 	"io"
 
 	"github.com/nobuenhombre/go-crypto-gost/pkg/gost3410"
@@ -17,32 +17,25 @@ import (
 func GetDigest(data []byte, hashFunc hash.Function) ([]byte, error) {
 	hashFuncInternal := hashFunc.New()
 
-	// hash.Hash
-	// hashFunc := gost34112012256.New()
-
 	_, err := hashFuncInternal.Write(data)
 	if err != nil {
 		return []byte{}, ge.Pin(err)
 	}
 
 	// Дайджест
-	digest := hashFuncInternal.Sum(nil)
+	digest := chunks.ReverseFullBytes(hashFuncInternal.Sum(nil))
 
 	return digest, nil
 }
 
 func GeneratePrivateKey(curve *gost3410.Curve) (*gost3410.PrivateKey, error) {
-	privateRaw := make([]byte, int(32))
+	privateRaw := make([]byte, int(privateKeyPkg.Length))
 
 	_, err := io.ReadFull(rand.Reader, privateRaw)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
-	//type PrivateKey struct {
-	//	C   *Curve
-	//	Key *big.Int
-	//}
 	privateKey, err := gost3410.NewPrivateKey(curve, privateRaw)
 	if err != nil {
 		return nil, ge.Pin(err)
@@ -52,11 +45,6 @@ func GeneratePrivateKey(curve *gost3410.Curve) (*gost3410.PrivateKey, error) {
 }
 
 func ExtractPublicKeyGOST(curve *gost3410.Curve, privateKey *gost3410.PrivateKey) (*gost3410.PublicKey, error) {
-	//type PublicKey struct {
-	//	C *Curve
-	//	X *big.Int
-	//	Y *big.Int
-	//}
 	publicKey, err := privateKey.PublicKey()
 	if err != nil {
 		return nil, ge.Pin(err)
@@ -68,9 +56,6 @@ func ExtractPublicKeyGOST(curve *gost3410.Curve, privateKey *gost3410.PrivateKey
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
-
-	x := reflect.DeepEqual(publicKey, publicKeyGost)
-	fmt.Printf("deep equal %v", x)
 
 	return publicKeyGost, nil
 }

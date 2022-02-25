@@ -32,17 +32,17 @@ func getList() map[oids.ID]*gost3410.Curve {
 // Get
 // en: get *gost3410.Curve by the corresponding oids.ID const
 // ru: получить *gost3410.Curve по соответствующей oids.ID константе
-func Get(oidId oids.ID) (*gost3410.Curve, error) {
-	_, err := oids.Get(oidId)
+func Get(oidID oids.ID) (*gost3410.Curve, error) {
+	_, err := oids.Get(oidID)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
 	list := getList()
 
-	result, found := list[oidId]
+	result, found := list[oidID]
 	if !found {
-		return nil, ge.Pin(&ge.NotFoundError{Key: string(oidId)})
+		return nil, ge.Pin(&ge.NotFoundError{Key: string(oidID)})
 	}
 
 	return result, nil

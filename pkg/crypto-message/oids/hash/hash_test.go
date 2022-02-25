@@ -40,6 +40,7 @@ func TestGet(t *testing.T) {
 		out, err := Get(test.in)
 
 		outEqual := reflect.DeepEqual(out, test.out)
+
 		errEqual := err == nil
 		if test.err != nil {
 			errEqual = errors.Is(err, test.err)

@@ -14,7 +14,9 @@ import (
 	"github.com/nobuenhombre/go-crypto-gost/pkg/gost341194"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 
+	// nolint[:revive]
 	_ "crypto/sha256"
+	// nolint[:revive]
 	_ "crypto/sha512"
 )
 
@@ -98,17 +100,17 @@ func getList() map[oids.ID]Function {
 // Get
 // en: get hash function by the corresponding oids.ID const
 // ru: получить хэш функцию по соответствующей oids.ID константе
-func Get(oidId oids.ID) (Function, error) {
-	_, err := oids.Get(oidId)
+func Get(oidID oids.ID) (Function, error) {
+	_, err := oids.Get(oidID)
 	if err != nil {
 		return UnknownHashFunction, ge.Pin(err)
 	}
 
 	list := getList()
 
-	result, found := list[oidId]
+	result, found := list[oidID]
 	if !found {
-		return UnknownHashFunction, ge.Pin(&ge.NotFoundError{Key: string(oidId)})
+		return UnknownHashFunction, ge.Pin(&ge.NotFoundError{Key: string(oidID)})
 	}
 
 	return result, nil

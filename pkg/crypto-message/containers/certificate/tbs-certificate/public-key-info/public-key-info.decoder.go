@@ -1,4 +1,4 @@
-package publicKeyInfo
+package publickeyinfo
 
 import (
 	"encoding/asn1"

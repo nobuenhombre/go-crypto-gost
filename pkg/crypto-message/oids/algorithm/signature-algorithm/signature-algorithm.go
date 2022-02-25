@@ -1,21 +1,21 @@
-// Package signatureAlgorithm provides
+// Package signaturealgorithm provides
 // en: a set of constants and functions for working with encryption algorithms for signatures
 //     in relation to the GOST encryption standard
 // ru: набор констант и функции работы с алгоритмами шифрования для подписей
 //     применительно стандарта шифрования GOST
-package signatureAlgorithm
+package signaturealgorithm
 
 import (
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm"
-	publicKeyAlgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
+	publickeyalgorithm "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/algorithm/public-key-algorithm"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids/hash"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 )
 
 type SignatureAlgorithm struct {
 	Name               string
-	PublicKeyAlgorithm publicKeyAlgorithm.PublicKeyAlgorithm
+	PublicKeyAlgorithm publickeyalgorithm.PublicKeyAlgorithm
 	Hash               hash.Function
 }
 
@@ -33,57 +33,57 @@ func getList() map[oids.ID]*SignatureAlgorithm {
 	return map[oids.ID]*SignatureAlgorithm{
 		oids.SignatureSHA1WithRSA: {
 			"SHA1-RSA",
-			publicKeyAlgorithm.RSA,
+			publickeyalgorithm.RSA,
 			hash.SHA1,
 		},
 		oids.ISOSignatureSHA1WithRSA: {
 			"SHA1-RSA",
-			publicKeyAlgorithm.RSA,
+			publickeyalgorithm.RSA,
 			hash.SHA1,
 		},
 		oids.SignatureSHA256WithRSA: {
 			"SHA256-RSA",
-			publicKeyAlgorithm.RSA,
+			publickeyalgorithm.RSA,
 			hash.SHA256,
 		},
 		oids.SignatureSHA384WithRSA: {
 			"SHA384-RSA",
-			publicKeyAlgorithm.RSA,
+			publickeyalgorithm.RSA,
 			hash.SHA384,
 		},
 		oids.SignatureSHA512WithRSA: {
 			"SHA512-RSA",
-			publicKeyAlgorithm.RSA,
+			publickeyalgorithm.RSA,
 			hash.SHA512,
 		},
 		oids.SignatureGostR34102001: {
 			"GOST-3410_2001",
-			publicKeyAlgorithm.GostR34102001,
+			publickeyalgorithm.GostR34102001,
 			hash.UnknownHashFunction,
 		},
 		oids.SignatureGostR34102001GostR341194: {
 			"GOST-3410_2001-3411_94",
-			publicKeyAlgorithm.GostR34102001,
+			publickeyalgorithm.GostR34102001,
 			hash.GostR341194,
 		},
 		oids.Tc26Gost34102012256: {
 			"GOST-3410_12_256",
-			publicKeyAlgorithm.GostR34102012256,
+			publickeyalgorithm.GostR34102012256,
 			hash.UnknownHashFunction,
 		},
 		oids.Tc26SignWithDigestGost341012256: {
 			"GOST-3410_12_256-3411_12",
-			publicKeyAlgorithm.GostR34102012256,
+			publickeyalgorithm.GostR34102012256,
 			hash.GostR34112012256,
 		},
 		oids.Tc26Gost34102012512: {
 			"GOST-3410_12_512",
-			publicKeyAlgorithm.GostR34102012512,
+			publickeyalgorithm.GostR34102012512,
 			hash.UnknownHashFunction,
 		},
 		oids.Tc26SignWithDigestGost341012512: {
 			"GOST-3410_12_512-3411_12",
-			publicKeyAlgorithm.GostR34102012512,
+			publickeyalgorithm.GostR34102012512,
 			hash.GostR34112012512,
 		},
 	}
@@ -92,17 +92,17 @@ func getList() map[oids.ID]*SignatureAlgorithm {
 // Get
 // en: get signature algorithm by the corresponding oids.ID const
 // ru: получить алгоритм подписи по соответствующей oids.ID константе
-func Get(oidId oids.ID) (*SignatureAlgorithm, error) {
-	_, err := oids.Get(oidId)
+func Get(oidID oids.ID) (*SignatureAlgorithm, error) {
+	_, err := oids.Get(oidID)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
 
 	list := getList()
 
-	result, found := list[oidId]
+	result, found := list[oidID]
 	if !found {
-		return nil, ge.Pin(&ge.NotFoundError{Key: string(oidId)})
+		return nil, ge.Pin(&ge.NotFoundError{Key: string(oidID)})
 	}
 
 	return result, nil

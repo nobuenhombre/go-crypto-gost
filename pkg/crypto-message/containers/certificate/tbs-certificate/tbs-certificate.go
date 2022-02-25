@@ -1,4 +1,4 @@
-// Package tbsCertificate provides
+// Package tbscertificate provides
 // en: structure of the Container representation in the asn.1, methods for this structure
 //     and the decoding function from DER
 // ru: структуру представления Container в asn.1, методы для этой структуры
@@ -14,7 +14,7 @@
 // связанную с субъектом сертификата и центром сертификации, который его выдал.
 // Container содержит данные, которые используются для вычисления подписи сертификата
 // ( цифровой подписи ), которая кодируется с использованием особых правил кодирования ASN.1 ( DER ) X.690 .
-package tbsCertificate
+package tbscertificate
 
 import (
 	"crypto/x509/pkix"
@@ -22,7 +22,8 @@ import (
 	"math/big"
 	"time"
 
-	publicKeyInfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate/tbs-certificate/public-key-info"
+	// nolint[:lll]
+	publickeyinfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/certificate/tbs-certificate/public-key-info"
 )
 
 type Validity struct {
@@ -39,8 +40,8 @@ type Container struct {
 	Issuer             asn1.RawValue
 	Validity           Validity
 	Subject            asn1.RawValue
-	PublicKeyInfo      publicKeyInfo.Container
-	UniqueId           asn1.BitString   `asn1:"optional,tag:1"`
-	SubjectUniqueId    asn1.BitString   `asn1:"optional,tag:2"`
+	PublicKeyInfo      publickeyinfo.Container
+	UniqueID           asn1.BitString   `asn1:"optional,tag:1"`
+	SubjectUniqueID    asn1.BitString   `asn1:"optional,tag:2"`
 	Extensions         []pkix.Extension `asn1:"optional,explicit,tag:3"`
 }

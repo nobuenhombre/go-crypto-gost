@@ -1,21 +1,22 @@
-package signedMessage
+package signedmessage
 
 import (
 	"encoding/pem"
 
-	pemFormat "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
+	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers"
 
-	signedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data"
-	contentInfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/content-info"
-	unsignedData "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/unsigned-data"
+	signeddata "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data"
+	// nolint[:lll]
+	contentinfo "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/signed-data/content-info"
+	unsigneddata "github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/containers/signed-message/unsigned-data"
 	"github.com/nobuenhombre/go-crypto-gost/pkg/crypto-message/oids"
 	"github.com/nobuenhombre/suikat/pkg/fico"
 	"github.com/nobuenhombre/suikat/pkg/ge"
 	"github.com/nobuenhombre/suikat/pkg/inslice"
 )
 
-func DecodeContentInfoContainer(info *contentInfo.Container) (CryptographicMessage, error) {
-	signedData, err := signedData.DecodeDER(info.Content.Bytes)
+func DecodeContentInfoContainer(info *contentinfo.Container) (CryptographicMessage, error) {
+	signedData, err := signeddata.DecodeDER(info.Content.Bytes)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
@@ -25,7 +26,7 @@ func DecodeContentInfoContainer(info *contentInfo.Container) (CryptographicMessa
 		return nil, ge.Pin(err)
 	}
 
-	content, err := unsignedData.DecodeDER(signedData.ContentInfo.Content.Bytes)
+	content, err := unsigneddata.DecodeDER(signedData.ContentInfo.Content.Bytes)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
@@ -39,7 +40,7 @@ func DecodeContentInfoContainer(info *contentInfo.Container) (CryptographicMessa
 
 // DecodeDER - Parse parses a Container from the given DER data.
 func DecodeDER(derData []byte) (CryptographicMessage, error) {
-	info, err := contentInfo.DecodeDER(derData)
+	info, err := contentinfo.DecodeDER(derData)
 	if err != nil {
 		return nil, ge.Pin(err)
 	}
@@ -51,17 +52,17 @@ func DecodeDER(derData []byte) (CryptographicMessage, error) {
 
 	if info.IsContentType(oid) {
 		return DecodeContentInfoContainer(info)
-	} else {
-		return nil, ge.Pin(&ge.MismatchError{
-			ComparedItems: "ContentType oid",
-			Expected:      oid,
-			Actual:        info.ContentType,
-		})
 	}
+
+	return nil, ge.Pin(&ge.MismatchError{
+		ComparedItems: "ContentType oid",
+		Expected:      oid,
+		Actual:        info.ContentType,
+	})
 }
 
 func DecodePEM(pemData []byte) (CryptographicMessage, error) {
-	allow := []string{pemFormat.Default, pemFormat.CMS}
+	allow := []string{containers.Default, containers.CMS}
 
 	der, _ := pem.Decode(pemData)
 	if der == nil || !inslice.String(der.Type, &allow) {
