@@ -35,7 +35,7 @@ func main() {
 		log.Fatalf("CLI config error [%v]", err)
 	}
 
-	log.Infoln("config = %v", cfg)
+	log.Infof("config = %v \n", cfg)
 
 	// 2.
 	// Загрузим файлы
