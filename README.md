@@ -11,9 +11,11 @@
 предназначена для создания цифровой подписи в формате PEM при помощи криптографических алгоритмов GOST 34.10
 
 Основана на полном форке библиотеки
+ 
 1. https://git.cypherpunks.ru/gogost.git
 
 И на модифицированных форках библиотек
+ 
 2. https://github.com/ftomza/go-gost-crypto.git
 3. https://github.com/ddulesov/pkcs7
 4. https://go.mozilla.org/pkcs7
@@ -26,9 +28,11 @@
 Designed to create a digital signature in PEM container using cryptographic algorithms GOST 34.10
 
 Based on a full fork of the library
+
 1. https://git.cypherpunks.ru/gogost.git
 
 and on modified libraries forks
+
 2. https://github.com/ftomza/go-gost-crypto.git
 3. https://github.com/ddulesov/pkcs7
 4. https://go.mozilla.org/pkcs7
