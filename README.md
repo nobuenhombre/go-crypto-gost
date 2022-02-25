@@ -6,16 +6,32 @@
 [![GitHub Release](https://img.shields.io/github/release/nobuenhombre/go-crypto-gost.svg)](https://github.com/nobuenhombre/go-crypto-gost/releases)
 [![Go Reference](https://pkg.go.dev/badge/github.com/nobuenhombre/go-crypto-gost.svg)](https://pkg.go.dev/github.com/nobuenhombre/go-crypto-gost)
 
+## RUS
 **GO CRYPTO GOST** - Библиотека компонентов 
 предназначена для создания цифровой подписи при помощи криптографических алгоритмов GOST 34.10
 
-основана на полном форке бибилиотеки
+Основана на полном форке библиотеки
 1. https://git.cypherpunks.ru/gogost.git
 
-и на модифицированных форках библиотек
+И на модифицированных форках библиотек
 2. https://github.com/ftomza/go-gost-crypto.git
 3. https://github.com/ddulesov/pkcs7
 4. https://go.mozilla.org/pkcs7
 
-## Примеры использования
+### Примеры использования
 можно найти в каталоге cmd/examples 
+
+## ENG
+**GO CRYPTO GOST** - Component Library
+Designed to create a digital signature using cryptographic algorithms GOST 34.10
+
+Based on a full fork of the library
+1. https://git.cypherpunks.ru/gogost.git
+
+and on modified libraries forks
+2. https://github.com/ftomza/go-gost-crypto.git
+3. https://github.com/ddulesov/pkcs7
+4. https://go.mozilla.org/pkcs7
+
+### Usage examples
+can be found in the cmd/examples directory
